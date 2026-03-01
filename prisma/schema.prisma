@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum PixChargeStatus {
+  pending
+  paid
+  expired
+  failed
+}
+
+enum SupportSource {
+  web3
+  pix
+}
+
+model PixCharge {
+  id                String          @id @default(cuid())
+  chargeId          String          @unique
+  zineSlug          String
+  amountBrlCents    Int
+  amountUsdc6       BigInt
+  payerEmail        String
+  payerWallet       String?
+  status            PixChargeStatus @default(pending)
+  pixQrCode         String
+  pixCopyPaste      String
+  expiresAt         DateTime
+  paidAt            DateTime?
+  webhookPayload    String?
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+}
+
+model SupportEvent {
+  id             String        @id @default(cuid())
+  source         SupportSource
+  zineSlug       String
+  amountUsdc6    BigInt
+  amountBrlCents Int?
+  payerEmail     String?
+  payerWallet    String?
+  txHash         String?
+  chargeId       String?
+  chainId        Int?
+  revnetProject  Int
+  createdAt      DateTime      @default(now())
+
+  @@index([zineSlug])
+  @@index([source])
+  @@index([chargeId])
+  @@index([txHash])
+}
+

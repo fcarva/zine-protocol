@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f5f2ea;
+  --foreground: #1f1a17;
+}
+
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display), serif;
+}
+
+.background-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(251, 191, 36, 0.14), transparent 42%),
+    radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.1), transparent 35%),
+    linear-gradient(rgba(35, 29, 24, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(35, 29, 24, 0.05) 1px, transparent 1px);
+  background-size: auto, auto, 34px 34px, 34px 34px;
+  background-position: center;
+  pointer-events: none;
+}
+
+@layer utilities {
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+}
+
