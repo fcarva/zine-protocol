@@ -30,6 +30,10 @@ Consolidar o MVP do Zine Protocol para demo Artizen com foco em:
 5. CI de validação criado:
    - arquivo: `.github/workflows/ci.yml`
    - executa `pnpm install --frozen-lockfile`, `npm run check:all` e `npm run build`.
+6. Persistência real no Supabase conectada:
+   - `DATABASE_URL` configurada em `Preview` e `Production` na Vercel;
+   - migração Prisma `0001_init` criada e aplicada com sucesso;
+   - fallback local deixou de ser dependência para persistência em produção.
 
 ### Validado
 
@@ -39,23 +43,20 @@ Consolidar o MVP do Zine Protocol para demo Artizen com foco em:
 
 ### Pendente crítico
 
-1. `DATABASE_URL` de produção ainda precisa apontar para Postgres real.
-   - com URL local/placeholder, o app permanece em fallback de memória (sem persistência durável).
+1. Executar QA funcional completo pós-migração em produção (Wallet/Email/Pix).
 
 ## Riscos conhecidos
 
 1. `markdown-renderer` usa `<img>` por decisão editorial (fidelidade visual).
 2. `next lint` mantém warning `@next/next/no-img-element` esperado.
-3. sem Postgres real em Vercel, eventos de apoio não persistem entre cold starts.
+3. webhook Pix precisa ser validado com evento real sandbox após deploy final.
 
 ## Continuação do plano (próxima sessão)
 
 ### Bloco 1 — Persistência real (prioridade máxima, 45-60 min)
 
-1. Provisionar Postgres gerenciado (Neon/Supabase/Railway).
-2. Atualizar `DATABASE_URL` em `Preview` e `Production`.
-3. Rodar `vercel env ls` e `vercel --prod --yes`.
-4. Critério de pronto: criação Pix + logs Web3 persistindo após novo deploy.
+1. Concluído em 2026-03-02 com Supabase (`db.vlpsoqxeixmxdiqhijzf.supabase.co`).
+2. Próximo: validar escrita/leitura real no fluxo do app após deploy de produção.
 
 ### Bloco 2 — QA de checkout (60-90 min)
 
