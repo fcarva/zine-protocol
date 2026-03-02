@@ -12,18 +12,18 @@ MVP editorial para Artizen: leitura aberta de zines + apoio direto (Wallet, Emai
 
 ## Estrutura do projeto
 
-- `src/app/` rotas da aplicação (home, manifesto, zines, checkout, APIs)
-- `src/components/` UI e fluxos de apoio
-- `src/lib/` parser de zines, env, pix, revnet, storage
-- `content/zines/` zines em Markdown com frontmatter
-- `public/images/zines/` capas e páginas
-- `scripts/import-antmag.cjs` importador de páginas do antmag para Markdown + imagens
+- `src/app/`: rotas da aplicação (home, manifesto, zines, checkout, APIs)
+- `src/components/`: UI e fluxos de apoio
+- `src/lib/`: parser de zines, env, pix, revnet, storage
+- `content/zines/`: zines em Markdown com frontmatter
+- `public/images/zines/`: capas e páginas
+- `scripts/import-antmag.cjs`: importador de páginas do antmag para Markdown + imagens
 
 ## Frontmatter obrigatório
 
 ```yaml
 slug: "nome-do-zine"
-title: "Titulo"
+title: "Título"
 artist_name: "Nome"
 artist_wallet: "0x..."
 cover_image: "/images/zines/capa.jpg"
@@ -31,7 +31,7 @@ excerpt: "Resumo"
 tags: ["arte", "zine"]
 revnet_project_id: 123
 funding_mode: "campaign" # campaign | continuous
-target_usdc: 500         # obrigatorio se campaign
+target_usdc: 500         # obrigatório se campaign
 deadline_iso: "2026-06-30T23:59:59Z" # obrigatório se campaign
 status: "published"      # draft | published
 sort_order: 10
@@ -71,7 +71,7 @@ Comando:
 npm run import:antmag
 ```
 
-## Otimizacao de imagens (antes do push)
+## Otimização de imagens (antes do push)
 
 Para reduzir peso do repositório sem quebrar paths do conteúdo:
 
@@ -80,6 +80,22 @@ npm run optimize:antmag
 ```
 
 O script reprocessa JPG/JPEG/PNG em `public/images/zines/antmag`, redimensiona imagens muito grandes e substitui somente quando o arquivo final fica menor.
+
+## Banco de dados (Supabase + Prisma)
+
+1. Configure `DATABASE_URL` local (ou em CI) com SSL:
+   - `postgresql://postgres:<senha-encoded>@db.<project-ref>.supabase.co:5432/postgres?sslmode=require`
+2. Aplique migrações:
+
+```bash
+npx prisma migrate deploy
+```
+
+3. Verifique status:
+
+```bash
+npx prisma migrate status
+```
 
 ## Build e deploy
 
@@ -101,7 +117,7 @@ O script reprocessa JPG/JPEG/PNG em `public/images/zines/antmag`, redimensiona i
 4. Revisar `.env.example` e segredos antes de push
 5. Fazer commit em lotes lógicos (layout, conteúdo, pagamentos, docs)
 
-## Observacoes do MVP
+## Observações do MVP
 
 - Sem NFT no MVP
 - Linguagem principal do CTA: `Apoiar este zine`
