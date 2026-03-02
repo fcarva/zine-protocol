@@ -27,7 +27,7 @@ export default async function ZinePage({ params }: { params: Promise<{ slug: str
       : null;
 
   return (
-    <div className="space-y-2.5 sm:space-y-3">
+    <div className="space-y-2.5 font-sans sm:space-y-3">
       <div className="grid gap-2.5 xl:grid-cols-[minmax(0,1fr)_320px] xl:items-start xl:gap-3">
         <header className="stagger-in border-b border-base-300 pb-3">
           <div className="grid gap-2.5 lg:grid-cols-[minmax(0,350px)_minmax(0,1fr)] lg:items-start">
@@ -37,7 +37,7 @@ export default async function ZinePage({ params }: { params: Promise<{ slug: str
                 alt={`Capa de ${zine.title}`}
                 fill
                 sizes="(max-width: 1280px) 100vw, 350px"
-                className="xerox-image object-cover object-center"
+                className="xerox-image object-contain object-center p-1"
               />
               <span className="absolute bottom-1 left-1 rounded border border-base-300 bg-paper/90 px-1.5 py-0.5 font-mono text-[0.52rem] uppercase tracking-[0.14em] text-base-700">
                 Arquivo {String(zine.sort_order).padStart(2, "0")}
@@ -71,13 +71,13 @@ export default async function ZinePage({ params }: { params: Promise<{ slug: str
                 {campaignProgress !== null && (
                   <MetaLine label="Progresso campanha" value={`${campaignProgress.toFixed(2)}%`} />
                 )}
-                <MetaLine label="Modo" value={zine.funding_mode === "campaign" ? "Campanha" : "Continuo"} />
+                <MetaLine label="Modo" value={zine.funding_mode === "campaign" ? "Campanha" : "Contínuo"} />
                 <MetaLine label="Projeto" value={`#${zine.revnet_project_id}`} />
               </div>
 
               <p className="text-[0.78rem] leading-snug text-base-700">
-                Leitura completa sem bloqueio. Apoio financeiro ativo para manter producao,
-                distribuicao e novos ciclos curatoriais.
+                Leitura completa sem bloqueio. Apoio financeiro ativo para manter produção,
+                distribuição e novos ciclos curatoriais.
               </p>
             </div>
           </div>
@@ -92,11 +92,11 @@ export default async function ZinePage({ params }: { params: Promise<{ slug: str
         <div className="grid gap-2.5 lg:grid-cols-[220px_minmax(0,1fr)] xl:grid-cols-[240px_minmax(0,1fr)]">
           <aside className="space-y-1.5 lg:sticky lg:top-4 lg:self-start">
             <p className="font-mono text-[0.52rem] uppercase tracking-[0.14em] text-base-500">
-              Ficha tecnica
+              Ficha técnica
             </p>
-            <TechLine label="Titulo" value={zine.title} />
+            <TechLine label="Título" value={zine.title} />
             <TechLine label="Artista" value={zine.artist_name} />
-            <TechLine label="Modo" value={zine.funding_mode === "campaign" ? "Campanha" : "Continuo"} />
+            <TechLine label="Modo" value={zine.funding_mode === "campaign" ? "Campanha" : "Contínuo"} />
             <TechLine label="Projeto Revnet" value={`#${zine.revnet_project_id}`} />
             <TechLine label="Wallet artista" value={shortenWallet(zine.artist_wallet)} />
             {zine.funding_mode === "campaign" && zine.target_usdc && (
@@ -111,7 +111,7 @@ export default async function ZinePage({ params }: { params: Promise<{ slug: str
           <div className="space-y-2">
             <div className="flex items-end justify-between gap-2 border-b border-base-300 pb-2">
               <h2 className="text-[1.15rem] font-semibold uppercase leading-[0.9] tracking-[-0.02em] text-ink">
-                Paginas abertas
+                Páginas abertas
               </h2>
               <p className="font-mono text-[0.52rem] uppercase tracking-[0.14em] text-base-600">
                 Leitura aberta
@@ -128,7 +128,7 @@ export default async function ZinePage({ params }: { params: Promise<{ slug: str
 }
 
 function extractPagesContent(content: string): string {
-  const marker = /^\s*##\s+Paginas abertas\s*$/im;
+  const marker = /^\s*##\s+(Paginas|Páginas)\s+abertas\s*$/im;
   const match = marker.exec(content);
   if (!match || match.index < 0) {
     return content;

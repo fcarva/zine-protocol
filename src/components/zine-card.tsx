@@ -18,7 +18,7 @@ export function ZineCard({ zine, index }: { zine: Zine; index: number }) {
             src={zine.cover_image}
             alt={`Capa de ${zine.title}`}
             fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+            sizes="(max-width: 640px) 100vw, (max-width: 1280px) 48vw, 24vw"
             className="xerox-image object-contain object-center p-1 transition duration-500 group-hover:scale-[1.01]"
           />
 
@@ -33,7 +33,7 @@ export function ZineCard({ zine, index }: { zine: Zine; index: number }) {
               {zine.artist_name}
             </span>
             <span className="font-mono text-[0.52rem] uppercase tracking-[0.14em] text-base-500">
-              {zine.funding_mode === "campaign" ? "Campanha" : "Continuo"}
+              {zine.funding_mode === "campaign" ? "Campanha" : "Contínuo"}
             </span>
           </div>
 

@@ -9,7 +9,7 @@ const navLinks = [
 export function SiteHeader() {
   return (
     <>
-      <header className="editorial-panel relative z-40 border-x-0 border-t-0 px-3 py-2 lg:hidden">
+      <header className="editorial-panel relative z-40 border-x-0 border-t-0 px-3 py-2 font-sans lg:hidden">
         <div className="flex items-center justify-between gap-3">
           <Link href="/" className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-ink">
             Zine Protocol
@@ -25,7 +25,7 @@ export function SiteHeader() {
         </div>
       </header>
 
-      <aside className="editorial-panel !fixed inset-y-0 left-0 z-30 hidden w-[var(--sidebar-width)] flex-col rounded-none border-y-0 border-l-0 border-r border-r-base-300 lg:flex">
+      <aside className="editorial-panel !fixed inset-y-0 left-0 z-30 hidden w-[var(--sidebar-width)] flex-col rounded-none border-y-0 border-l-0 border-r border-r-base-300 font-sans lg:flex">
         <div className="space-y-3.5 p-8 xl:p-10">
           <Link href="/" className="inline-flex flex-col leading-none">
             <span className="text-[1.8rem] font-black uppercase tracking-[-0.04em] text-ink">
@@ -37,7 +37,7 @@ export function SiteHeader() {
           </Link>
 
           <p className="max-w-[12.8rem] text-[0.86rem] leading-snug text-base-700">
-            Catalogo editorial de leitura aberta com apoio direto a artistas e coletivos de zine.
+            Catálogo editorial de leitura aberta com apoio direto a artistas e coletivos de zine.
           </p>
 
           <div className="h-px w-full bg-base-300/90" />

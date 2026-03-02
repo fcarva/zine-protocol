@@ -19,7 +19,7 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "Zine Protocol",
   description:
-    "Catalogo de zines com leitura aberta e apoio financeiro para artistas independentes.",
+    "Catálogo de zines com leitura aberta e apoio financeiro para artistas independentes.",
 };
 
 export default function RootLayout({

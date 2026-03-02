@@ -93,13 +93,13 @@ export function SupportPanel({ zine }: { zine: Zine }) {
   const { addItem, itemCount } = useCart();
 
   return (
-    <aside className="editorial-panel stagger-in space-y-3 rounded-xl p-3">
+    <aside className="editorial-panel stagger-in space-y-3 rounded-xl p-3 font-sans">
       <div className="space-y-1.5">
         <p className="font-mono text-[0.56rem] uppercase tracking-[0.14em] text-base-600">Apoio</p>
         <h2 className="text-[1.15rem] font-semibold tracking-[-0.02em] text-ink">Apoiar este zine</h2>
         <p className="text-[0.82rem] leading-snug text-base-700">
           Leitura aberta para todos. O apoio sustenta artistas, devs, curadoria e tesouro da
-          comunidade em continuidade com o Laboratorio de Zines do Faisca Lab.
+          comunidade em continuidade com o Laboratório de Zines do Faísca Lab.
         </p>
       </div>
 
@@ -145,14 +145,14 @@ export function SupportPanel({ zine }: { zine: Zine }) {
           href="/checkout"
           className="rounded-lg border border-base-300 bg-base-50 px-3 py-2 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-base-700 transition hover:bg-base-100"
         >
-          Checkout ({itemCount})
+          Apoiar ({itemCount})
         </Link>
       </div>
 
       {tab === "web3" ? <Web3Support zine={zine} /> : <PixSupport zine={zine} />}
 
       <div className="rounded-lg border border-dashed border-base-300 bg-base-50/60 p-2.5 text-[0.68rem] leading-snug text-base-600">
-        Publicacao por convite. Quer publicar seu zine? Entre em contato com a curadoria.
+        Publicação por convite. Quer publicar seu zine? Entre em contato com a curadoria.
       </div>
     </aside>
   );
@@ -319,7 +319,7 @@ function Web3Support({ zine }: { zine: Zine }) {
             ))}
           </div>
           <p className="text-xs text-base-500">
-            Para por email pode ser conectado aqui via provedor compativel em fase seguinte.
+            Para por email pode ser conectado aqui via provedor compatível em fase seguinte.
           </p>
         </div>
       ) : (
@@ -387,10 +387,10 @@ function Web3Support({ zine }: { zine: Zine }) {
             </div>
             <p className="font-mono text-[0.5rem] uppercase tracking-[0.13em] text-base-500">
               {isLoadingQuote
-                ? "Atualizando cotacao..."
+                ? "Atualizando cotação..."
                 : quote.source === "live"
-                  ? "Cotacao publica em tempo real"
-                  : "Cotacao estimada (fallback)"}
+                  ? "Cotação pública em tempo real"
+                  : "Cotação estimada (fallback)"}
             </p>
           </div>
 
@@ -475,7 +475,7 @@ function PixSupport({ zine }: { zine: Zine }) {
 
     const amountNumber = Number(amount);
     if (!email || !Number.isFinite(amountNumber) || amountNumber <= 0) {
-      setError("Informe email valido e valor acima de zero.");
+      setError("Informe email válido e valor acima de zero.");
       return;
     }
 
@@ -493,7 +493,7 @@ function PixSupport({ zine }: { zine: Zine }) {
 
       if (!response.ok) {
         const payload = (await response.json().catch(() => ({}))) as { error?: string };
-        setError(payload.error || "Falha ao gerar cobranca Pix.");
+        setError(payload.error || "Falha ao gerar cobrança Pix.");
         return;
       }
 
@@ -541,7 +541,7 @@ function PixSupport({ zine }: { zine: Zine }) {
 
       {charge && (
         <div className="space-y-2 rounded-lg border border-base-300 bg-base-50 p-3">
-          <p className="text-sm text-base-700">Escaneie o QR ou copie o codigo Pix:</p>
+          <p className="text-sm text-base-700">Escaneie o QR ou copie o código Pix:</p>
 
           <div className="mx-auto w-fit rounded-lg bg-paper p-2">
             <QRCodeSVG value={charge.pixQrCode} size={172} includeMargin />

@@ -14,7 +14,7 @@ export function CartLink({
 
   return (
     <Link className={className} href="/checkout">
-      {compact ? `Checkout (${itemCount})` : `Checkout (${String(itemCount).padStart(2, "0")})`}
+      {compact ? `Apoiar (${itemCount})` : `Apoiar (${String(itemCount).padStart(2, "0")})`}
     </Link>
   );
 }

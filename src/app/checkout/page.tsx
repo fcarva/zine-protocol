@@ -111,7 +111,7 @@ export default function CheckoutPage() {
     setPixCharges([]);
 
     if (!hasItems) {
-      setPixError("Seu carrinho esta vazio.");
+      setPixError("Seu carrinho está vazio.");
       return;
     }
 
@@ -173,7 +173,7 @@ export default function CheckoutPage() {
     setEmailResult(null);
 
     if (!hasItems) {
-      setEmailError("Seu carrinho esta vazio.");
+      setEmailError("Seu carrinho está vazio.");
       return;
     }
 
@@ -271,7 +271,7 @@ export default function CheckoutPage() {
       }
 
       setWalletHashes(hashes);
-      setWalletStatus("Checkout wallet concluido com sucesso.");
+      setWalletStatus("Checkout wallet concluído com sucesso.");
       clearCart();
     } catch (error) {
       const message = error instanceof Error ? error.message : "Falha no checkout wallet.";
@@ -283,11 +283,11 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="space-y-3 sm:space-y-4">
+    <div className="space-y-3 font-sans sm:space-y-4">
       <header className="editorial-panel rounded-xl p-3 sm:p-4">
         <div className="flex items-end justify-between gap-3">
           <div>
-            <p className="font-mono text-[0.55rem] uppercase tracking-[0.14em] text-base-600">Checkout</p>
+            <p className="font-mono text-[0.55rem] uppercase tracking-[0.14em] text-base-600">Apoiar</p>
             <h1 className="text-[1.65rem] font-semibold uppercase leading-[0.9] tracking-[-0.03em] text-ink sm:text-[1.95rem]">
               Carrinho
             </h1>
@@ -300,12 +300,12 @@ export default function CheckoutPage() {
 
       {!hasItems ? (
         <section className="editorial-panel rounded-xl p-4">
-          <p className="text-sm text-base-700">Seu carrinho esta vazio.</p>
+          <p className="text-sm text-base-700">Seu carrinho está vazio.</p>
           <Link
             href="/"
             className="mt-3 inline-flex rounded-lg border border-base-300 bg-paper px-3 py-2 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-base-700"
           >
-            Voltar para catalogo
+            Voltar para catálogo
           </Link>
         </section>
       ) : (
@@ -323,7 +323,7 @@ export default function CheckoutPage() {
                       alt={item.title}
                       fill
                       className="object-cover object-center"
-                      sizes="74px"
+                      sizes="(max-width: 640px) 74px, 74px"
                     />
                   </figure>
 
@@ -444,7 +444,7 @@ export default function CheckoutPage() {
                       disabled={!walletCheckoutEnabled}
                       className="w-full rounded-lg border border-orange-700 bg-orange-600 px-3 py-2 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-paper disabled:cursor-not-allowed disabled:border-base-400 disabled:bg-base-400"
                     >
-                      {isWalletLoading ? "Processando wallet..." : "Finalizar com wallet"}
+                      {isWalletLoading ? "Processando wallet..." : "Finalizar com Wallet"}
                     </button>
                     <button
                       type="button"
@@ -456,8 +456,8 @@ export default function CheckoutPage() {
                   </>
                 )}
 
-                {walletStatus && <p className="text-sm text-green-700">{walletStatus}</p>}
-                {walletError && <p className="text-sm text-red-700">{walletError}</p>}
+                  {walletStatus && <p className="text-sm text-green-700">{walletStatus}</p>}
+                  {walletError && <p className="text-sm text-red-700">{walletError}</p>}
                 {walletHashes.length > 0 && (
                   <ul className="space-y-1">
                     {walletHashes.map((hash) => (
@@ -525,7 +525,7 @@ export default function CheckoutPage() {
                   disabled={isPixLoading}
                   className="w-full rounded-lg border border-orange-700 bg-orange-600 px-3 py-2 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-paper disabled:cursor-not-allowed disabled:border-base-400 disabled:bg-base-400"
                 >
-                  {isPixLoading ? "Gerando cobrancas..." : "Gerar Pix do checkout"}
+                  {isPixLoading ? "Gerando cobranças..." : "Gerar Pix do checkout"}
                 </button>
                 {pixError && <p className="text-sm text-red-700">{pixError}</p>}
 

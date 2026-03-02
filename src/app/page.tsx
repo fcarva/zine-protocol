@@ -16,7 +16,7 @@ interface HomePageProps {
 const modeOptions: Array<{ value: "all" | FundingMode; label: string }> = [
   { value: "all", label: "Todos os modos" },
   { value: "campaign", label: "Campanha" },
-  { value: "continuous", label: "Continuo" },
+  { value: "continuous", label: "Contínuo" },
 ];
 
 export default async function HomePage({ searchParams }: HomePageProps) {
@@ -41,14 +41,14 @@ export default async function HomePage({ searchParams }: HomePageProps) {
   const continuousCount = zines.length - campaignCount;
 
   return (
-    <div className="space-y-2.5 sm:space-y-3.5">
+    <div className="space-y-2.5 font-sans sm:space-y-3.5">
       <section className="stagger-in border-b border-base-300 pb-3.5">
         <div className="grid gap-3.5 lg:grid-cols-[minmax(0,1fr)_330px] lg:items-start">
           <div className="space-y-3">
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[0.54rem] uppercase tracking-[0.15em] text-base-600">
-              <span>Laboratorio de zines</span>
+              <span>Laboratório de zines</span>
               <span className="text-base-400">/</span>
-              <span>Faisca Lab</span>
+              <span>Faísca Lab</span>
               <span className="text-base-400">/</span>
               <span>Artizen Session 6</span>
             </div>
@@ -58,15 +58,15 @@ export default async function HomePage({ searchParams }: HomePageProps) {
             </h1>
 
             <p className="max-w-[75ch] text-[0.93rem] leading-snug text-base-700">
-              Um indice editorial inspirado pela leitura em paginas abertas do antmag e pela
-              clareza de secao da The Drift. Cada zine entra como edicao acessivel, com ficha
-              tecnica publica e checkout direto para fortalecer artistas e coletivos.
+              Um índice editorial inspirado pela leitura em páginas abertas do antmag e pela
+              clareza de seção da The Drift. Cada zine entra como edição acessível, com ficha
+              técnica pública e apoio direto para fortalecer artistas e coletivos.
             </p>
 
             <div className="grid gap-2 border-y border-base-300 py-2 sm:grid-cols-3">
               <InlineMetric label="Arquivo" value={`${zines.length} zines publicados`} />
-              <InlineMetric label="Campanha / Continuo" value={`${campaignCount} / ${continuousCount}`} />
-              <InlineMetric label="Checkout" value="Wallet / Email / Pix sandbox" />
+              <InlineMetric label="Campanha / Contínuo" value={`${campaignCount} / ${continuousCount}`} />
+              <InlineMetric label="Apoio" value="Wallet / Email / Pix sandbox" />
             </div>
 
             <div className="grid gap-2 border-b border-base-300 pb-2.5 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
@@ -75,13 +75,13 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                   Linha editorial
                 </p>
                 <p className="text-[0.86rem] leading-snug text-base-700">
-                  Objeto, formato e ritmo visual de zine com navegacao limpa de revista digital.
+                  Objeto, formato e ritmo visual de zine com navegação limpa de revista digital.
                 </p>
               </div>
               <div className="flex flex-wrap items-start gap-x-3 gap-y-1.5 sm:justify-end">
                 <EditorialLink href="/manifesto" label="Manifesto" />
-                <EditorialLink href="/checkout" label="Checkout" />
-                <EditorialLink href="#indice-curatorial" label="Indice Curatorial" />
+                <EditorialLink href="/checkout" label="Apoiar" />
+                <EditorialLink href="#indice-curatorial" label="Índice Curatorial" />
               </div>
             </div>
           </div>
@@ -97,13 +97,13 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                   src={featured.cover_image}
                   alt={`Capa de ${featured.title}`}
                   fill
-                  sizes="320px"
+                  sizes="(max-width: 1024px) 100vw, 330px"
                   className="xerox-image object-contain object-center p-1 transition duration-500 group-hover:scale-[1.01]"
                 />
               </div>
               <div className="space-y-0.5 px-1 pb-0.5 pt-2">
                 <p className="font-mono text-[0.53rem] uppercase tracking-[0.13em] text-base-600">
-                  Edicao em destaque
+                  Edição em destaque
                 </p>
                 <p className="line-clamp-2 text-[0.98rem] font-semibold leading-tight text-ink">
                   {featured.title}
@@ -119,7 +119,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
               {heroRail.length > 0 && (
                 <div className="border-t border-base-300 px-1 pb-0.5 pt-2">
                   <p className="mb-1 font-mono text-[0.5rem] uppercase tracking-[0.14em] text-base-500">
-                    Recent no indice
+                    Recentes no índice
                   </p>
                   <div className="space-y-0.5">
                     {heroRail.map((item) => (
@@ -182,7 +182,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
           <p className="font-mono text-[0.53rem] uppercase tracking-[0.14em] text-base-600">
             {hasActiveFilters
               ? `Resultado filtrado: ${filteredZines.length} zines`
-              : `Indice completo: ${filteredZines.length} zines`}
+              : `Índice completo: ${filteredZines.length} zines`}
           </p>
         </div>
       </section>
@@ -190,10 +190,10 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       <section id="indice-curatorial" className="space-y-2">
         <div className="flex items-end justify-between gap-3">
           <h2 className="text-[1.45rem] font-semibold uppercase leading-[0.9] tracking-[-0.03em] text-ink sm:text-[1.75rem]">
-            Indice Curatorial
+            Índice Curatorial
           </h2>
           <p className="max-w-[35ch] text-right font-mono text-[0.53rem] uppercase tracking-[0.14em] text-base-600">
-            Grade editorial compacta para leitura rapida de capa, autoria e contexto.
+            Grade editorial compacta para leitura rápida de capa, autoria e contexto.
           </p>
         </div>
 

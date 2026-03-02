@@ -7,19 +7,19 @@ MVP editorial para Artizen: leitura aberta de zines + apoio direto (Wallet, Emai
 - Next.js 15 (App Router)
 - TypeScript + Tailwind (Flexoki)
 - Wagmi + Viem (Base Sepolia)
-- Prisma (PostgreSQL, com fallback local em memoria)
+- Prisma (PostgreSQL, com fallback local em memória)
 - Vitest
 
 ## Estrutura do projeto
 
-- `src/app/` rotas da aplicacao (home, manifesto, zines, checkout, APIs)
+- `src/app/` rotas da aplicação (home, manifesto, zines, checkout, APIs)
 - `src/components/` UI e fluxos de apoio
 - `src/lib/` parser de zines, env, pix, revnet, storage
 - `content/zines/` zines em Markdown com frontmatter
-- `public/images/zines/` capas e paginas
-- `scripts/import-antmag.cjs` importador de paginas do antmag para Markdown + imagens
+- `public/images/zines/` capas e páginas
+- `scripts/import-antmag.cjs` importador de páginas do antmag para Markdown + imagens
 
-## Frontmatter obrigatorio
+## Frontmatter obrigatório
 
 ```yaml
 slug: "nome-do-zine"
@@ -32,7 +32,7 @@ tags: ["arte", "zine"]
 revnet_project_id: 123
 funding_mode: "campaign" # campaign | continuous
 target_usdc: 500         # obrigatorio se campaign
-deadline_iso: "2026-06-30T23:59:59Z" # obrigatorio se campaign
+deadline_iso: "2026-06-30T23:59:59Z" # obrigatório se campaign
 status: "published"      # draft | published
 sort_order: 10
 ```
@@ -58,9 +58,9 @@ Ou tudo de uma vez:
 npm run check:all
 ```
 
-## Importacao de referencias antmag
+## Importação de referências antmag
 
-O importador usa arquivos HTML em `antmag_fetch/` (diretorio local, ignorado pelo Git) e gera:
+O importador usa arquivos HTML em `antmag_fetch/` (diretório local) e gera:
 
 - `content/zines/<slug>/index.md`
 - `public/images/zines/antmag/<slug>/...`
@@ -73,7 +73,7 @@ npm run import:antmag
 
 ## Otimizacao de imagens (antes do push)
 
-Para reduzir peso do repositorio sem quebrar paths do conteudo:
+Para reduzir peso do repositório sem quebrar paths do conteúdo:
 
 ```bash
 npm run optimize:antmag
@@ -81,17 +81,29 @@ npm run optimize:antmag
 
 O script reprocessa JPG/JPEG/PNG em `public/images/zines/antmag`, redimensiona imagens muito grandes e substitui somente quando o arquivo final fica menor.
 
+## Build e deploy
+
+- O build executa `prisma generate` antes do `next build`.
+- Em produção (Vercel), configure obrigatoriamente:
+  - `NEXT_PUBLIC_BASE_SEPOLIA_RPC_URL`
+  - `NEXT_PUBLIC_USDC_ADDRESS`
+  - `NEXT_PUBLIC_REVNET_TERMINAL_ADDRESS`
+  - `NEXT_PUBLIC_REVNET_APP_URL`
+  - `ABACATEPAY_API_KEY`
+  - `ABACATEPAY_WEBHOOK_SECRET`
+  - `DATABASE_URL`
+
 ## Pronto para merge (checklist)
 
 1. `npm run check:all`
 2. `npm run build`
 3. Validar home, `/manifesto`, `/zines/[slug]`, `/checkout` no desktop e mobile
 4. Revisar `.env.example` e segredos antes de push
-5. Fazer commit em lotes logicos (layout, conteudo, pagamentos, docs)
+5. Fazer commit em lotes lógicos (layout, conteúdo, pagamentos, docs)
 
 ## Observacoes do MVP
 
 - Sem NFT no MVP
 - Linguagem principal do CTA: `Apoiar este zine`
-- Pix em sandbox (sem liquidacao BRL -> USDC em producao)
+- Pix em sandbox (sem liquidação BRL -> USDC em produção)
 - Curadoria por convite
