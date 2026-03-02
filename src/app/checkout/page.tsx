@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { Coffee } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 import { erc20Abi, parseUnits } from "viem";
 import {
@@ -39,6 +40,9 @@ interface EmailCheckoutResult {
   customerEmail: string;
   message: string;
 }
+
+const primaryCheckoutButtonClass =
+  "w-full rounded-xl border border-yellow-600 bg-yellow-150 px-3 py-2.5 text-left shadow-[0_2px_0_#8E6B01] transition duration-150 hover:-translate-y-[1px] hover:bg-yellow-200 hover:shadow-[0_3px_0_#8E6B01] active:translate-y-0 active:shadow-[0_1px_0_#8E6B01] disabled:cursor-not-allowed disabled:translate-y-0 disabled:border-base-400 disabled:bg-base-200 disabled:shadow-none";
 
 export default function CheckoutPage() {
   const { items, totalBRL, itemCount, updateQuantity, updateAmountBRL, removeItem, clearCart } = useCart();
@@ -442,9 +446,12 @@ export default function CheckoutPage() {
                       type="button"
                       onClick={handleWalletCheckout}
                       disabled={!walletCheckoutEnabled}
-                      className="w-full rounded-lg border border-orange-700 bg-orange-600 px-3 py-2 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-paper disabled:cursor-not-allowed disabled:border-base-400 disabled:bg-base-400"
+                      className={primaryCheckoutButtonClass}
                     >
-                      {isWalletLoading ? "Processando wallet..." : "Finalizar com Wallet"}
+                      <span className="flex items-center justify-center gap-1.5 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-yellow-900">
+                        <Coffee size={13} strokeWidth={2.1} />
+                        {isWalletLoading ? "Processando wallet..." : "Finalizar com Wallet"}
+                      </span>
                     </button>
                     <button
                       type="button"
@@ -489,9 +496,12 @@ export default function CheckoutPage() {
                   type="button"
                   onClick={handleEmailCheckout}
                   disabled={isEmailLoading}
-                  className="w-full rounded-lg border border-orange-700 bg-orange-600 px-3 py-2 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-paper disabled:cursor-not-allowed disabled:border-base-400 disabled:bg-base-400"
+                  className={primaryCheckoutButtonClass}
                 >
-                  {isEmailLoading ? "Confirmando..." : "Finalizar por email"}
+                  <span className="flex items-center justify-center gap-1.5 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-yellow-900">
+                    <Coffee size={13} strokeWidth={2.1} />
+                    {isEmailLoading ? "Confirmando..." : "Finalizar por email"}
+                  </span>
                 </button>
                 {emailError && <p className="text-sm text-red-700">{emailError}</p>}
                 {emailResult && (
@@ -523,9 +533,12 @@ export default function CheckoutPage() {
                   type="button"
                   onClick={handlePixCheckout}
                   disabled={isPixLoading}
-                  className="w-full rounded-lg border border-orange-700 bg-orange-600 px-3 py-2 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-paper disabled:cursor-not-allowed disabled:border-base-400 disabled:bg-base-400"
+                  className={primaryCheckoutButtonClass}
                 >
-                  {isPixLoading ? "Gerando cobranças..." : "Gerar Pix do checkout"}
+                  <span className="flex items-center justify-center gap-1.5 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-yellow-900">
+                    <Coffee size={13} strokeWidth={2.1} />
+                    {isPixLoading ? "Gerando cobranças..." : "Gerar Pix do checkout"}
+                  </span>
                 </button>
                 {pixError && <p className="text-sm text-red-700">{pixError}</p>}
 

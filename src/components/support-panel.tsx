@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { Coffee } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 import { erc20Abi, formatUnits } from "viem";
 import {
@@ -87,6 +88,9 @@ function formatByCurrency(amount: number, currency: PaymentCurrency): string {
   if (currency === "brl") return formatCurrencyBRL(amount);
   return formatEth(amount);
 }
+
+const primaryPaymentButtonClass =
+  "relative overflow-hidden rounded-xl border border-yellow-600 bg-yellow-150 px-4 py-2.5 text-left text-ink shadow-[0_2px_0_#8E6B01] transition duration-150 hover:-translate-y-[1px] hover:bg-yellow-200 hover:shadow-[0_3px_0_#8E6B01] active:translate-y-0 active:shadow-[0_1px_0_#8E6B01] disabled:cursor-not-allowed disabled:translate-y-0 disabled:border-base-400 disabled:bg-base-200 disabled:shadow-none disabled:text-base-600";
 
 export function SupportPanel({ zine }: { zine: Zine }) {
   const [tab, setTab] = useState<"web3" | "pix">("web3");
@@ -403,15 +407,19 @@ function Web3Support({ zine }: { zine: Zine }) {
               type="button"
               onClick={handleSupportWeb3}
               disabled={!canTransact}
-              className="flex-1 rounded-lg border border-base-900 bg-base-900 px-3 py-2.5 text-left transition hover:bg-base-950 disabled:cursor-not-allowed disabled:border-base-400 disabled:bg-base-400"
+              className={`flex-1 ${primaryPaymentButtonClass}`}
             >
-              <span className="block font-mono text-[0.58rem] uppercase tracking-[0.14em] text-base-100">
+              <span className="flex items-center gap-1.5 font-mono text-[0.58rem] uppercase tracking-[0.14em] text-yellow-900">
+                <Coffee size={13} strokeWidth={2.1} />
                 {isProcessing ? "Processando apoio..." : "Apoiar este zine"}
               </span>
-              <span className="mt-0.5 block text-[0.72rem] font-semibold text-paper">
+              <span className="mt-0.5 block text-[0.75rem] font-semibold text-base-950">
                 {amountUsd > 0
                   ? `${formatByCurrency(enteredAmount, paymentCurrency)} | ${formatCurrencyUSD(amountUsd)} | ${formatCurrencyBRL(amountBrl)} | ${formatEth(amountEth)}`
                   : "Defina um valor para apoiar"}
+              </span>
+              <span className="mt-0.5 block font-mono text-[0.5rem] uppercase tracking-[0.14em] text-base-700">
+                Checkout onchain em Base Sepolia
               </span>
             </button>
             <button
@@ -532,11 +540,14 @@ function PixSupport({ zine }: { zine: Zine }) {
         type="button"
         onClick={handleCreateCharge}
         disabled={isCreatingCharge}
-        className="w-full rounded-lg border border-orange-700 bg-orange-600 px-4 py-2 font-mono text-[0.66rem] uppercase tracking-[0.14em] text-paper shadow-[0_1px_0_rgba(0,0,0,0.25)] transition hover:bg-orange-700 disabled:cursor-not-allowed disabled:border-base-400 disabled:bg-base-400"
+        className={`w-full ${primaryPaymentButtonClass}`}
       >
-        {isCreatingCharge
-          ? "Gerando Pix..."
-          : `Gerar Pix sandbox (${formatCurrencyBRL(Number(amount) || 0)})`}
+        <span className="flex items-center justify-center gap-1.5 font-mono text-[0.66rem] uppercase tracking-[0.14em] text-yellow-900">
+          <Coffee size={14} strokeWidth={2.1} />
+          {isCreatingCharge
+            ? "Gerando Pix..."
+            : `Pagar com Pix sandbox (${formatCurrencyBRL(Number(amount) || 0)})`}
+        </span>
       </button>
 
       {charge && (
