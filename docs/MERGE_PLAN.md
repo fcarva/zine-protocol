@@ -78,6 +78,22 @@ Consolidar o MVP do Zine Protocol para demo Artizen com foco em:
    - cobertura automatizada de API já existente e verde;
    - pendente apenas validação manual final em produção (wallet + webhook sandbox real).
 
+### Atualização sprint conversão UX (apoio iniciado)
+
+1. Instrumentação de intenção adicionada:
+   - `POST /api/support/intent/log`
+   - persistência em banco via `SupportIntentEvent`
+   - deduplicação por `intentId` com retorno `409` em duplicidade
+2. Métricas de funil adicionadas:
+   - `GET /api/metrics/funnel?from=...&to=...`
+   - retorno de `starts_total`, `starts_by_method`, `starts_by_zine`, `starts_by_surface`
+3. UI de apoio instrumentada:
+   - `support-panel` e `checkout` agora registram evento de `apoio iniciado`
+     nos CTAs primários de `wallet`, `pix` e `email`.
+4. Qualidade:
+   - teste UI quebrado do `support-panel` atualizado para o layout atual
+   - novos testes para as rotas de intenção e métricas de funil
+
 ### Bloco 3 — Qualidade contínua (60-90 min)
 
 1. Adicionar workflow CI (`check:all` + `build`) no GitHub Actions.

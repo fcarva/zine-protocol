@@ -37,7 +37,7 @@ export function ZineCard({ zine, index }: { zine: Zine; index: number }) {
               {zine.artist_name}
             </span>
             <span className="font-mono text-[0.52rem] uppercase tracking-[0.14em] text-base-500">
-              {zine.funding_mode === "campaign" ? "Campanha" : "Contínuo"}
+              {zine.funding_mode === "campaign" ? "Campanha" : "Continuo"}
             </span>
           </div>
 
@@ -49,4 +49,3 @@ export function ZineCard({ zine, index }: { zine: Zine; index: number }) {
     </Link>
   );
 }
-

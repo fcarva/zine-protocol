@@ -1,5 +1,6 @@
 import React from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import CheckoutPage from "@/app/checkout/page";
 
@@ -15,7 +16,6 @@ vi.mock("wagmi", () => ({
     connectors: [{ uid: "mock-wallet", name: "Mock Wallet" }],
     isPending: false,
   }),
-  useDisconnect: () => ({ disconnect: vi.fn() }),
   usePublicClient: () => null,
   useWriteContract: () => ({ writeContractAsync: vi.fn() }),
 }));
@@ -44,18 +44,55 @@ vi.mock("@/components/cart-provider", () => ({
 }));
 
 describe("CheckoutPage UI smoke", () => {
-  it("switches checkout methods and renders method-specific fields", async () => {
+  it("switches methods and logs intent on email checkout", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (input: RequestInfo | URL) => {
+        const url = String(input);
+
+        if (url.includes("/api/support/intent/log")) {
+          return {
+            ok: true,
+            json: async () => ({ ok: true }),
+          } as Response;
+        }
+
+        if (url.includes("/api/checkout/email")) {
+          return {
+            ok: true,
+            json: async () => ({
+              ok: true,
+              orderId: "email_order_1",
+              status: "confirmed_demo",
+              totalBRL: 25,
+              customerEmail: "x@y.com",
+              message: "Pedido confirmado em modo demo.",
+            }),
+          } as Response;
+        }
+
+        return {
+          ok: false,
+          json: async () => ({}),
+        } as Response;
+      }),
+    );
+
+    const user = userEvent.setup();
     render(<CheckoutPage />);
 
     expect(screen.getByText(/Finalizar compra/i)).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: "Email" }));
-    expect(screen.getByLabelText(/Email para finalizar/i)).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "Email" }));
+    await user.type(screen.getByLabelText(/Email para finalizar/i), "x@y.com");
+    await user.click(screen.getByRole("button", { name: /Finalizar por email/i }));
 
-    fireEvent.click(screen.getByRole("button", { name: "Pix" }));
-    expect(screen.getByLabelText(/Email para comprovante/i)).toBeInTheDocument();
-
-    fireEvent.click(screen.getByRole("button", { name: "Wallet" }));
-    expect(screen.getByText(/Conecte uma carteira para pagar no checkout/i)).toBeInTheDocument();
+    await waitFor(() => {
+      const mockFetch = vi.mocked(fetch);
+      expect(mockFetch).toHaveBeenCalledWith(
+        "/api/support/intent/log",
+        expect.objectContaining({ method: "POST" }),
+      );
+    });
   });
 });

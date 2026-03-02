@@ -58,10 +58,7 @@ export default async function ZinePage({ params }: { params: Promise<{ slug: str
 
               <div className="flex flex-wrap gap-1">
                 {zine.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="ui-pill"
-                  >
+                  <span key={tag} className="ui-pill">
                     {tag}
                   </span>
                 ))}
@@ -69,7 +66,7 @@ export default async function ZinePage({ params }: { params: Promise<{ slug: str
 
               <div className="flex flex-wrap items-center gap-2 border-t border-base-300 pt-2">
                 <Link href="/" className="ui-link">
-                  Voltar ao índice
+                  Voltar ao indice
                 </Link>
                 <Link href="/manifesto" className="ui-link">
                   Manifesto
@@ -81,13 +78,13 @@ export default async function ZinePage({ params }: { params: Promise<{ slug: str
                 {campaignProgress !== null && (
                   <MetaLine label="Progresso campanha" value={`${campaignProgress.toFixed(2)}%`} />
                 )}
-                <MetaLine label="Modo" value={zine.funding_mode === "campaign" ? "Campanha" : "Contínuo"} />
+                <MetaLine label="Modo" value={zine.funding_mode === "campaign" ? "Campanha" : "Continuo"} />
                 <MetaLine label="Projeto" value={`#${zine.revnet_project_id}`} />
               </div>
 
               <p className="text-[0.78rem] leading-snug text-base-700">
-                Leitura completa sem bloqueio. Apoio financeiro ativo para manter produção,
-                distribuição e novos ciclos curatoriais.
+                Leitura completa sem bloqueio. Apoio financeiro ativo para manter producao,
+                distribuicao e novos ciclos curatoriais.
               </p>
             </div>
           </div>
@@ -102,11 +99,11 @@ export default async function ZinePage({ params }: { params: Promise<{ slug: str
         <div className="grid gap-2.5 lg:grid-cols-[220px_minmax(0,1fr)] xl:grid-cols-[240px_minmax(0,1fr)]">
           <aside className="space-y-1.5 lg:sticky lg:top-4 lg:self-start">
             <p className="font-mono text-[0.52rem] uppercase tracking-[0.14em] text-base-500">
-              Ficha técnica
+              Ficha tecnica
             </p>
-            <TechLine label="Título" value={zine.title} />
+            <TechLine label="Titulo" value={zine.title} />
             <TechLine label="Artista" value={zine.artist_name} />
-            <TechLine label="Modo" value={zine.funding_mode === "campaign" ? "Campanha" : "Contínuo"} />
+            <TechLine label="Modo" value={zine.funding_mode === "campaign" ? "Campanha" : "Continuo"} />
             <TechLine label="Projeto Revnet" value={`#${zine.revnet_project_id}`} />
             <TechLine label="Wallet artista" value={shortenWallet(zine.artist_wallet)} />
             {zine.funding_mode === "campaign" && zine.target_usdc && (
@@ -121,7 +118,7 @@ export default async function ZinePage({ params }: { params: Promise<{ slug: str
           <div className="space-y-2">
             <div className="flex items-end justify-between gap-2 border-b border-base-300 pb-2">
               <h2 className="text-[1.15rem] font-semibold uppercase leading-[0.9] tracking-[-0.02em] text-ink">
-                Leitura em páginas abertas
+                Leitura em paginas abertas
               </h2>
               <p className="font-mono text-[0.52rem] uppercase tracking-[0.14em] text-base-600">
                 Leitura aberta
@@ -138,7 +135,7 @@ export default async function ZinePage({ params }: { params: Promise<{ slug: str
 }
 
 function extractPagesContent(content: string): string {
-  const marker = /^\s*##\s+(Paginas|Páginas)\s+abertas\s*$/im;
+  const marker = /^\s*##\s+(Paginas|P\u00e1ginas)\s+abertas\s*$/im;
   const match = marker.exec(content);
   if (!match || match.index < 0) {
     return content;
@@ -168,4 +165,3 @@ function TechLine({ label, value }: { label: string; value: string }) {
     </div>
   );
 }
-

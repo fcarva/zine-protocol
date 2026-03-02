@@ -37,7 +37,7 @@ export function SiteHeader() {
           </Link>
 
           <p className="max-w-[12.8rem] text-[0.86rem] leading-snug text-base-700">
-            Catálogo editorial de leitura aberta com apoio direto a artistas e coletivos de zine.
+            Catalogo editorial de leitura aberta com apoio direto a artistas e coletivos de zine.
           </p>
 
           <div className="h-px w-full bg-base-300/90" />
@@ -68,4 +68,3 @@ export function SiteHeader() {
     </>
   );
 }
-

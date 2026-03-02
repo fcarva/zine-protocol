@@ -1,15 +1,14 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { Coffee } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Coffee, Wallet } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 import { type Address, erc20Abi, formatUnits } from "viem";
 import {
   useAccount,
   useChainId,
   useConnect,
-  useDisconnect,
   usePublicClient,
   useWriteContract,
 } from "wagmi";
@@ -18,9 +17,14 @@ import { useCart } from "@/components/cart-provider";
 import { getWeb3ConfigErrorMessage, publicEnv } from "@/lib/env";
 import { formatCurrencyBRL } from "@/lib/format";
 import { resolveRevnetTerminalAddress, revnetTerminalAbi } from "@/lib/revnet";
+import { logSupportIntent } from "@/lib/support-intent";
 import { type Zine } from "@/types/zine";
 
 type PixStatus = "pending" | "paid" | "expired" | "failed";
+
+type SupportTab = "web3" | "pix";
+
+type PaymentCurrency = "usd" | "brl" | "eth";
 
 interface PixCheckoutResponse {
   chargeId: string;
@@ -40,6 +44,25 @@ const FALLBACK_QUOTE: CurrencyQuote = {
   usdToEth: 1 / 3000,
   source: "fallback",
 };
+
+const paymentCurrencyOptions: Array<{
+  id: PaymentCurrency;
+  label: string;
+  symbol: string;
+}> = [
+  { id: "usd", label: "US$", symbol: "$" },
+  { id: "brl", label: "R$", symbol: "R$" },
+  { id: "eth", label: "ETH", symbol: "ETH" },
+];
+
+const quickAmountByCurrency: Record<PaymentCurrency, string[]> = {
+  usd: ["5", "10", "25"],
+  brl: ["20", "50", "100"],
+  eth: ["0.003", "0.005", "0.01"],
+};
+
+const primaryPaymentButtonClass =
+  "wallet-cta ui-btn relative w-full !rounded-xl px-4 py-3 text-left text-ink";
 
 function formatCurrencyUSD(value: number): string {
   return new Intl.NumberFormat("en-US", {
@@ -64,24 +87,6 @@ function parsePositiveAmount(value: string): number {
   return parsed;
 }
 
-type PaymentCurrency = "usd" | "brl" | "eth";
-
-const paymentCurrencyOptions: Array<{
-  id: PaymentCurrency;
-  label: string;
-  symbol: string;
-}> = [
-  { id: "usd", label: "US$", symbol: "$" },
-  { id: "brl", label: "R$", symbol: "R$" },
-  { id: "eth", label: "ETH", symbol: "ETH" },
-];
-
-const quickAmountByCurrency: Record<PaymentCurrency, string[]> = {
-  usd: ["5", "10", "25"],
-  brl: ["20", "50", "100"],
-  eth: ["0.003", "0.005", "0.01"],
-};
-
 function convertToUsd(amount: number, currency: PaymentCurrency, quote: CurrencyQuote): number {
   if (amount <= 0) return 0;
   if (currency === "usd") return amount;
@@ -95,29 +100,34 @@ function formatByCurrency(amount: number, currency: PaymentCurrency): string {
   return formatEth(amount);
 }
 
-const primaryPaymentButtonClass =
-  "ui-btn ui-btn-primary relative overflow-hidden !rounded-xl px-4 py-2.5 text-left text-ink";
-
 function tabButtonClass(active: boolean): string {
   return active ? "ui-tab is-active" : "ui-tab";
 }
 
+function statusColorClass(status: PixStatus): string {
+  if (status === "paid") return "text-green-700";
+  if (status === "failed" || status === "expired") return "text-red-700";
+  return "text-base-700";
+}
+
 export function SupportPanel({ zine }: { zine: Zine }) {
-  const [tab, setTab] = useState<"web3" | "pix">("web3");
-  const { addItem, itemCount } = useCart();
+  const [tab, setTab] = useState<SupportTab>("web3");
+  const { itemCount } = useCart();
 
   return (
-    <aside className="editorial-panel stagger-in space-y-3 rounded-xl p-3 font-sans">
+    <aside className="editorial-panel stagger-in space-y-3 rounded-xl p-3 font-sans sm:p-3.5">
       <div className="space-y-1.5">
-        <p className="font-mono text-[0.56rem] uppercase tracking-[0.14em] text-base-600">Apoio</p>
-        <h2 className="text-[1.15rem] font-semibold tracking-[-0.02em] text-ink">Apoiar este zine</h2>
-        <p className="text-[0.82rem] leading-snug text-base-700">
-          Leitura aberta para todos. O apoio sustenta artistas, devs, curadoria e tesouro da
-          comunidade em continuidade com o Laboratório de Zines do Faísca Lab.
+        <div className="flex flex-wrap items-center gap-1.5">
+          <span className="ui-pill is-active">Apoio direto</span>
+          <span className="ui-pill">Revnet #{zine.revnet_project_id}</span>
+        </div>
+        <h2 className="text-[1.08rem] font-semibold tracking-[-0.02em] text-ink">Apoiar este zine</h2>
+        <p className="text-[0.8rem] leading-snug text-base-700">
+          Leitura aberta para todo mundo. Seu apoio mantem producao, edicao e circulacao dos zines.
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-1.5 rounded-lg border border-base-300 bg-base-100 p-1">
+      <div className="wallet-surface grid grid-cols-2 gap-1 rounded-lg border border-base-300 p-1">
         <button
           className={tabButtonClass(tab === "web3")}
           onClick={() => setTab("web3")}
@@ -130,40 +140,21 @@ export function SupportPanel({ zine }: { zine: Zine }) {
           onClick={() => setTab("pix")}
           type="button"
         >
-          Pix sandbox
+          Pix
         </button>
-      </div>
-
-      <div className="flex items-center gap-2">
-        <button
-          type="button"
-          onClick={() =>
-            addItem({
-              slug: zine.slug,
-              title: zine.title,
-              artistName: zine.artist_name,
-              coverImage: zine.cover_image,
-              revnetProjectId: zine.revnet_project_id,
-              amountBRL: 25,
-            })
-          }
-          className="ui-btn flex-1"
-        >
-          Adicionar ao carrinho
-        </button>
-        <Link
-          href="/checkout"
-          className="ui-btn"
-        >
-          Apoiar ({itemCount})
-        </Link>
       </div>
 
       {tab === "web3" ? <Web3Support zine={zine} /> : <PixSupport zine={zine} />}
 
-      <div className="rounded-lg border border-dashed border-base-300 bg-base-50/60 p-2.5 text-[0.68rem] leading-snug text-base-600">
-        Publicação por convite. Quer publicar seu zine? Entre em contato com a curadoria.
+      <div className="border-t border-base-300 pt-2">
+        <Link href="/checkout" className="ui-link">
+          Apoiar no checkout ({itemCount})
+        </Link>
       </div>
+
+      <p className="rounded-lg border border-dashed border-base-300 bg-base-50/80 px-2.5 py-2 text-[0.68rem] leading-snug text-base-600">
+        Publicacao por convite. Candidaturas abertas para novos zines da comunidade.
+      </p>
     </aside>
   );
 }
@@ -181,12 +172,10 @@ function Web3Support({ zine }: { zine: Zine }) {
   const { address, isConnected } = useAccount();
   const chainId = useChainId();
   const { connect, connectors, isPending: isConnecting } = useConnect();
-  const { disconnect } = useDisconnect();
   const { writeContractAsync } = useWriteContract();
   const publicClient = usePublicClient();
   const web3ConfigError = getWeb3ConfigErrorMessage();
 
-  const revnetLink = `${publicEnv.revnetAppUrl}/base:${zine.revnet_project_id}`;
   const enteredAmount = useMemo(() => parsePositiveAmount(amount), [amount]);
   const amountUsd = useMemo(
     () => convertToUsd(enteredAmount, paymentCurrency, quote),
@@ -202,6 +191,8 @@ function Web3Support({ zine }: { zine: Zine }) {
   }, [amountUsd]);
 
   useEffect(() => {
+    if (!isConnected) return;
+
     let mounted = true;
     const controller = new AbortController();
 
@@ -227,7 +218,7 @@ function Web3Support({ zine }: { zine: Zine }) {
           source: "live",
         });
       } catch {
-        // Mantem fallback para evitar bloqueio no fluxo de apoio.
+        // Mantem fallback para nao bloquear o apoio.
       } finally {
         if (mounted) setIsLoadingQuote(false);
       }
@@ -238,7 +229,7 @@ function Web3Support({ zine }: { zine: Zine }) {
       mounted = false;
       controller.abort();
     };
-  }, []);
+  }, [isConnected]);
 
   const canTransact =
     isConnected &&
@@ -248,6 +239,16 @@ function Web3Support({ zine }: { zine: Zine }) {
     !isProcessing;
 
   async function handleSupportWeb3() {
+    void logSupportIntent({
+      zineSlug: zine.slug,
+      method: "wallet",
+      surface: "support_panel",
+      amountInput: amount.trim(),
+      currencyInput: paymentCurrency,
+      chainId,
+      walletConnected: isConnected,
+    });
+
     if (!address || !publicClient || isProcessing) return;
     if (web3ConfigError) {
       setError(web3ConfigError);
@@ -255,6 +256,7 @@ function Web3Support({ zine }: { zine: Zine }) {
     }
 
     setError("");
+    setStatus("");
     setIsProcessing(true);
 
     try {
@@ -280,7 +282,7 @@ function Web3Support({ zine }: { zine: Zine }) {
 
       await publicClient.waitForTransactionReceipt({ hash: approveHash });
 
-      setStatus("Enviando apoio para Revnet...");
+      setStatus("Enviando apoio...");
       const payHash = await writeContractAsync({
         address: resolvedTerminalAddress,
         abi: revnetTerminalAbi,
@@ -323,24 +325,30 @@ function Web3Support({ zine }: { zine: Zine }) {
   }
 
   return (
-    <div className="space-y-3">
-      <p className="font-mono text-[0.66rem] uppercase tracking-[0.15em] text-base-600">
-        Projeto Revnet: <span className="font-semibold">#{zine.revnet_project_id}</span>
-      </p>
-
+    <div className="space-y-2.5">
       {!isConnected ? (
-        <div className="space-y-2">
-          <p className="text-sm text-base-700">Conecte uma carteira para apoiar onchain.</p>
+        <div className="space-y-2.5">
+          <div className="wallet-surface-muted rounded-lg border border-base-300 p-2.5">
+            <p className="flex items-center gap-1.5 text-[0.76rem] text-base-700">
+              <Wallet size={14} />
+              Conecte uma carteira para apoiar onchain.
+            </p>
+            <p className="mt-1 font-mono text-[0.53rem] uppercase tracking-[0.12em] text-base-500">
+              Rede alvo: Base Sepolia
+            </p>
+          </div>
+
           {web3ConfigError && (
-            <p className="rounded-lg border border-red-300 bg-red-50 px-2 py-1 text-xs text-red-700">
+            <p className="rounded-lg border border-red-300 bg-red-50 px-2 py-1.5 text-xs text-red-700">
               {web3ConfigError}
             </p>
           )}
-          <div className="flex flex-wrap gap-2">
+
+          <div className="grid grid-cols-2 gap-1.5">
             {connectors.map((connector) => (
               <button
                 key={connector.uid}
-                className="ui-btn"
+                className="ui-btn !rounded-lg"
                 disabled={isConnecting}
                 onClick={() => connect({ connector })}
                 type="button"
@@ -349,144 +357,121 @@ function Web3Support({ zine }: { zine: Zine }) {
               </button>
             ))}
           </div>
-          <p className="text-xs text-base-500">
-            Para por email pode ser conectado aqui via provedor compatível em fase seguinte.
-          </p>
         </div>
       ) : (
         <>
           {web3ConfigError && (
-            <p className="rounded-lg border border-red-300 bg-red-50 px-2 py-1 text-xs text-red-700">
+            <p className="rounded-lg border border-red-300 bg-red-50 px-2 py-1.5 text-xs text-red-700">
               {web3ConfigError}
             </p>
           )}
-          <div className="rounded-lg border border-base-300 bg-base-50 px-3 py-2 text-xs text-base-700">
-            Carteira conectada: {address}
+
+          <div className="wallet-surface-muted rounded-lg border border-base-300 p-2">
+            <p className="font-mono text-[0.5rem] uppercase tracking-[0.12em] text-base-500">Carteira conectada</p>
+            <p className="mt-1 break-all text-[0.72rem] text-base-700">{address}</p>
           </div>
 
-          <label className="block font-mono text-[0.66rem] uppercase tracking-[0.16em] text-base-700" htmlFor="amount-usdc">
-            Escolha a moeda
-          </label>
-          <div className="grid grid-cols-3 gap-1 rounded-lg border border-base-300 bg-base-100 p-1">
-            {paymentCurrencyOptions.map((option) => (
-              <button
-                key={option.id}
-                type="button"
-                onClick={() => setPaymentCurrency(option.id)}
-                className={tabButtonClass(paymentCurrency === option.id)}
-              >
-                {option.label}
-              </button>
-            ))}
-          </div>
-
-          <label className="block font-mono text-[0.66rem] uppercase tracking-[0.16em] text-base-700" htmlFor="amount-usdc">
-            Valor de apoio ({paymentCurrency.toUpperCase()})
-          </label>
-          <div className="flex items-center gap-2 rounded-lg border border-base-300 bg-paper px-3 py-2">
-            <span className="font-mono text-[0.66rem] uppercase tracking-[0.14em] text-base-600">
-              {paymentCurrencyOptions.find((option) => option.id === paymentCurrency)?.symbol}
-            </span>
-            <input
-              id="amount-usdc"
-              inputMode="decimal"
-              value={amount}
-              onChange={(event) => setAmount(event.target.value)}
-              className="ui-input w-full border-0 bg-transparent p-0 text-[0.98rem] font-semibold text-ink"
-            />
-          </div>
-
-          <div className="flex flex-wrap gap-1">
-            {quickAmounts.map((value) => (
-              <button
-                key={value}
-                type="button"
-                onClick={() => setAmount(value)}
-                className={`ui-pill ${amount.trim() === value ? "is-active" : ""}`}
-              >
-                {formatByCurrency(Number(value), paymentCurrency)}
-              </button>
-            ))}
-          </div>
-
-          <div className="space-y-1 rounded-lg border border-base-300 bg-base-50 px-2.5 py-2">
-            <div className="grid grid-cols-3 gap-2">
-              <div className="space-y-0.5">
-                <p className="font-mono text-[0.5rem] uppercase tracking-[0.12em] text-base-500">US$</p>
-                <p className="text-[0.78rem] font-semibold text-base-900">
-                  {amountUsd > 0 ? formatCurrencyUSD(amountUsd) : "-"}
-                </p>
-              </div>
-              <div className="space-y-0.5">
-                <p className="font-mono text-[0.5rem] uppercase tracking-[0.12em] text-base-500">R$</p>
-                <p className="text-[0.78rem] font-semibold text-base-900">
-                  {amountUsd > 0 ? formatCurrencyBRL(amountBrl) : "-"}
-                </p>
-              </div>
-              <div className="space-y-0.5">
-                <p className="font-mono text-[0.5rem] uppercase tracking-[0.12em] text-base-500">ETH</p>
-                <p className="text-[0.78rem] font-semibold text-base-900">
-                  {amountUsd > 0 ? formatEth(amountEth) : "-"}
-                </p>
-              </div>
+          <div className="space-y-1.5">
+            <label
+              className="font-mono text-[0.56rem] uppercase tracking-[0.14em] text-base-600"
+              htmlFor="support-currency"
+            >
+              Moeda de entrada
+            </label>
+            <div className="wallet-surface grid grid-cols-3 gap-1 rounded-lg border border-base-300 p-1">
+              {paymentCurrencyOptions.map((option) => (
+                <button
+                  key={option.id}
+                  id={option.id === paymentCurrency ? "support-currency" : undefined}
+                  type="button"
+                  onClick={() => setPaymentCurrency(option.id)}
+                  className={tabButtonClass(paymentCurrency === option.id)}
+                >
+                  {option.label}
+                </button>
+              ))}
             </div>
-            <p className="font-mono text-[0.5rem] uppercase tracking-[0.13em] text-base-500">
+          </div>
+
+          <div className="wallet-surface rounded-lg border border-base-300 p-2.5">
+            <label
+              className="font-mono text-[0.56rem] uppercase tracking-[0.14em] text-base-600"
+              htmlFor="amount-usdc"
+            >
+              Valor de apoio
+            </label>
+            <div className="mt-1.5 flex items-center gap-2 rounded-lg border border-base-300 bg-paper px-3 py-2">
+              <span className="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-base-600">
+                {paymentCurrencyOptions.find((option) => option.id === paymentCurrency)?.symbol}
+              </span>
+              <input
+                id="amount-usdc"
+                inputMode="decimal"
+                value={amount}
+                onChange={(event) => setAmount(event.target.value)}
+                className="ui-input w-full border-0 bg-transparent p-0 text-[1rem] font-semibold text-ink"
+              />
+            </div>
+
+            <div className="mt-2 flex flex-wrap gap-1">
+              {quickAmounts.map((value) => (
+                <button
+                  key={value}
+                  type="button"
+                  onClick={() => setAmount(value)}
+                  className={`ui-pill ${amount.trim() === value ? "is-active" : ""}`}
+                >
+                  {formatByCurrency(Number(value), paymentCurrency)}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="wallet-surface-muted rounded-lg border border-base-300 p-2.5">
+            <div className="grid grid-cols-3 gap-2">
+              <CurrencyMetric label="US$" value={amountUsd > 0 ? formatCurrencyUSD(amountUsd) : "-"} />
+              <CurrencyMetric label="R$" value={amountUsd > 0 ? formatCurrencyBRL(amountBrl) : "-"} />
+              <CurrencyMetric label="ETH" value={amountUsd > 0 ? formatEth(amountEth) : "-"} />
+            </div>
+            <p className="mt-1.5 font-mono text-[0.5rem] uppercase tracking-[0.12em] text-base-500">
               {isLoadingQuote
-                ? "Atualizando cotação..."
+                ? "Atualizando cotacao..."
                 : quote.source === "live"
-                  ? "Cotação pública em tempo real"
-                  : "Cotação estimada (fallback)"}
+                  ? "Cotacao publica em tempo real"
+                  : "Cotacao estimada"}
             </p>
           </div>
 
           {chainId !== baseSepolia.id && (
-            <p className="text-sm text-red-700">Troque para Base Sepolia para continuar.</p>
+            <p className="rounded-lg border border-red-300 bg-red-50 px-2 py-1.5 text-sm text-red-700">
+              Troque para Base Sepolia para continuar.
+            </p>
           )}
 
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={handleSupportWeb3}
-              disabled={!canTransact}
-              className={`flex-1 ${primaryPaymentButtonClass}`}
-            >
-              <span className="flex items-center gap-1.5 font-mono text-[0.58rem] uppercase tracking-[0.14em] text-yellow-900">
-                <Coffee size={13} strokeWidth={2.1} />
-                {isProcessing ? "Processando apoio..." : "Apoiar este zine"}
-              </span>
-              <span className="mt-0.5 block text-[0.75rem] font-semibold text-base-950">
-                {amountUsd > 0
-                  ? `${formatByCurrency(enteredAmount, paymentCurrency)} | ${formatCurrencyUSD(amountUsd)} | ${formatCurrencyBRL(amountBrl)} | ${formatEth(amountEth)}`
-                  : "Defina um valor para apoiar"}
-              </span>
-              <span className="mt-0.5 block font-mono text-[0.5rem] uppercase tracking-[0.14em] text-base-700">
-                Checkout onchain em Base Sepolia
-              </span>
-            </button>
-            <button
-              type="button"
-              onClick={() => disconnect()}
-              className="ui-btn"
-            >
-              Sair
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={handleSupportWeb3}
+            disabled={!canTransact}
+            className={primaryPaymentButtonClass}
+          >
+            <span className="flex items-center gap-1.5 font-mono text-[0.58rem] uppercase tracking-[0.14em] text-base-900">
+              <Coffee size={13} strokeWidth={2.1} />
+              {isProcessing ? "Processando apoio..." : "Apoiar este zine"}
+            </span>
+            <span className="mt-1 block text-[0.75rem] font-semibold text-base-900">
+              {amountUsd > 0 ? `${formatCurrencyUSD(amountUsd)} | ${formatCurrencyBRL(amountBrl)}` : "Defina um valor"}
+            </span>
+            <span className="mt-0.5 block font-mono text-[0.5rem] uppercase tracking-[0.13em] text-base-700">
+              Checkout onchain
+            </span>
+          </button>
         </>
       )}
-
-      <a
-        className="ui-link !text-blue-700 hover:!text-blue-800"
-        href={revnetLink}
-        rel="noreferrer"
-        target="_blank"
-      >
-        Abrir projeto no Revnet
-      </a>
 
       {status && <p className="text-sm text-green-700">{status}</p>}
       {txHash && (
         <p className="break-all text-xs text-base-600">
-          Tx: {txHash} ({formatUnits(amountUsdc6, 6)} USDC enviado onchain)
+          Tx: {txHash} ({formatUnits(amountUsdc6, 6)} USDC)
         </p>
       )}
       {error && <p className="text-sm text-red-700">{error}</p>}
@@ -526,9 +511,18 @@ function PixSupport({ zine }: { zine: Zine }) {
 
     const amountNumber = Number(amount);
     if (!email || !Number.isFinite(amountNumber) || amountNumber <= 0) {
-      setError("Informe email válido e valor acima de zero.");
+      setError("Informe email valido e valor acima de zero.");
       return;
     }
+
+    void logSupportIntent({
+      zineSlug: zine.slug,
+      method: "pix",
+      surface: "support_panel",
+      amountInput: amount.trim(),
+      currencyInput: "brl",
+      walletConnected: false,
+    });
 
     setIsCreatingCharge(true);
     try {
@@ -544,7 +538,7 @@ function PixSupport({ zine }: { zine: Zine }) {
 
       if (!response.ok) {
         const payload = (await response.json().catch(() => ({}))) as { error?: string };
-        setError(payload.error || "Falha ao gerar cobrança Pix.");
+        setError(payload.error || "Falha ao gerar cobranca Pix.");
         return;
       }
 
@@ -566,70 +560,75 @@ function PixSupport({ zine }: { zine: Zine }) {
   }
 
   return (
-    <div className="space-y-3">
-      <label className="block font-mono text-[0.66rem] uppercase tracking-[0.16em] text-base-700" htmlFor="pix-email">
-        Email para comprovante
-      </label>
-      <input
-        id="pix-email"
-        type="email"
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
-        className="ui-input px-3 py-2 text-ink"
-      />
+    <div className="space-y-2.5">
+      <div className="wallet-surface rounded-lg border border-base-300 p-2.5">
+        <label
+          className="font-mono text-[0.56rem] uppercase tracking-[0.14em] text-base-600"
+          htmlFor="pix-email"
+        >
+          Email para comprovante
+        </label>
+        <input
+          id="pix-email"
+          type="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          className="ui-input mt-1.5 px-3 py-2 text-ink"
+        />
 
-      <label className="block font-mono text-[0.66rem] uppercase tracking-[0.16em] text-base-700" htmlFor="pix-amount">
-        Valor em BRL
-      </label>
-      <input
-        id="pix-amount"
-        inputMode="decimal"
-        value={amount}
-        onChange={(event) => setAmount(event.target.value)}
-        className="ui-input px-3 py-2 text-ink"
-      />
+        <label
+          className="mt-2 block font-mono text-[0.56rem] uppercase tracking-[0.14em] text-base-600"
+          htmlFor="pix-amount"
+        >
+          Valor em BRL
+        </label>
+        <input
+          id="pix-amount"
+          inputMode="decimal"
+          value={amount}
+          onChange={(event) => setAmount(event.target.value)}
+          className="ui-input mt-1.5 px-3 py-2 text-ink"
+        />
+      </div>
 
       <button
         type="button"
         onClick={handleCreateCharge}
         disabled={isCreatingCharge}
-        className={`w-full ${primaryPaymentButtonClass}`}
+        className={`${primaryPaymentButtonClass} !py-2.5`}
       >
-        <span className="flex items-center justify-center gap-1.5 font-mono text-[0.66rem] uppercase tracking-[0.14em] text-yellow-900">
-          <Coffee size={14} strokeWidth={2.1} />
-          {isCreatingCharge
-            ? "Gerando Pix..."
-            : `Pagar com Pix sandbox (${formatCurrencyBRL(Number(amount) || 0)})`}
+        <span className="block text-center font-mono text-[0.58rem] uppercase tracking-[0.14em] text-base-900">
+          {isCreatingCharge ? "Gerando QR Pix..." : "Gerar QR Pix"}
         </span>
       </button>
 
       {charge && (
-        <div className="space-y-2 rounded-lg border border-base-300 bg-base-50 p-3">
-          <p className="text-sm text-base-700">Escaneie o QR ou copie o código Pix:</p>
+        <div className="wallet-surface-muted space-y-2 rounded-lg border border-base-300 p-2.5">
+          <p className="text-[0.78rem] text-base-700">Escaneie o QR ou toque no codigo para copiar.</p>
 
-          <div className="mx-auto w-fit rounded-lg bg-paper p-2">
-            <QRCodeSVG value={charge.pixQrCode} size={172} includeMargin />
+          <div className="mx-auto w-fit rounded-lg border border-base-300 bg-paper p-2">
+            <QRCodeSVG value={charge.pixQrCode} size={170} includeMargin />
           </div>
 
-          <p className="break-all rounded-md border border-base-300 bg-paper p-2 text-xs text-base-700">
+          <button
+            type="button"
+            onClick={handleCopyPixCode}
+            className="w-full break-all rounded-md border border-base-300 bg-paper p-2 text-left text-xs text-base-700 transition hover:border-base-400 hover:bg-base-100"
+            title="Copiar codigo Pix"
+          >
             {charge.pixCopyPaste}
-          </p>
-
-          <button type="button" className="ui-btn w-full" onClick={handleCopyPixCode}>
-            {copyState === "copied"
-              ? "Código Pix copiado"
-              : copyState === "error"
-                ? "Falha ao copiar"
-                : "Copiar código Pix"}
           </button>
 
-          <p className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-base-600">
-            ChargeId: {charge.chargeId}
-          </p>
-
-          <p className="text-sm">
-            Status: <span className="font-semibold">{status}</span>
-          </p>
+          <div className="flex items-center justify-between gap-2">
+            <p className="font-mono text-[0.54rem] uppercase tracking-[0.12em] text-base-600">
+              {copyState === "copied"
+                ? "Codigo copiado"
+                : copyState === "error"
+                  ? "Falha ao copiar"
+                  : formatCurrencyBRL(Number(amount) || 0)}
+            </p>
+            <p className={`text-sm font-semibold ${statusColorClass(status)}`}>{status}</p>
+          </div>
         </div>
       )}
 
@@ -638,3 +637,11 @@ function PixSupport({ zine }: { zine: Zine }) {
   );
 }
 
+function CurrencyMetric({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="space-y-0.5">
+      <p className="font-mono text-[0.5rem] uppercase tracking-[0.12em] text-base-500">{label}</p>
+      <p className="text-[0.78rem] font-semibold text-base-900">{value}</p>
+    </div>
+  );
+}

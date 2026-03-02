@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { TopZineGallery } from "@/components/top-zine-gallery";
 import { ZineCard } from "@/components/zine-card";
 import { getPublishedZines } from "@/lib/zines";
 import { type FundingMode } from "@/types/zine";
@@ -16,7 +16,7 @@ interface HomePageProps {
 const modeOptions: Array<{ value: "all" | FundingMode; label: string }> = [
   { value: "all", label: "Todos os modos" },
   { value: "campaign", label: "Campanha" },
-  { value: "continuous", label: "Contínuo" },
+  { value: "continuous", label: "Continuo" },
 ];
 
 export default async function HomePage({ searchParams }: HomePageProps) {
@@ -29,116 +29,20 @@ export default async function HomePage({ searchParams }: HomePageProps) {
     typeof params.tag === "string" && tags.includes(params.tag) ? params.tag : "all";
   const activeMode =
     params.mode === "campaign" || params.mode === "continuous" ? params.mode : "all";
+
   const filteredZines = zines.filter((zine) => {
     const matchesTag = activeTag === "all" || zine.tags.includes(activeTag);
     const matchesMode = activeMode === "all" || zine.funding_mode === activeMode;
     return matchesTag && matchesMode;
   });
-  const featured = filteredZines[0] ?? zines[0] ?? null;
-  const heroRail = (filteredZines.length > 0 ? filteredZines : zines).slice(1, 5);
+
+  const heroGallery = (filteredZines.length > 0 ? filteredZines : zines).slice(0, 3);
   const hasActiveFilters = activeTag !== "all" || activeMode !== "all";
-  const campaignCount = zines.filter((zine) => zine.funding_mode === "campaign").length;
-  const continuousCount = zines.length - campaignCount;
 
   return (
     <div className="space-y-2.5 font-sans sm:space-y-3.5">
       <section className="stagger-in border-b border-base-300 pb-3.5">
-        <div className="grid gap-3.5 lg:grid-cols-[minmax(0,1fr)_330px] lg:items-start">
-          <div className="space-y-3">
-            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[0.54rem] uppercase tracking-[0.15em] text-base-600">
-              <span>Laboratório de zines</span>
-              <span className="text-base-400">/</span>
-              <span>Faísca Lab</span>
-              <span className="text-base-400">/</span>
-              <span>Artizen Session 6</span>
-            </div>
-
-            <h1 className="max-w-4xl text-[1.9rem] font-semibold uppercase leading-[0.87] tracking-[-0.04em] text-ink sm:text-[2.35rem]">
-              Arquivo Vivo De Zines Para Leitura Aberta E Apoio Direto
-            </h1>
-
-            <p className="max-w-[75ch] text-[0.93rem] leading-snug text-base-700">
-              Um índice editorial inspirado pela leitura em páginas abertas do antmag e pela
-              clareza de seção da The Drift. Cada zine entra como edição acessível, com ficha
-              técnica pública e apoio direto para fortalecer artistas e coletivos.
-            </p>
-
-            <div className="grid gap-2 border-y border-base-300 py-2 sm:grid-cols-3">
-              <InlineMetric label="Arquivo" value={`${zines.length} zines publicados`} />
-              <InlineMetric label="Campanha / Contínuo" value={`${campaignCount} / ${continuousCount}`} />
-              <InlineMetric label="Apoio" value="Wallet / Email / Pix sandbox" />
-            </div>
-
-            <div className="grid gap-2 border-b border-base-300 pb-2.5 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-              <div className="space-y-1">
-                <p className="font-mono text-[0.52rem] uppercase tracking-[0.14em] text-base-500">
-                  Linha editorial
-                </p>
-                <p className="text-[0.86rem] leading-snug text-base-700">
-                  Objeto, formato e ritmo visual de zine com navegação limpa de revista digital.
-                </p>
-              </div>
-              <div className="flex flex-wrap items-start gap-1.5 sm:justify-end">
-                <Link href="#indice-curatorial" className="ui-btn ui-btn-primary">
-                  Explorar arquivo
-                </Link>
-                <EditorialLink href="/manifesto" label="Manifesto" />
-                <EditorialLink href="/checkout" label="Apoiar" />
-                <EditorialLink href="#indice-curatorial" label="Índice curatorial" />
-              </div>
-            </div>
-          </div>
-
-          {featured && (
-            <Link
-              href={`/zines/${featured.slug}`}
-              className="editorial-card group block space-y-1.5 rounded-md border border-base-300 bg-base-50 p-1.5 hover:shadow-[0_14px_24px_rgba(40,39,38,0.07)]"
-            >
-              <div className="relative aspect-[3/4] overflow-hidden rounded-md border border-base-300 bg-base-150 p-2">
-                <div className="absolute inset-1 rounded-sm border border-base-200 bg-base-200/60" />
-                <Image
-                  src={featured.cover_image}
-                  alt={`Capa de ${featured.title}`}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 330px"
-                  className="xerox-image object-contain object-center p-1 transition duration-500 group-hover:scale-[1.018]"
-                />
-              </div>
-              <div className="space-y-0.5 px-1 pb-0.5 pt-2">
-                <p className="font-mono text-[0.53rem] uppercase tracking-[0.13em] text-base-600">
-                  Edição em destaque
-                </p>
-                <p className="line-clamp-2 text-[0.98rem] font-semibold leading-tight text-ink">
-                  {featured.title}
-                </p>
-                <p className="font-mono text-[0.52rem] uppercase tracking-[0.13em] text-base-600">
-                  {featured.artist_name}
-                </p>
-                <p className="line-clamp-2 text-[0.8rem] leading-snug text-base-700">
-                  {featured.excerpt}
-                </p>
-              </div>
-
-              {heroRail.length > 0 && (
-                <div className="border-t border-base-300 px-1 pb-0.5 pt-2">
-                  <p className="mb-1 font-mono text-[0.5rem] uppercase tracking-[0.14em] text-base-500">
-                    Recentes no índice
-                  </p>
-                  <div className="space-y-0.5">
-                    {heroRail.map((item) => (
-                      <p
-                        key={item.slug}
-                        className="line-clamp-1 text-[0.78rem] leading-snug text-base-700"
-                      >
-                        {item.title}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </Link>
-          )}
-        </div>
+        <TopZineGallery zines={heroGallery} />
       </section>
 
       <section className="border-y border-base-300 py-2.5 sm:py-3">
@@ -185,7 +89,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
           <p className="font-mono text-[0.53rem] uppercase tracking-[0.14em] text-base-600">
             {hasActiveFilters
               ? `Resultado filtrado: ${filteredZines.length} zines`
-              : `Índice completo: ${filteredZines.length} zines`}
+              : `Indice completo: ${filteredZines.length} zines`}
           </p>
         </div>
       </section>
@@ -193,10 +97,10 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       <section id="indice-curatorial" className="space-y-2">
         <div className="flex items-end justify-between gap-3">
           <h2 className="text-[1.45rem] font-semibold uppercase leading-[0.9] tracking-[-0.03em] text-ink sm:text-[1.75rem]">
-            Índice Curatorial
+            Indice Curatorial
           </h2>
           <p className="max-w-[35ch] text-right font-mono text-[0.53rem] uppercase tracking-[0.14em] text-base-600">
-            Grade editorial compacta para leitura rápida de capa, autoria e contexto.
+            Grade editorial compacta para leitura rapida de capa, autoria e contexto.
           </p>
         </div>
 
@@ -218,14 +122,6 @@ export default async function HomePage({ searchParams }: HomePageProps) {
   );
 }
 
-function EditorialLink({ href, label }: { href: string; label: string }) {
-  return (
-    <Link href={href} className="ui-link">
-      {label}
-    </Link>
-  );
-}
-
 function FilterPill({
   href,
   label,
@@ -236,10 +132,7 @@ function FilterPill({
   active: boolean;
 }) {
   return (
-    <Link
-      href={href}
-      className={`ui-pill ${active ? "is-active" : ""}`}
-    >
+    <Link href={href} className={`ui-pill ${active ? "is-active" : ""}`}>
       {label}
     </Link>
   );
@@ -252,13 +145,3 @@ function buildIndexHref(tag: "all" | string, mode: "all" | FundingMode): string 
   const encoded = query.toString();
   return encoded ? `/?${encoded}` : "/";
 }
-
-function InlineMetric({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="space-y-0.5">
-      <p className="font-mono text-[0.52rem] uppercase tracking-[0.14em] text-base-500">{label}</p>
-      <p className="text-[0.9rem] font-semibold leading-tight text-base-850">{value}</p>
-    </div>
-  );
-}
-

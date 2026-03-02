@@ -123,3 +123,36 @@ npx prisma migrate status
 - Linguagem principal do CTA: `Apoiar este zine`
 - Pix em sandbox (sem liquidação BRL -> USDC em produção)
 - Curadoria por convite
+
+## KPI: apoio iniciado
+
+`Apoio iniciado` agora e medido por evento de intencao persistido no banco por metodo e por zine.
+
+### Evento de intencao
+
+- Rota: `POST /api/support/intent/log`
+- Superficies: `support_panel` e `checkout`
+- Metodos: `wallet`, `pix`, `email`
+- Idempotencia: `intentId` unico (duplicado retorna `409`)
+
+Payload exemplo:
+
+```json
+{
+  "zineSlug": "rua-das-copias",
+  "method": "wallet",
+  "surface": "support_panel",
+  "sessionId": "8f2d1f7f-2ab6-4bf1-9a25-f9431264d6b4",
+  "intentId": "f7168d5e-938f-4dc7-b0ec-a57e95b0d8f2",
+  "amountInput": "10",
+  "currencyInput": "usd",
+  "chainId": 84532,
+  "walletConnected": true
+}
+```
+
+### Metricas de funil
+
+- Rota: `GET /api/metrics/funnel?from=...&to=...`
+- Resposta: `starts_total`, `starts_by_method`, `starts_by_zine`, `starts_by_surface`
+- Se `from`/`to` nao forem enviados, o endpoint usa janela padrao dos ultimos 7 dias.

@@ -3,14 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { Coffee } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 import { type Address, erc20Abi, parseUnits } from "viem";
 import {
   useAccount,
   useChainId,
   useConnect,
-  useDisconnect,
   usePublicClient,
   useWriteContract,
 } from "wagmi";
@@ -19,6 +17,7 @@ import { useCart } from "@/components/cart-provider";
 import { getWeb3ConfigErrorMessage, publicEnv } from "@/lib/env";
 import { formatCurrencyBRL } from "@/lib/format";
 import { resolveRevnetTerminalAddress, revnetTerminalAbi } from "@/lib/revnet";
+import { logSupportIntent, type SupportIntentMethod } from "@/lib/support-intent";
 
 type PixStatus = "pending" | "paid" | "expired" | "failed";
 
@@ -49,7 +48,16 @@ function checkoutTabClass(active: boolean): string {
 }
 
 export default function CheckoutPage() {
-  const { items, totalBRL, itemCount, updateQuantity, updateAmountBRL, removeItem, clearCart } = useCart();
+  const {
+    items,
+    totalBRL,
+    itemCount,
+    updateQuantity,
+    updateAmountBRL,
+    removeItem,
+    clearCart,
+  } = useCart();
+
   const [method, setMethod] = useState<"wallet" | "pix" | "email">("wallet");
 
   const [pixEmail, setPixEmail] = useState("");
@@ -70,7 +78,6 @@ export default function CheckoutPage() {
   const { address, isConnected } = useAccount();
   const chainId = useChainId();
   const { connect, connectors, isPending: isConnecting } = useConnect();
-  const { disconnect } = useDisconnect();
   const { writeContractAsync } = useWriteContract();
   const publicClient = usePublicClient();
   const web3ConfigError = getWeb3ConfigErrorMessage();
@@ -103,6 +110,7 @@ export default function CheckoutPage() {
           }
         }),
       );
+
       setPixCharges(updates);
       if (updates.every((entry) => entry.status === "paid")) {
         clearCart();
@@ -114,12 +122,26 @@ export default function CheckoutPage() {
 
   const totalUSDC = useMemo(() => totalBRL, [totalBRL]);
 
+  function logIntentForItems(method: SupportIntentMethod, amountLabel?: string): void {
+    for (const item of items) {
+      void logSupportIntent({
+        zineSlug: item.slug,
+        method,
+        surface: "checkout",
+        amountInput: amountLabel ?? String(item.amountBRL * item.quantity),
+        currencyInput: "brl",
+        chainId: method === "wallet" ? chainId : undefined,
+        walletConnected: method === "wallet" ? isConnected : false,
+      });
+    }
+  }
+
   async function handlePixCheckout() {
     setPixError("");
     setPixCharges([]);
 
     if (!hasItems) {
-      setPixError("Seu carrinho está vazio.");
+      setPixError("Seu carrinho esta vazio.");
       return;
     }
 
@@ -127,6 +149,8 @@ export default function CheckoutPage() {
       setPixError("Informe um email para comprovantes.");
       return;
     }
+
+    logIntentForItems("pix");
 
     setIsPixLoading(true);
     try {
@@ -181,7 +205,7 @@ export default function CheckoutPage() {
     setEmailResult(null);
 
     if (!hasItems) {
-      setEmailError("Seu carrinho está vazio.");
+      setEmailError("Seu carrinho esta vazio.");
       return;
     }
 
@@ -189,6 +213,8 @@ export default function CheckoutPage() {
       setEmailError("Informe um email para finalizar.");
       return;
     }
+
+    logIntentForItems("email");
 
     setIsEmailLoading(true);
     try {
@@ -222,6 +248,8 @@ export default function CheckoutPage() {
   }
 
   async function handleWalletCheckout() {
+    logIntentForItems("wallet");
+
     if (!address || !publicClient || isWalletLoading || !walletCheckoutEnabled) return;
     if (web3ConfigError) {
       setWalletError(web3ConfigError);
@@ -235,6 +263,7 @@ export default function CheckoutPage() {
 
     try {
       const hashes: string[] = [];
+
       for (const item of items) {
         const itemTotalBRL = Number((item.amountBRL * item.quantity).toFixed(2));
         const amountUsdc6 = parseUnits(itemTotalBRL.toFixed(2), 6);
@@ -278,6 +307,7 @@ export default function CheckoutPage() {
         await publicClient.waitForTransactionReceipt({ hash: payHash });
 
         hashes.push(payHash);
+
         await fetch("/api/support/web3/log", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -293,7 +323,7 @@ export default function CheckoutPage() {
       }
 
       setWalletHashes(hashes);
-      setWalletStatus("Checkout wallet concluído com sucesso.");
+      setWalletStatus("Checkout wallet concluido com sucesso.");
       clearCart();
     } catch (error) {
       const message = error instanceof Error ? error.message : "Falha no checkout wallet.";
@@ -322,12 +352,9 @@ export default function CheckoutPage() {
 
       {!hasItems ? (
         <section className="editorial-panel rounded-xl p-4">
-          <p className="text-sm text-base-700">Seu carrinho está vazio.</p>
-          <Link
-            href="/"
-            className="ui-btn mt-3 inline-flex"
-          >
-            Voltar para catálogo
+          <p className="text-sm text-base-700">Seu carrinho esta vazio.</p>
+          <Link href="/" className="ui-btn mt-3 inline-flex">
+            Voltar para catalogo
           </Link>
         </section>
       ) : (
@@ -470,23 +497,15 @@ export default function CheckoutPage() {
                       disabled={!walletCheckoutEnabled}
                       className={primaryCheckoutButtonClass}
                     >
-                      <span className="flex items-center justify-center gap-1.5 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-yellow-900">
-                        <Coffee size={13} strokeWidth={2.1} />
-                        {isWalletLoading ? "Processando wallet..." : "Finalizar com Wallet"}
+                      <span className="block text-center font-mono text-[0.62rem] uppercase tracking-[0.14em] text-yellow-900">
+                        {isWalletLoading ? "Processando carteira..." : "Finalizar com carteira"}
                       </span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => disconnect()}
-                      className="ui-btn w-full"
-                    >
-                      Desconectar
                     </button>
                   </>
                 )}
 
-                  {walletStatus && <p className="text-sm text-green-700">{walletStatus}</p>}
-                  {walletError && <p className="text-sm text-red-700">{walletError}</p>}
+                {walletStatus && <p className="text-sm text-green-700">{walletStatus}</p>}
+                {walletError && <p className="text-sm text-red-700">{walletError}</p>}
                 {walletHashes.length > 0 && (
                   <ul className="space-y-1">
                     {walletHashes.map((hash) => (
@@ -520,16 +539,13 @@ export default function CheckoutPage() {
                   disabled={isEmailLoading}
                   className={primaryCheckoutButtonClass}
                 >
-                  <span className="flex items-center justify-center gap-1.5 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-yellow-900">
-                    <Coffee size={13} strokeWidth={2.1} />
+                  <span className="block text-center font-mono text-[0.62rem] uppercase tracking-[0.14em] text-yellow-900">
                     {isEmailLoading ? "Confirmando..." : "Finalizar por email"}
                   </span>
                 </button>
                 {emailError && <p className="text-sm text-red-700">{emailError}</p>}
                 {emailResult && (
                   <div className="rounded-lg border border-base-300 bg-base-50 p-2 text-xs text-base-700">
-                    <p>Pedido: {emailResult.orderId}</p>
-                    <p>Status: {emailResult.status}</p>
                     <p>{emailResult.message}</p>
                   </div>
                 )}
@@ -557,9 +573,8 @@ export default function CheckoutPage() {
                   disabled={isPixLoading}
                   className={primaryCheckoutButtonClass}
                 >
-                  <span className="flex items-center justify-center gap-1.5 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-yellow-900">
-                    <Coffee size={13} strokeWidth={2.1} />
-                    {isPixLoading ? "Gerando cobranças..." : "Gerar Pix do checkout"}
+                  <span className="flex items-center justify-center font-mono text-[0.62rem] uppercase tracking-[0.14em] text-yellow-900">
+                    {isPixLoading ? "Gerando QR Pix..." : "Gerar QR Pix"}
                   </span>
                 </button>
                 {pixError && <p className="text-sm text-red-700">{pixError}</p>}
@@ -588,4 +603,3 @@ export default function CheckoutPage() {
     </div>
   );
 }
-

@@ -1,4 +1,10 @@
-import { PrismaClient, PixChargeStatus, SupportSource } from "@prisma/client";
+import {
+  Prisma,
+  PrismaClient,
+  PixChargeStatus,
+  SupportMethod,
+  SupportSource,
+} from "@prisma/client";
 import { databaseEnv } from "@/lib/env";
 import { type PixChargeRecord } from "@/lib/pix";
 
@@ -13,6 +19,32 @@ export interface SupportEventInput {
   chargeId?: string;
   chainId?: number;
   revnetProject: number;
+}
+
+export type SupportIntentMethod = "wallet" | "pix" | "email";
+
+export interface SupportIntentEventInput {
+  zineSlug: string;
+  method: SupportIntentMethod;
+  surface: string;
+  sessionId: string;
+  intentId: string;
+  amountInput?: string;
+  currencyInput?: string;
+  chainId?: number;
+  walletConnected?: boolean;
+  userAgent?: string;
+}
+
+export type SupportIntentCreateResult = "created" | "duplicate";
+
+export interface SupportIntentFunnelMetrics {
+  from: string;
+  to: string;
+  starts_total: number;
+  starts_by_method: Array<{ method: SupportIntentMethod; count: number }>;
+  starts_by_zine: Array<{ zineSlug: string; count: number }>;
+  starts_by_surface: Array<{ surface: string; count: number }>;
 }
 
 const prisma =
@@ -34,20 +66,31 @@ if (process.env.NODE_ENV !== "production" && prisma) {
 
 const memoryCharges = new Map<string, PixChargeRecord>();
 const memorySupportEvents: Array<SupportEventInput & { createdAt: Date }> = [];
+const memorySupportIntentEvents: Array<SupportIntentEventInput & { createdAt: Date }> = [];
+const memorySupportIntentIds = new Set<string>();
 let didWarnStorageFallback = false;
 
 function shouldUsePrisma(databaseUrl: string | undefined): boolean {
   if (!databaseUrl || !databaseUrl.trim()) return false;
 
   // Prevent noisy startup failures on Vercel when a local placeholder URL is present.
-  if (
-    process.env.NODE_ENV === "production" &&
-    /localhost|127\.0\.0\.1/i.test(databaseUrl)
-  ) {
+  if (process.env.NODE_ENV === "production" && /localhost|127\.0\.0\.1/i.test(databaseUrl)) {
     return false;
   }
 
   return true;
+}
+
+function warnStorageFallback(error: unknown): void {
+  if (!didWarnStorageFallback) {
+    didWarnStorageFallback = true;
+    console.warn(
+      "Storage fallback active: Prisma indisponivel, usando armazenamento em memoria.",
+    );
+    if (process.env.NODE_ENV !== "production") {
+      console.warn(error);
+    }
+  }
 }
 
 async function withFallback<T>(
@@ -61,15 +104,7 @@ async function withFallback<T>(
   try {
     return await primary();
   } catch (error) {
-    if (!didWarnStorageFallback) {
-      didWarnStorageFallback = true;
-      console.warn(
-        "Storage fallback active: Prisma indisponivel, usando armazenamento em memoria.",
-      );
-      if (process.env.NODE_ENV !== "production") {
-        console.warn(error);
-      }
-    }
+    warnStorageFallback(error);
     return fallback();
   }
 }
@@ -219,6 +254,162 @@ export async function getZineSupportTotalUsdc6(zineSlug: string): Promise<bigint
   );
 }
 
+export async function createSupportIntentEvent(
+  input: SupportIntentEventInput,
+): Promise<SupportIntentCreateResult> {
+  if (!prisma) {
+    return createSupportIntentEventInMemory(input);
+  }
+
+  try {
+    await prisma.supportIntentEvent.create({
+      data: {
+        zineSlug: input.zineSlug,
+        method: mapSupportMethod(input.method),
+        surface: input.surface,
+        sessionId: input.sessionId,
+        intentId: input.intentId,
+        amountInput: input.amountInput,
+        currencyInput: input.currencyInput,
+        chainId: input.chainId,
+        walletConnected: input.walletConnected,
+        userAgent: input.userAgent,
+      },
+    });
+
+    return "created";
+  } catch (error) {
+    if (isUniqueConstraintError(error)) {
+      return "duplicate";
+    }
+
+    warnStorageFallback(error);
+    return createSupportIntentEventInMemory(input);
+  }
+}
+
+export async function getSupportIntentFunnelMetrics(
+  from: Date,
+  to: Date,
+): Promise<SupportIntentFunnelMetrics> {
+  if (!prisma) {
+    return getSupportIntentFunnelMetricsFromMemory(from, to);
+  }
+
+  try {
+    const where = {
+      createdAt: {
+        gte: from,
+        lte: to,
+      },
+    };
+
+    const [startsTotal, byMethodRaw, byZineRaw, bySurfaceRaw] = await Promise.all([
+      prisma.supportIntentEvent.count({ where }),
+      prisma.supportIntentEvent.groupBy({
+        by: ["method"],
+        where,
+        _count: { _all: true },
+      }),
+      prisma.supportIntentEvent.groupBy({
+        by: ["zineSlug"],
+        where,
+        _count: { _all: true },
+      }),
+      prisma.supportIntentEvent.groupBy({
+        by: ["surface"],
+        where,
+        _count: { _all: true },
+      }),
+    ]);
+
+    return {
+      from: from.toISOString(),
+      to: to.toISOString(),
+      starts_total: startsTotal,
+      starts_by_method: byMethodRaw
+        .map((row) => ({ method: row.method as SupportIntentMethod, count: row._count._all }))
+        .sort((a, b) => b.count - a.count),
+      starts_by_zine: byZineRaw
+        .map((row) => ({ zineSlug: row.zineSlug, count: row._count._all }))
+        .sort((a, b) => b.count - a.count),
+      starts_by_surface: bySurfaceRaw
+        .map((row) => ({ surface: row.surface, count: row._count._all }))
+        .sort((a, b) => b.count - a.count),
+    };
+  } catch (error) {
+    warnStorageFallback(error);
+    return getSupportIntentFunnelMetricsFromMemory(from, to);
+  }
+}
+
+function createSupportIntentEventInMemory(
+  input: SupportIntentEventInput,
+): SupportIntentCreateResult {
+  if (memorySupportIntentIds.has(input.intentId)) {
+    return "duplicate";
+  }
+
+  memorySupportIntentIds.add(input.intentId);
+  memorySupportIntentEvents.push({ ...input, createdAt: new Date() });
+  return "created";
+}
+
+function getSupportIntentFunnelMetricsFromMemory(
+  from: Date,
+  to: Date,
+): SupportIntentFunnelMetrics {
+  const filtered = memorySupportIntentEvents.filter(
+    (event) => event.createdAt >= from && event.createdAt <= to,
+  );
+
+  const byMethod = new Map<SupportIntentMethod, number>();
+  const byZine = new Map<string, number>();
+  const bySurface = new Map<string, number>();
+
+  for (const event of filtered) {
+    byMethod.set(event.method, (byMethod.get(event.method) ?? 0) + 1);
+    byZine.set(event.zineSlug, (byZine.get(event.zineSlug) ?? 0) + 1);
+    bySurface.set(event.surface, (bySurface.get(event.surface) ?? 0) + 1);
+  }
+
+  return {
+    from: from.toISOString(),
+    to: to.toISOString(),
+    starts_total: filtered.length,
+    starts_by_method: Array.from(byMethod.entries())
+      .map(([method, count]) => ({ method, count }))
+      .sort((a, b) => b.count - a.count),
+    starts_by_zine: Array.from(byZine.entries())
+      .map(([zineSlug, count]) => ({ zineSlug, count }))
+      .sort((a, b) => b.count - a.count),
+    starts_by_surface: Array.from(bySurface.entries())
+      .map(([surface, count]) => ({ surface, count }))
+      .sort((a, b) => b.count - a.count),
+  };
+}
+
+function isUniqueConstraintError(error: unknown): boolean {
+  if (!(error instanceof Prisma.PrismaClientKnownRequestError)) {
+    return false;
+  }
+
+  if (error.code !== "P2002") {
+    return false;
+  }
+
+  const target = error.meta?.target;
+  if (Array.isArray(target)) {
+    return target.includes("intentId");
+  }
+
+  if (typeof target === "string") {
+    return target.includes("intentId");
+  }
+
+  return true;
+}
+
 function mapPixStatus(status: PixChargeRecord["status"]): PixChargeStatus {
   switch (status) {
     case "paid":
@@ -232,7 +423,12 @@ function mapPixStatus(status: PixChargeRecord["status"]): PixChargeStatus {
   }
 }
 
+function mapSupportMethod(method: SupportIntentMethod): SupportMethod {
+  if (method === "wallet") return SupportMethod.wallet;
+  if (method === "email") return SupportMethod.email;
+  return SupportMethod.pix;
+}
+
 declare global {
   var __zinePrisma: PrismaClient | undefined;
 }
-

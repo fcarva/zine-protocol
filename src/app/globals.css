@@ -332,6 +332,43 @@ h4 {
   box-shadow: 0 1px 0 #8e6b01;
 }
 
+.wallet-surface {
+  background: linear-gradient(180deg, rgba(255, 252, 240, 0.98) 0%, rgba(246, 243, 229, 0.95) 100%);
+}
+
+.wallet-surface-muted {
+  background: linear-gradient(180deg, rgba(242, 240, 229, 0.9) 0%, rgba(238, 235, 223, 0.82) 100%);
+}
+
+.wallet-cta {
+  border-color: #b8a577;
+  background:
+    linear-gradient(145deg, rgba(244, 229, 177, 0.98) 0%, rgba(243, 225, 176, 0.96) 34%, rgba(214, 236, 226, 0.9) 66%, rgba(221, 232, 248, 0.92) 100%),
+    #f8f3de;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 252, 240, 0.55),
+    0 1px 0 rgba(64, 62, 60, 0.12),
+    0 9px 20px rgba(64, 62, 60, 0.08);
+}
+
+.wallet-cta:hover {
+  border-color: #9d8a5f;
+  background:
+    linear-gradient(145deg, rgba(241, 220, 158, 0.98) 0%, rgba(236, 213, 158, 0.96) 34%, rgba(202, 229, 218, 0.9) 66%, rgba(211, 223, 244, 0.92) 100%),
+    #f3ebcf;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 252, 240, 0.58),
+    0 2px 0 rgba(64, 62, 60, 0.14),
+    0 10px 22px rgba(64, 62, 60, 0.1);
+}
+
+.wallet-cta:active {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 252, 240, 0.42),
+    0 1px 0 rgba(64, 62, 60, 0.14),
+    0 4px 12px rgba(64, 62, 60, 0.08);
+}
+
 .ui-btn-danger {
   border-color: #e8705f;
   background: #ffe1d5;

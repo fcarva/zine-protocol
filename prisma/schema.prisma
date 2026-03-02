@@ -19,6 +19,12 @@ enum SupportSource {
   pix
 }
 
+enum SupportMethod {
+  wallet
+  pix
+  email
+}
+
 model PixCharge {
   id                String          @id @default(cuid())
   chargeId          String          @unique
@@ -55,5 +61,25 @@ model SupportEvent {
   @@index([source])
   @@index([chargeId])
   @@index([txHash])
+}
+
+model SupportIntentEvent {
+  id              String        @id @default(cuid())
+  zineSlug        String
+  method          SupportMethod
+  surface         String
+  sessionId       String
+  intentId        String        @unique
+  amountInput     String?
+  currencyInput   String?
+  chainId         Int?
+  walletConnected Boolean?
+  userAgent       String?
+  createdAt       DateTime      @default(now())
+
+  @@index([zineSlug])
+  @@index([method])
+  @@index([createdAt])
+  @@index([surface])
 }
 
