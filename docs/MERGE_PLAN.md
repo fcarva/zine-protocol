@@ -40,10 +40,13 @@ Consolidar o MVP do Zine Protocol para demo Artizen com foco em:
 1. `npm run check:all` passando.
 2. `npm run build` passando.
 3. Smoke API em produção (`GET /api/pix/status/:chargeId`) respondendo normalmente.
+4. Testes UI smoke adicionados e verdes:
+   - `src/test/ui/support-panel.test.tsx`
+   - `src/test/ui/checkout-page.test.tsx`
 
 ### Pendente crítico
 
-1. Executar QA funcional completo pós-migração em produção (Wallet/Email/Pix).
+1. Executar QA manual em produção dos fluxos com interação real de carteira/webhook Pix.
 
 ## Riscos conhecidos
 
@@ -71,7 +74,9 @@ Consolidar o MVP do Zine Protocol para demo Artizen com foco em:
    - `POST /api/webhooks/abacatepay` (assinatura inválida e válida)
    - `POST /api/support/web3/log`
    - `POST /api/checkout/email`
-3. Registrar resultados no histórico desta doc.
+3. Status:
+   - cobertura automatizada de API já existente e verde;
+   - pendente apenas validação manual final em produção (wallet + webhook sandbox real).
 
 ### Bloco 3 — Qualidade contínua (60-90 min)
 
@@ -79,7 +84,10 @@ Consolidar o MVP do Zine Protocol para demo Artizen com foco em:
 2. Criar 2 testes de UI smoke com Testing Library:
    - `SupportPanel` render + CTA;
    - `CheckoutPage` troca de método (`wallet/email/pix`).
-3. Critério de pronto: PR falha automaticamente em regressão básica.
+3. Status:
+   - CI implementado em `.github/workflows/ci.yml`;
+   - testes UI smoke implementados;
+   - `check:all` + `build` passando localmente.
 
 ## Checklist de release (atual)
 
