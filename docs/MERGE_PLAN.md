@@ -2,48 +2,91 @@
 
 ## Objetivo
 
-Publicar o estado atual do MVP com polish de performance + qualidade editorial, mantendo baixo risco de regressão.
+Consolidar o MVP do Zine Protocol para demo Artizen com foco em:
 
-## Ordem recomendada de commits
+1. performance real de front;
+2. copy/editorial consistente em pt-BR;
+3. checkout funcional (Wallet + Email + Pix sandbox);
+4. baixo risco de regressão em produção.
 
-1. `feat(perf): next image formats + sizes tuning`
-2. `feat(editorial): copy pt-BR + framing de apoio`
-3. `chore(release): docs, build prisma, vercel env checklist`
+## Status atual (mapeamento)
 
-## Risco conhecido
+### Concluído
 
-1. `markdown-renderer` usa `<img>` para preservar fluxo editorial de páginas abertas.
-2. `next lint` mantém warning `no-img-element` (esperado por decisão de produto).
+1. `feat: polish performance config and pt-BR editorial UX` (`ddd74e4`)
+   - `next.config.mjs` com `images.formats` (`avif/webp`) + `deviceSizes` + `imageSizes`;
+   - `package.json` com `build: prisma generate && next build` e `engines.node: 20.x`;
+   - tipografia com `fontFamily` via `next/font` no Tailwind;
+   - revisão de framing/copy principal para apoio.
+2. `fix(storage): prevent prisma init on localhost db url in production` (`1e86a9a`)
+   - evita loop de `PrismaClientInitializationError` quando `DATABASE_URL` inválida;
+   - reduz spam de fallback para log único por instância.
+3. `feat(ui): refresh payment CTA to clean coffee-style buttons` (`68cd26f`)
+   - redesign do CTA de apoio no `SupportPanel`;
+   - padronização de botões de checkout (`Wallet`, `Email`, `Pix`) com estilo clean.
+4. Deploy de produção publicado:
+   - URL: `https://zine-protocol.vercel.app`
+   - Deployment: `https://zine-protocol-9qqsp57o8-fcarvas-projects.vercel.app`
+5. CI de validação criado:
+   - arquivo: `.github/workflows/ci.yml`
+   - executa `pnpm install --frozen-lockfile`, `npm run check:all` e `npm run build`.
 
-## Checklist de release
+### Validado
 
-1. `npm run check:all`
-2. `npm run build`
-3. Smoke manual:
+1. `npm run check:all` passando.
+2. `npm run build` passando.
+3. Smoke API em produção (`GET /api/pix/status/:chargeId`) respondendo normalmente.
+
+### Pendente crítico
+
+1. `DATABASE_URL` de produção ainda precisa apontar para Postgres real.
+   - com URL local/placeholder, o app permanece em fallback de memória (sem persistência durável).
+
+## Riscos conhecidos
+
+1. `markdown-renderer` usa `<img>` por decisão editorial (fidelidade visual).
+2. `next lint` mantém warning `@next/next/no-img-element` esperado.
+3. sem Postgres real em Vercel, eventos de apoio não persistem entre cold starts.
+
+## Continuação do plano (próxima sessão)
+
+### Bloco 1 — Persistência real (prioridade máxima, 45-60 min)
+
+1. Provisionar Postgres gerenciado (Neon/Supabase/Railway).
+2. Atualizar `DATABASE_URL` em `Preview` e `Production`.
+3. Rodar `vercel env ls` e `vercel --prod --yes`.
+4. Critério de pronto: criação Pix + logs Web3 persistindo após novo deploy.
+
+### Bloco 2 — QA de checkout (60-90 min)
+
+1. Smoke manual completo:
    - `/`
    - `/manifesto`
    - `/zines/[slug]`
    - `/checkout`
-4. Smoke API:
+2. Smoke APIs:
    - `POST /api/pix/checkout`
    - `GET /api/pix/status/:chargeId`
-   - `POST /api/webhooks/abacatepay`
+   - `POST /api/webhooks/abacatepay` (assinatura inválida e válida)
    - `POST /api/support/web3/log`
    - `POST /api/checkout/email`
+3. Registrar resultados no histórico desta doc.
 
-## Configuração Vercel (obrigatória)
+### Bloco 3 — Qualidade contínua (60-90 min)
 
-1. Definir variáveis em `Preview` e `Production`:
-   - `NEXT_PUBLIC_BASE_SEPOLIA_RPC_URL`
-   - `NEXT_PUBLIC_USDC_ADDRESS`
-   - `NEXT_PUBLIC_REVNET_TERMINAL_ADDRESS`
-   - `NEXT_PUBLIC_REVNET_APP_URL`
-   - `ABACATEPAY_API_KEY`
-   - `ABACATEPAY_WEBHOOK_SECRET`
-   - `DATABASE_URL`
-2. Confirmar `vercel env ls` com todas as variáveis.
+1. Adicionar workflow CI (`check:all` + `build`) no GitHub Actions.
+2. Criar 2 testes de UI smoke com Testing Library:
+   - `SupportPanel` render + CTA;
+   - `CheckoutPage` troca de método (`wallet/email/pix`).
+3. Critério de pronto: PR falha automaticamente em regressão básica.
 
-## Pós-release
+## Checklist de release (atual)
 
-1. Registrar URL de produção e SHA do commit no histórico do projeto.
-2. Validar fluxo de apoio Wallet + Pix sandbox em produção.
+1. `npm run check:all`
+2. `npm run build`
+3. `vercel env ls` completo
+4. deploy `vercel --prod --yes`
+5. validar produção e registrar:
+   - URL
+   - SHA
+   - data/hora
