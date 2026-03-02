@@ -1,0 +1,27 @@
+{
+  "sourcePage": "https://antmagjpg.com/SMD-Cap",
+  "title": "SMD Cap",
+  "imageCount": 2,
+  "images": [
+    {
+      "index": 1,
+      "id": 235062619,
+      "hash": "59db6eb8952463297eccc06529b0af5616c8c8bcf279b6c742ca80a839edac39",
+      "name": "_1280899.JPG",
+      "width": 3448,
+      "height": 4592,
+      "source": "https://freight.cargo.site/t/original/i/59db6eb8952463297eccc06529b0af5616c8c8bcf279b6c742ca80a839edac39/_1280899.JPG",
+      "localPath": "/images/zines/antmag/smd-cap/01-1280899-jpg.jpg"
+    },
+    {
+      "index": 4,
+      "id": 235062629,
+      "hash": "ddbe91ff6c43f0f634c168917de1d5ad7445a1fc2a1e2b20706dbba7de00ae96",
+      "name": "_1280883.JPG",
+      "width": 3448,
+      "height": 4592,
+      "source": "https://freight.cargo.site/t/original/i/ddbe91ff6c43f0f634c168917de1d5ad7445a1fc2a1e2b20706dbba7de00ae96/_1280883.JPG",
+      "localPath": "/images/zines/antmag/smd-cap/04-1280883-jpg.jpg"
+    }
+  ]
+}

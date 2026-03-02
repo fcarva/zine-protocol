@@ -1,0 +1,87 @@
+{
+  "sourcePage": "https://antmagjpg.com/Banks-Violette",
+  "title": "Banks Violette",
+  "imageCount": 8,
+  "images": [
+    {
+      "index": 1,
+      "id": 240739729,
+      "hash": "edb32f904f0ce348dde7a91e8eeb8fc6e8e964e8885df4d2fd73778a963c190d",
+      "name": "BV1.jpg",
+      "width": 1500,
+      "height": 1200,
+      "source": "https://freight.cargo.site/t/original/i/edb32f904f0ce348dde7a91e8eeb8fc6e8e964e8885df4d2fd73778a963c190d/BV1.jpg",
+      "localPath": "/images/zines/antmag/banks-violette/01-bv1.jpg"
+    },
+    {
+      "index": 2,
+      "id": 240739730,
+      "hash": "b7f8c735a4748a7b090d597d1c14f46d602a550c25533e444e0b8b8c776a845b",
+      "name": "BV2.jpg",
+      "width": 1500,
+      "height": 1200,
+      "source": "https://freight.cargo.site/t/original/i/b7f8c735a4748a7b090d597d1c14f46d602a550c25533e444e0b8b8c776a845b/BV2.jpg",
+      "localPath": "/images/zines/antmag/banks-violette/02-bv2.jpg"
+    },
+    {
+      "index": 3,
+      "id": 240739731,
+      "hash": "790407252a95e4a192fbfcf9b134ac622365fab1b5a57fb870d2e2a17dbf0da2",
+      "name": "BV3.jpg",
+      "width": 1500,
+      "height": 1200,
+      "source": "https://freight.cargo.site/t/original/i/790407252a95e4a192fbfcf9b134ac622365fab1b5a57fb870d2e2a17dbf0da2/BV3.jpg",
+      "localPath": "/images/zines/antmag/banks-violette/03-bv3.jpg"
+    },
+    {
+      "index": 4,
+      "id": 240739732,
+      "hash": "df9459b6a4fb96b2792814d72fdc77258ed2caf025d7cad9466025ed1fb2813f",
+      "name": "BV6.jpg",
+      "width": 1500,
+      "height": 1200,
+      "source": "https://freight.cargo.site/t/original/i/df9459b6a4fb96b2792814d72fdc77258ed2caf025d7cad9466025ed1fb2813f/BV6.jpg",
+      "localPath": "/images/zines/antmag/banks-violette/04-bv6.jpg"
+    },
+    {
+      "index": 5,
+      "id": 240739733,
+      "hash": "606b35c9cbad03161097064acc8e63191558897dbf7c282cf94f2ea85b424611",
+      "name": "BV7.jpg",
+      "width": 1500,
+      "height": 1200,
+      "source": "https://freight.cargo.site/t/original/i/606b35c9cbad03161097064acc8e63191558897dbf7c282cf94f2ea85b424611/BV7.jpg",
+      "localPath": "/images/zines/antmag/banks-violette/05-bv7.jpg"
+    },
+    {
+      "index": 6,
+      "id": 240739734,
+      "hash": "48373776305ea40fd55b5c95ad9ab055ceaec8e5dbb3fd734aa73c7c1d0180a2",
+      "name": "BV8.jpg",
+      "width": 1500,
+      "height": 1200,
+      "source": "https://freight.cargo.site/t/original/i/48373776305ea40fd55b5c95ad9ab055ceaec8e5dbb3fd734aa73c7c1d0180a2/BV8.jpg",
+      "localPath": "/images/zines/antmag/banks-violette/06-bv8.jpg"
+    },
+    {
+      "index": 7,
+      "id": 240739735,
+      "hash": "9cf9fea23fd29715c59a9775691bf8baf943e5c25d02310daf82de787e48b4cb",
+      "name": "BV9.jpg",
+      "width": 1500,
+      "height": 1200,
+      "source": "https://freight.cargo.site/t/original/i/9cf9fea23fd29715c59a9775691bf8baf943e5c25d02310daf82de787e48b4cb/BV9.jpg",
+      "localPath": "/images/zines/antmag/banks-violette/07-bv9.jpg"
+    },
+    {
+      "index": 8,
+      "id": 240739736,
+      "hash": "8bb6879585384ab795d925beb98f92be35ae7db16d2bef80616d2f77d6de70b5",
+      "name": "BV10.jpg",
+      "width": 1500,
+      "height": 1200,
+      "source": "https://freight.cargo.site/t/original/i/8bb6879585384ab795d925beb98f92be35ae7db16d2bef80616d2f77d6de70b5/BV10.jpg",
+      "localPath": "/images/zines/antmag/banks-violette/08-bv10.jpg"
+    }
+  ]
+}

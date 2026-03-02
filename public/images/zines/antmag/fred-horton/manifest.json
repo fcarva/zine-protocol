@@ -1,0 +1,57 @@
+{
+  "sourcePage": "https://antmagjpg.com/Fred-Horton",
+  "title": "Fred Horton",
+  "imageCount": 5,
+  "images": [
+    {
+      "index": 1,
+      "id": 199049882,
+      "hash": "7e1ac651c1e345cc2cb41019a509af1866c7625e601d42e49520d22aa3dfdc2f",
+      "name": "fred_web.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/7e1ac651c1e345cc2cb41019a509af1866c7625e601d42e49520d22aa3dfdc2f/fred_web.jpg",
+      "localPath": "/images/zines/antmag/fred-horton/01-fred-web.jpg"
+    },
+    {
+      "index": 2,
+      "id": 199049883,
+      "hash": "bda522d8c7d8aaace20a9b6416073b8af3f2e6e379e6922a7b54eeb26c486035",
+      "name": "fred_web2.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/bda522d8c7d8aaace20a9b6416073b8af3f2e6e379e6922a7b54eeb26c486035/fred_web2.jpg",
+      "localPath": "/images/zines/antmag/fred-horton/02-fred-web2.jpg"
+    },
+    {
+      "index": 3,
+      "id": 199049884,
+      "hash": "28b4d9497a7ad6ef1a0df1cc5b89000e61ac79864fb866f93d265c1077c57da4",
+      "name": "fred_web3.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/28b4d9497a7ad6ef1a0df1cc5b89000e61ac79864fb866f93d265c1077c57da4/fred_web3.jpg",
+      "localPath": "/images/zines/antmag/fred-horton/03-fred-web3.jpg"
+    },
+    {
+      "index": 4,
+      "id": 199049885,
+      "hash": "390278f82124d00d841f12fe33f3541a1c8cbcc33bc136f6e335a0e7fb2a2284",
+      "name": "fred_web5.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/390278f82124d00d841f12fe33f3541a1c8cbcc33bc136f6e335a0e7fb2a2284/fred_web5.jpg",
+      "localPath": "/images/zines/antmag/fred-horton/04-fred-web5.jpg"
+    },
+    {
+      "index": 5,
+      "id": 199049886,
+      "hash": "3a1c1bcaf87d304c7ea58b2e1edfcb603c23c0d1e31353c03daceb09e38f9b0f",
+      "name": "fred_web7.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/3a1c1bcaf87d304c7ea58b2e1edfcb603c23c0d1e31353c03daceb09e38f9b0f/fred_web7.jpg",
+      "localPath": "/images/zines/antmag/fred-horton/05-fred-web7.jpg"
+    }
+  ]
+}

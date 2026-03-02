@@ -1,0 +1,97 @@
+{
+  "sourcePage": "https://antmagjpg.com/Poster-Zine",
+  "title": "Poster Zine",
+  "imageCount": 9,
+  "images": [
+    {
+      "index": 1,
+      "id": 213285202,
+      "hash": "81547902927fdb4b33e5a02b85525fcc01b89c5db97387d04dd63d06715333e3",
+      "name": "LarsDuchateau_Antmag_Repro-3.jpg",
+      "width": 5333,
+      "height": 4003,
+      "source": "https://freight.cargo.site/t/original/i/81547902927fdb4b33e5a02b85525fcc01b89c5db97387d04dd63d06715333e3/LarsDuchateau_Antmag_Repro-3.jpg",
+      "localPath": "/images/zines/antmag/poster-zine/01-larsduchateau-antmag-repro-3.jpg"
+    },
+    {
+      "index": 2,
+      "id": 213285204,
+      "hash": "0a0b4c7242a9ad18918910dd9c465c25da59371ea4518acaa85febdc10b351f1",
+      "name": "LarsDuchateau_Antmag_Repro-2.jpg",
+      "width": 5464,
+      "height": 4102,
+      "source": "https://freight.cargo.site/t/original/i/0a0b4c7242a9ad18918910dd9c465c25da59371ea4518acaa85febdc10b351f1/LarsDuchateau_Antmag_Repro-2.jpg",
+      "localPath": "/images/zines/antmag/poster-zine/02-larsduchateau-antmag-repro-2.jpg"
+    },
+    {
+      "index": 3,
+      "id": 213285205,
+      "hash": "f058ecc86fc7240654493213990d58d697212551d1e925a5a00063b11297f132",
+      "name": "LarsDuchateau_Antmag_Repro-5.jpg",
+      "width": 5284,
+      "height": 3966,
+      "source": "https://freight.cargo.site/t/original/i/f058ecc86fc7240654493213990d58d697212551d1e925a5a00063b11297f132/LarsDuchateau_Antmag_Repro-5.jpg",
+      "localPath": "/images/zines/antmag/poster-zine/03-larsduchateau-antmag-repro-5.jpg"
+    },
+    {
+      "index": 4,
+      "id": 213285206,
+      "hash": "8330cacefc40d65b3c001d0d071d22ca44089a115f34ed5b581a6d5281237dd1",
+      "name": "LarsDuchateau_Antmag_Repro-6.jpg",
+      "width": 5353,
+      "height": 4018,
+      "source": "https://freight.cargo.site/t/original/i/8330cacefc40d65b3c001d0d071d22ca44089a115f34ed5b581a6d5281237dd1/LarsDuchateau_Antmag_Repro-6.jpg",
+      "localPath": "/images/zines/antmag/poster-zine/04-larsduchateau-antmag-repro-6.jpg"
+    },
+    {
+      "index": 5,
+      "id": 213285207,
+      "hash": "62c6be74922a61d7e8e93cb2b1b0c78a6b8e21206ff828ccd264242dfa2dd5a7",
+      "name": "LarsDuchateau_Antmag_Repro-7.jpg",
+      "width": 5360,
+      "height": 4023,
+      "source": "https://freight.cargo.site/t/original/i/62c6be74922a61d7e8e93cb2b1b0c78a6b8e21206ff828ccd264242dfa2dd5a7/LarsDuchateau_Antmag_Repro-7.jpg",
+      "localPath": "/images/zines/antmag/poster-zine/05-larsduchateau-antmag-repro-7.jpg"
+    },
+    {
+      "index": 6,
+      "id": 213285208,
+      "hash": "7fe6717806aa72a3a8fca3b15ed0c7454b67a7043d9acca4c49f6135de706412",
+      "name": "LarsDuchateau_Antmag_Repro-8.jpg",
+      "width": 5378,
+      "height": 4037,
+      "source": "https://freight.cargo.site/t/original/i/7fe6717806aa72a3a8fca3b15ed0c7454b67a7043d9acca4c49f6135de706412/LarsDuchateau_Antmag_Repro-8.jpg",
+      "localPath": "/images/zines/antmag/poster-zine/06-larsduchateau-antmag-repro-8.jpg"
+    },
+    {
+      "index": 7,
+      "id": 213285209,
+      "hash": "440f8a8b270ea5f6c2ade1d29c76caea9152c1e707166504a6532198755ad6cf",
+      "name": "LarsDuchateau_Antmag_Repro-9.jpg",
+      "width": 5339,
+      "height": 4008,
+      "source": "https://freight.cargo.site/t/original/i/440f8a8b270ea5f6c2ade1d29c76caea9152c1e707166504a6532198755ad6cf/LarsDuchateau_Antmag_Repro-9.jpg",
+      "localPath": "/images/zines/antmag/poster-zine/07-larsduchateau-antmag-repro-9.jpg"
+    },
+    {
+      "index": 8,
+      "id": 213285210,
+      "hash": "3eb6c120d4f27fd540ee71e595bf57171c996cffd4139878aaec10f6ef13b6e6",
+      "name": "LarsDuchateau_Antmag_Repro-10.jpg",
+      "width": 5355,
+      "height": 4020,
+      "source": "https://freight.cargo.site/t/original/i/3eb6c120d4f27fd540ee71e595bf57171c996cffd4139878aaec10f6ef13b6e6/LarsDuchateau_Antmag_Repro-10.jpg",
+      "localPath": "/images/zines/antmag/poster-zine/08-larsduchateau-antmag-repro-10.jpg"
+    },
+    {
+      "index": 9,
+      "id": 213285211,
+      "hash": "1e2e4872b78c041e86a7c02b517ba4e2628e376f7a250719a24fecf4afe0f65a",
+      "name": "LarsDuchateau_Antmag_Repro.jpg",
+      "width": 5505,
+      "height": 4132,
+      "source": "https://freight.cargo.site/t/original/i/1e2e4872b78c041e86a7c02b517ba4e2628e376f7a250719a24fecf4afe0f65a/LarsDuchateau_Antmag_Repro.jpg",
+      "localPath": "/images/zines/antmag/poster-zine/09-larsduchateau-antmag-repro.jpg"
+    }
+  ]
+}

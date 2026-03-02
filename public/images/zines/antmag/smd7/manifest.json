@@ -1,0 +1,77 @@
+{
+  "sourcePage": "https://antmagjpg.com/SMD7",
+  "title": "SMD7",
+  "imageCount": 7,
+  "images": [
+    {
+      "index": 1,
+      "id": 239602835,
+      "hash": "07539330aa77c80bc6f71049177693aae8fc931b872e3ecd4265a00498f43b04",
+      "name": "AAA.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/07539330aa77c80bc6f71049177693aae8fc931b872e3ecd4265a00498f43b04/AAA.jpg",
+      "localPath": "/images/zines/antmag/smd7/01-aaa.jpg"
+    },
+    {
+      "index": 2,
+      "id": 239602836,
+      "hash": "a82a85db2314a6a12810ce392e83bd7c9dc4aa392573579d7b78baf8f406e511",
+      "name": "AAA1.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/a82a85db2314a6a12810ce392e83bd7c9dc4aa392573579d7b78baf8f406e511/AAA1.jpg",
+      "localPath": "/images/zines/antmag/smd7/02-aaa1.jpg"
+    },
+    {
+      "index": 3,
+      "id": 239602837,
+      "hash": "a58b37590e1c7d5445edb89cfd55d962a16e2738855ea6d65012837c1a66c6ff",
+      "name": "AAA3.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/a58b37590e1c7d5445edb89cfd55d962a16e2738855ea6d65012837c1a66c6ff/AAA3.jpg",
+      "localPath": "/images/zines/antmag/smd7/03-aaa3.jpg"
+    },
+    {
+      "index": 4,
+      "id": 239602840,
+      "hash": "c562fdfe2d9d22fd368d064a6eb716dbe9d3ff123a0b07b9b9ed0b34ccc85a6c",
+      "name": "AAA5.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/c562fdfe2d9d22fd368d064a6eb716dbe9d3ff123a0b07b9b9ed0b34ccc85a6c/AAA5.jpg",
+      "localPath": "/images/zines/antmag/smd7/04-aaa5.jpg"
+    },
+    {
+      "index": 5,
+      "id": 239602869,
+      "hash": "c49f0e8ed7eae2dd25a0a75b33731abecebb709a7239aeaf5cf772abc66b6391",
+      "name": "AAA7.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/c49f0e8ed7eae2dd25a0a75b33731abecebb709a7239aeaf5cf772abc66b6391/AAA7.jpg",
+      "localPath": "/images/zines/antmag/smd7/05-aaa7.jpg"
+    },
+    {
+      "index": 6,
+      "id": 239602893,
+      "hash": "1825e0e3ccfd9fc46e09cfb56c152ea8de71a600c9c57111b58a3342f39c7a73",
+      "name": "AAA4.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/1825e0e3ccfd9fc46e09cfb56c152ea8de71a600c9c57111b58a3342f39c7a73/AAA4.jpg",
+      "localPath": "/images/zines/antmag/smd7/06-aaa4.jpg"
+    },
+    {
+      "index": 7,
+      "id": 239602902,
+      "hash": "b3c82d8434e9dc8d163a63206a164d39f861b3ec700c9265e8ef68a1d1511304",
+      "name": "AAA9.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/b3c82d8434e9dc8d163a63206a164d39f861b3ec700c9265e8ef68a1d1511304/AAA9.jpg",
+      "localPath": "/images/zines/antmag/smd7/07-aaa9.jpg"
+    }
+  ]
+}

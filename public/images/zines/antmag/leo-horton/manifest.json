@@ -1,0 +1,97 @@
+{
+  "sourcePage": "https://antmagjpg.com/Leo-Horton",
+  "title": "Leo Horton",
+  "imageCount": 9,
+  "images": [
+    {
+      "index": 1,
+      "id": 224178285,
+      "hash": "ab9b9119ddbc536c2ad04cbf28854611f555c302e54abdc2fd51340c70bdc9bc",
+      "name": "20.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/ab9b9119ddbc536c2ad04cbf28854611f555c302e54abdc2fd51340c70bdc9bc/20.jpg",
+      "localPath": "/images/zines/antmag/leo-horton/01-20.jpg"
+    },
+    {
+      "index": 2,
+      "id": 224178291,
+      "hash": "8acac0049bef320789be7ee8b177f67c50958d68129d0c3aefebfe9b7c1537e8",
+      "name": "21.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/8acac0049bef320789be7ee8b177f67c50958d68129d0c3aefebfe9b7c1537e8/21.jpg",
+      "localPath": "/images/zines/antmag/leo-horton/02-21.jpg"
+    },
+    {
+      "index": 3,
+      "id": 224178292,
+      "hash": "a4ef3320fc5406771d2594e9939df8986ff9eabd1e0298b2cd167d31893ee087",
+      "name": "22.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/a4ef3320fc5406771d2594e9939df8986ff9eabd1e0298b2cd167d31893ee087/22.jpg",
+      "localPath": "/images/zines/antmag/leo-horton/03-22.jpg"
+    },
+    {
+      "index": 4,
+      "id": 224178293,
+      "hash": "31eeb31a052d1c951cdcc4c750a6ecce8d0d87254f83378a5b1271b355748483",
+      "name": "23.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/31eeb31a052d1c951cdcc4c750a6ecce8d0d87254f83378a5b1271b355748483/23.jpg",
+      "localPath": "/images/zines/antmag/leo-horton/04-23.jpg"
+    },
+    {
+      "index": 5,
+      "id": 224178294,
+      "hash": "5995d01f1ef5ed72a7d4191b0d339d9c3f7bb4b15396bd775209618e6f342f73",
+      "name": "24.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/5995d01f1ef5ed72a7d4191b0d339d9c3f7bb4b15396bd775209618e6f342f73/24.jpg",
+      "localPath": "/images/zines/antmag/leo-horton/05-24.jpg"
+    },
+    {
+      "index": 6,
+      "id": 224178296,
+      "hash": "26ab1eb15a78333b95798fa156a648edee83181a72a68cc3beec1ffb6a44fb11",
+      "name": "25.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/26ab1eb15a78333b95798fa156a648edee83181a72a68cc3beec1ffb6a44fb11/25.jpg",
+      "localPath": "/images/zines/antmag/leo-horton/06-25.jpg"
+    },
+    {
+      "index": 7,
+      "id": 224178297,
+      "hash": "5be285602ffdca9164efee06c5166ab62c076a241cc638a8c76844a1dbc5ef4f",
+      "name": "26.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/5be285602ffdca9164efee06c5166ab62c076a241cc638a8c76844a1dbc5ef4f/26.jpg",
+      "localPath": "/images/zines/antmag/leo-horton/07-26.jpg"
+    },
+    {
+      "index": 8,
+      "id": 224178298,
+      "hash": "c6c742c24ce1eb5411aba95a2fd2dee0dd940dc185798ef92376c92003b9a041",
+      "name": "27.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/c6c742c24ce1eb5411aba95a2fd2dee0dd940dc185798ef92376c92003b9a041/27.jpg",
+      "localPath": "/images/zines/antmag/leo-horton/08-27.jpg"
+    },
+    {
+      "index": 9,
+      "id": 225031562,
+      "hash": "a7b426fb3e4b68d1a79fb1905e9426b9971d9aff31cbf389281125a55b03afa0",
+      "name": "Schermafbeelding-2025-01-18-om-11.57.29.png",
+      "width": 650,
+      "height": 928,
+      "source": "https://freight.cargo.site/t/original/i/a7b426fb3e4b68d1a79fb1905e9426b9971d9aff31cbf389281125a55b03afa0/Schermafbeelding-2025-01-18-om-11.57.29.png",
+      "localPath": "/images/zines/antmag/leo-horton/09-schermafbeelding-2025-01-18-om-11-57-29.png"
+    }
+  ]
+}

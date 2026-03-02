@@ -1,0 +1,87 @@
+{
+  "sourcePage": "https://antmagjpg.com/Gaspar-De-Geyndt",
+  "title": "Gaspar De Geyndt",
+  "imageCount": 8,
+  "images": [
+    {
+      "index": 1,
+      "id": 203163598,
+      "hash": "a846015ccf7083065beebc1e3884cefd2d2a9f0ac1d84e38a768f941c0813be7",
+      "name": "Gapa1.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/a846015ccf7083065beebc1e3884cefd2d2a9f0ac1d84e38a768f941c0813be7/Gapa1.jpg",
+      "localPath": "/images/zines/antmag/gaspar-de-geyndt/01-gapa1.jpg"
+    },
+    {
+      "index": 2,
+      "id": 203163600,
+      "hash": "60d03cdd0064bcef60e88e59718234aa54b77d115dbfdc39b3e7f403c36f868d",
+      "name": "gapi10.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/60d03cdd0064bcef60e88e59718234aa54b77d115dbfdc39b3e7f403c36f868d/gapi10.jpg",
+      "localPath": "/images/zines/antmag/gaspar-de-geyndt/02-gapi10.jpg"
+    },
+    {
+      "index": 3,
+      "id": 203163615,
+      "hash": "f3b763973999600651e2ca3605b106a8e02e5793a69171da92729bc71d4e669c",
+      "name": "gapi3.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/f3b763973999600651e2ca3605b106a8e02e5793a69171da92729bc71d4e669c/gapi3.jpg",
+      "localPath": "/images/zines/antmag/gaspar-de-geyndt/03-gapi3.jpg"
+    },
+    {
+      "index": 4,
+      "id": 203163618,
+      "hash": "87de96c4d6929da515f931d1d3c97cfe24e6773ad061b12fbe7e6bd0f5d304ed",
+      "name": "gapi4.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/87de96c4d6929da515f931d1d3c97cfe24e6773ad061b12fbe7e6bd0f5d304ed/gapi4.jpg",
+      "localPath": "/images/zines/antmag/gaspar-de-geyndt/04-gapi4.jpg"
+    },
+    {
+      "index": 5,
+      "id": 203163619,
+      "hash": "1c57174b4de3654cb6e434f9ce36962f28a30ebe16d8d3efea2a686938fc3339",
+      "name": "gapi5.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/1c57174b4de3654cb6e434f9ce36962f28a30ebe16d8d3efea2a686938fc3339/gapi5.jpg",
+      "localPath": "/images/zines/antmag/gaspar-de-geyndt/05-gapi5.jpg"
+    },
+    {
+      "index": 6,
+      "id": 203163620,
+      "hash": "08f311e60f22ca9aedb6e4419034a7e209168ce8b209eff6407c794106d51542",
+      "name": "gapi8.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/08f311e60f22ca9aedb6e4419034a7e209168ce8b209eff6407c794106d51542/gapi8.jpg",
+      "localPath": "/images/zines/antmag/gaspar-de-geyndt/06-gapi8.jpg"
+    },
+    {
+      "index": 7,
+      "id": 203163621,
+      "hash": "0c1ad0d197c54bb30545984f44e8e381aa1c4beb16e88c38f21fed594eda1a1f",
+      "name": "gapi9.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/0c1ad0d197c54bb30545984f44e8e381aa1c4beb16e88c38f21fed594eda1a1f/gapi9.jpg",
+      "localPath": "/images/zines/antmag/gaspar-de-geyndt/07-gapi9.jpg"
+    },
+    {
+      "index": 8,
+      "id": 203163623,
+      "hash": "4bcc5118b85b7c911abcac80fe635c0318d8d6aa2a491fd6def46f4e79e118ce",
+      "name": "gapi10.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/4bcc5118b85b7c911abcac80fe635c0318d8d6aa2a491fd6def46f4e79e118ce/gapi10.jpg",
+      "localPath": "/images/zines/antmag/gaspar-de-geyndt/08-gapi10.jpg"
+    }
+  ]
+}

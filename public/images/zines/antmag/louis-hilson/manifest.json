@@ -1,0 +1,87 @@
+{
+  "sourcePage": "https://antmagjpg.com/Louis-Hilson",
+  "title": "Louis Hilson",
+  "imageCount": 8,
+  "images": [
+    {
+      "index": 1,
+      "id": 180957323,
+      "hash": "efc141a6b4e3073c5506feb34217a930e0f8e97d75eeaba0f1cce66b85438876",
+      "name": "LL1.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/efc141a6b4e3073c5506feb34217a930e0f8e97d75eeaba0f1cce66b85438876/LL1.jpg",
+      "localPath": "/images/zines/antmag/louis-hilson/01-ll1.jpg"
+    },
+    {
+      "index": 2,
+      "id": 180957327,
+      "hash": "05e6ce806f504a9840041bcc360ab40a9cafcd52b0238e088181e62869d5cb96",
+      "name": "LL2.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/05e6ce806f504a9840041bcc360ab40a9cafcd52b0238e088181e62869d5cb96/LL2.jpg",
+      "localPath": "/images/zines/antmag/louis-hilson/02-ll2.jpg"
+    },
+    {
+      "index": 3,
+      "id": 180957330,
+      "hash": "8ebc5fbd373f33aec29990e6267dabe93c667d36e17b443bdf06ca005cdd1de7",
+      "name": "LL3.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/8ebc5fbd373f33aec29990e6267dabe93c667d36e17b443bdf06ca005cdd1de7/LL3.jpg",
+      "localPath": "/images/zines/antmag/louis-hilson/03-ll3.jpg"
+    },
+    {
+      "index": 4,
+      "id": 180957335,
+      "hash": "fd46fc5f4d3c7bdf86339392a497951a8c00553009404c2af4166af21df400e5",
+      "name": "LL4.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/fd46fc5f4d3c7bdf86339392a497951a8c00553009404c2af4166af21df400e5/LL4.jpg",
+      "localPath": "/images/zines/antmag/louis-hilson/04-ll4.jpg"
+    },
+    {
+      "index": 5,
+      "id": 180957338,
+      "hash": "5886f34c4a9eb58154da11f0597a50dbf4fc23ffabb1a019d6fcb27a097a20a7",
+      "name": "LL5.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/5886f34c4a9eb58154da11f0597a50dbf4fc23ffabb1a019d6fcb27a097a20a7/LL5.jpg",
+      "localPath": "/images/zines/antmag/louis-hilson/05-ll5.jpg"
+    },
+    {
+      "index": 6,
+      "id": 180957339,
+      "hash": "d9a55e20447de0f5bc6d5054d853ad9fe3e554e09ee734206e594ff059e220ce",
+      "name": "LL6.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/d9a55e20447de0f5bc6d5054d853ad9fe3e554e09ee734206e594ff059e220ce/LL6.jpg",
+      "localPath": "/images/zines/antmag/louis-hilson/06-ll6.jpg"
+    },
+    {
+      "index": 7,
+      "id": 180957340,
+      "hash": "107b3b408d4280bc4547a1cafe82cdd63f46e98779b1a774b569cf9d2450325f",
+      "name": "LL8.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/107b3b408d4280bc4547a1cafe82cdd63f46e98779b1a774b569cf9d2450325f/LL8.jpg",
+      "localPath": "/images/zines/antmag/louis-hilson/07-ll8.jpg"
+    },
+    {
+      "index": 8,
+      "id": 180957341,
+      "hash": "bcdcc3858978f2719fbbac1a2661d5586cf2541edacf15d80c7aab13fb74801e",
+      "name": "LL10.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/bcdcc3858978f2719fbbac1a2661d5586cf2541edacf15d80c7aab13fb74801e/LL10.jpg",
+      "localPath": "/images/zines/antmag/louis-hilson/08-ll10.jpg"
+    }
+  ]
+}

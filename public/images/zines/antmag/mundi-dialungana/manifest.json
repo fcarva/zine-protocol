@@ -1,0 +1,67 @@
+{
+  "sourcePage": "https://antmagjpg.com/Mundi-Dialungana",
+  "title": "Mundi Dialungana",
+  "imageCount": 6,
+  "images": [
+    {
+      "index": 1,
+      "id": 167080240,
+      "hash": "b368990f42439a1a602e89668b2c95c338dac7d2b51ca6497431c56489d35c2c",
+      "name": "MD1.jpg",
+      "width": 8910,
+      "height": 6300,
+      "source": "https://freight.cargo.site/t/original/i/b368990f42439a1a602e89668b2c95c338dac7d2b51ca6497431c56489d35c2c/MD1.jpg",
+      "localPath": "/images/zines/antmag/mundi-dialungana/01-md1.jpg"
+    },
+    {
+      "index": 2,
+      "id": 167080242,
+      "hash": "4d124f7ab025551c2c0390b6860b7db072e01498b41244f0bee39e851c4b4021",
+      "name": "MD2_1.jpg",
+      "width": 8910,
+      "height": 6300,
+      "source": "https://freight.cargo.site/t/original/i/4d124f7ab025551c2c0390b6860b7db072e01498b41244f0bee39e851c4b4021/MD2_1.jpg",
+      "localPath": "/images/zines/antmag/mundi-dialungana/02-md2-1.jpg"
+    },
+    {
+      "index": 3,
+      "id": 167080281,
+      "hash": "78752dd4bc6207a862a1d4c1b558dcba44ef30b9c5990d0bfe131c4c3a27d74b",
+      "name": "MD3_1.jpg",
+      "width": 8910,
+      "height": 6300,
+      "source": "https://freight.cargo.site/t/original/i/78752dd4bc6207a862a1d4c1b558dcba44ef30b9c5990d0bfe131c4c3a27d74b/MD3_1.jpg",
+      "localPath": "/images/zines/antmag/mundi-dialungana/03-md3-1.jpg"
+    },
+    {
+      "index": 4,
+      "id": 167080287,
+      "hash": "285266accf0e2c92f82a2c83dbda7e02f7cd2e09e66461f8969b76da0bfd82cf",
+      "name": "MD4_1.jpg",
+      "width": 8910,
+      "height": 6300,
+      "source": "https://freight.cargo.site/t/original/i/285266accf0e2c92f82a2c83dbda7e02f7cd2e09e66461f8969b76da0bfd82cf/MD4_1.jpg",
+      "localPath": "/images/zines/antmag/mundi-dialungana/04-md4-1.jpg"
+    },
+    {
+      "index": 5,
+      "id": 167080289,
+      "hash": "65e03a8b3a11d781887a6526a66ba23f133fc93e7ff5fb450d08294b3c2f36d3",
+      "name": "MD5.jpg",
+      "width": 8910,
+      "height": 6300,
+      "source": "https://freight.cargo.site/t/original/i/65e03a8b3a11d781887a6526a66ba23f133fc93e7ff5fb450d08294b3c2f36d3/MD5.jpg",
+      "localPath": "/images/zines/antmag/mundi-dialungana/05-md5.jpg"
+    },
+    {
+      "index": 6,
+      "id": 167080291,
+      "hash": "06f7fa68f54ffdd951790dd71845ed5d52e9528723090a383cde5ab9c1b8c611",
+      "name": "MD6_1.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/06f7fa68f54ffdd951790dd71845ed5d52e9528723090a383cde5ab9c1b8c611/MD6_1.jpg",
+      "localPath": "/images/zines/antmag/mundi-dialungana/06-md6-1.jpg"
+    }
+  ]
+}

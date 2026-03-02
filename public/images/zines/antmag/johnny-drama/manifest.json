@@ -1,0 +1,87 @@
+{
+  "sourcePage": "https://antmagjpg.com/Johnny-Drama",
+  "title": "Johnny Drama",
+  "imageCount": 8,
+  "images": [
+    {
+      "index": 1,
+      "id": 226264481,
+      "hash": "2f2453ed51407e105db7538750355d2cf691fda0576f93b4614ce328a5d7db86",
+      "name": "JD3_01.gif",
+      "width": 1350,
+      "height": 1350,
+      "source": "https://freight.cargo.site/t/original/i/2f2453ed51407e105db7538750355d2cf691fda0576f93b4614ce328a5d7db86/JD3_01.gif",
+      "localPath": "/images/zines/antmag/johnny-drama/01-jd3-01.gif"
+    },
+    {
+      "index": 2,
+      "id": 226264490,
+      "hash": "b61d61a65e0f280bda139182e6dabed3e5b9a6d339a41107855e23db486354df",
+      "name": "JD3_03.gif",
+      "width": 1350,
+      "height": 1350,
+      "source": "https://freight.cargo.site/t/original/i/b61d61a65e0f280bda139182e6dabed3e5b9a6d339a41107855e23db486354df/JD3_03.gif",
+      "localPath": "/images/zines/antmag/johnny-drama/02-jd3-03.gif"
+    },
+    {
+      "index": 3,
+      "id": 226264491,
+      "hash": "fc9abb9075f640f7235ed212a3c73a2e28ee39cc0ee3fa5132cb0303bb00e8d4",
+      "name": "JD3_04.gif",
+      "width": 1350,
+      "height": 1350,
+      "source": "https://freight.cargo.site/t/original/i/fc9abb9075f640f7235ed212a3c73a2e28ee39cc0ee3fa5132cb0303bb00e8d4/JD3_04.gif",
+      "localPath": "/images/zines/antmag/johnny-drama/03-jd3-04.gif"
+    },
+    {
+      "index": 4,
+      "id": 226264492,
+      "hash": "047f413d626773b24bbdf81d4aa639f9fc213f8cb3325842622c1207c7848475",
+      "name": "JD3_05.gif",
+      "width": 1350,
+      "height": 1350,
+      "source": "https://freight.cargo.site/t/original/i/047f413d626773b24bbdf81d4aa639f9fc213f8cb3325842622c1207c7848475/JD3_05.gif",
+      "localPath": "/images/zines/antmag/johnny-drama/04-jd3-05.gif"
+    },
+    {
+      "index": 5,
+      "id": 226264493,
+      "hash": "2cf8be2c3a12f8bcac3eac864f454fd5fb4d1b0e8515514b2c8d15caf648f6fd",
+      "name": "JD3_06.gif",
+      "width": 1350,
+      "height": 1350,
+      "source": "https://freight.cargo.site/t/original/i/2cf8be2c3a12f8bcac3eac864f454fd5fb4d1b0e8515514b2c8d15caf648f6fd/JD3_06.gif",
+      "localPath": "/images/zines/antmag/johnny-drama/05-jd3-06.gif"
+    },
+    {
+      "index": 6,
+      "id": 226264494,
+      "hash": "e0bd524e57e2378684c1333036f8023facca8545c115e093a95a7de4d1810162",
+      "name": "JD3_07.gif",
+      "width": 1350,
+      "height": 1350,
+      "source": "https://freight.cargo.site/t/original/i/e0bd524e57e2378684c1333036f8023facca8545c115e093a95a7de4d1810162/JD3_07.gif",
+      "localPath": "/images/zines/antmag/johnny-drama/06-jd3-07.gif"
+    },
+    {
+      "index": 7,
+      "id": 226264495,
+      "hash": "a5cda568d7493c251affa03258fa0aab884263e88e10f88d7497c344aee07668",
+      "name": "JD3_08.gif",
+      "width": 1350,
+      "height": 1350,
+      "source": "https://freight.cargo.site/t/original/i/a5cda568d7493c251affa03258fa0aab884263e88e10f88d7497c344aee07668/JD3_08.gif",
+      "localPath": "/images/zines/antmag/johnny-drama/07-jd3-08.gif"
+    },
+    {
+      "index": 8,
+      "id": 226264496,
+      "hash": "b7b0ba4653d58b050a0d802329fcda1d7edf51c993d7c18a2aea80858c7c22bf",
+      "name": "JD3_11.gif",
+      "width": 1350,
+      "height": 1350,
+      "source": "https://freight.cargo.site/t/original/i/b7b0ba4653d58b050a0d802329fcda1d7edf51c993d7c18a2aea80858c7c22bf/JD3_11.gif",
+      "localPath": "/images/zines/antmag/johnny-drama/08-jd3-11.gif"
+    }
+  ]
+}

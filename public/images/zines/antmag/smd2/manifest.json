@@ -1,0 +1,57 @@
+{
+  "sourcePage": "https://antmagjpg.com/SMD2",
+  "title": "SMD2",
+  "imageCount": 5,
+  "images": [
+    {
+      "index": 1,
+      "id": 193991738,
+      "hash": "f38bc4ca5c830323a43b78f4ee6800fd7a01f06e3aa0b0640f59b38b3ecef797",
+      "name": "Q1.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/f38bc4ca5c830323a43b78f4ee6800fd7a01f06e3aa0b0640f59b38b3ecef797/Q1.jpg",
+      "localPath": "/images/zines/antmag/smd2/01-q1.jpg"
+    },
+    {
+      "index": 2,
+      "id": 193991739,
+      "hash": "c8faaf7828b5cc9e47b435624eafb45ad01eff72ddc9fe3aaaa60b13ad29c1c6",
+      "name": "Q2.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/c8faaf7828b5cc9e47b435624eafb45ad01eff72ddc9fe3aaaa60b13ad29c1c6/Q2.jpg",
+      "localPath": "/images/zines/antmag/smd2/02-q2.jpg"
+    },
+    {
+      "index": 3,
+      "id": 193991740,
+      "hash": "6acb3edbc187812d472be192344311ecfca8680dde010c87fe06e6e871046bc3",
+      "name": "Q3.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/6acb3edbc187812d472be192344311ecfca8680dde010c87fe06e6e871046bc3/Q3.jpg",
+      "localPath": "/images/zines/antmag/smd2/03-q3.jpg"
+    },
+    {
+      "index": 4,
+      "id": 193991741,
+      "hash": "265f3897391da74975ea914bced160e370bc255f013ef3d8ee9b5055f498ec85",
+      "name": "Q5.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/265f3897391da74975ea914bced160e370bc255f013ef3d8ee9b5055f498ec85/Q5.jpg",
+      "localPath": "/images/zines/antmag/smd2/04-q5.jpg"
+    },
+    {
+      "index": 5,
+      "id": 193991743,
+      "hash": "bc22690c33534d3cbfa76cbd3dcc7f81ef187d62ed2d49581d12a35130d31421",
+      "name": "Q6.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/bc22690c33534d3cbfa76cbd3dcc7f81ef187d62ed2d49581d12a35130d31421/Q6.jpg",
+      "localPath": "/images/zines/antmag/smd2/05-q6.jpg"
+    }
+  ]
+}

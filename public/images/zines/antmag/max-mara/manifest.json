@@ -1,0 +1,67 @@
+{
+  "sourcePage": "https://antmagjpg.com/Max-Mara",
+  "title": "Max Mara",
+  "imageCount": 6,
+  "images": [
+    {
+      "index": 1,
+      "id": 167071069,
+      "hash": "bb2e55d1461a870e404d44b50a7a2792792b791efa5a42e958ed18ec7fed1d6d",
+      "name": "MM1.png",
+      "width": 8910,
+      "height": 6300,
+      "source": "https://freight.cargo.site/t/original/i/bb2e55d1461a870e404d44b50a7a2792792b791efa5a42e958ed18ec7fed1d6d/MM1.png",
+      "localPath": "/images/zines/antmag/max-mara/01-mm1.png"
+    },
+    {
+      "index": 2,
+      "id": 167071551,
+      "hash": "10bec16f0482358d62a8339ca8ae655e3522c73fcf24b5aad782918c4e000a94",
+      "name": "MM2.png",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/10bec16f0482358d62a8339ca8ae655e3522c73fcf24b5aad782918c4e000a94/MM2.png",
+      "localPath": "/images/zines/antmag/max-mara/02-mm2.png"
+    },
+    {
+      "index": 3,
+      "id": 167076775,
+      "hash": "20d227241b3e042f140d0c15f49e100852902e3b39114a0a80ed8e09458ff88d",
+      "name": "MM3.png",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/20d227241b3e042f140d0c15f49e100852902e3b39114a0a80ed8e09458ff88d/MM3.png",
+      "localPath": "/images/zines/antmag/max-mara/03-mm3.png"
+    },
+    {
+      "index": 4,
+      "id": 167076777,
+      "hash": "70b608c5c06500b4df325077a44859b68bbfc477df6905596dcfa6cbd617616a",
+      "name": "MM4.png",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/70b608c5c06500b4df325077a44859b68bbfc477df6905596dcfa6cbd617616a/MM4.png",
+      "localPath": "/images/zines/antmag/max-mara/04-mm4.png"
+    },
+    {
+      "index": 5,
+      "id": 167076778,
+      "hash": "b9f5a4fed87f4d1e18253a717d515455c9d0fe06bb2c2268ff10696f1051ee48",
+      "name": "MM5.png",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/b9f5a4fed87f4d1e18253a717d515455c9d0fe06bb2c2268ff10696f1051ee48/MM5.png",
+      "localPath": "/images/zines/antmag/max-mara/05-mm5.png"
+    },
+    {
+      "index": 6,
+      "id": 167076779,
+      "hash": "f771d9ffa7cf486b7cd476b25e7786735a59240bfad127eda83049b23b40f4dd",
+      "name": "MM6.png",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/f771d9ffa7cf486b7cd476b25e7786735a59240bfad127eda83049b23b40f4dd/MM6.png",
+      "localPath": "/images/zines/antmag/max-mara/06-mm6.png"
+    }
+  ]
+}

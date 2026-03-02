@@ -1,0 +1,87 @@
+{
+  "sourcePage": "https://antmagjpg.com/Abraham-Dubin",
+  "title": "Abraham Dubin",
+  "imageCount": 8,
+  "images": [
+    {
+      "index": 1,
+      "id": 239495710,
+      "hash": "44903c2a1dbae891bc95ae86b501216daec39b63109efe08a94a8753aaf6c0bb",
+      "name": "AA2.jpg",
+      "width": 2480,
+      "height": 1890,
+      "source": "https://freight.cargo.site/t/original/i/44903c2a1dbae891bc95ae86b501216daec39b63109efe08a94a8753aaf6c0bb/AA2.jpg",
+      "localPath": "/images/zines/antmag/abraham-dubin/01-aa2.jpg"
+    },
+    {
+      "index": 2,
+      "id": 239495711,
+      "hash": "efd981b1631a84be8112195fe7217ee6b5abf439cfd1d968040021422894223b",
+      "name": "AA3.jpg",
+      "width": 2480,
+      "height": 1890,
+      "source": "https://freight.cargo.site/t/original/i/efd981b1631a84be8112195fe7217ee6b5abf439cfd1d968040021422894223b/AA3.jpg",
+      "localPath": "/images/zines/antmag/abraham-dubin/02-aa3.jpg"
+    },
+    {
+      "index": 3,
+      "id": 239495712,
+      "hash": "def08aa0a60c6c02edbd907b1c7be17c66c34e7108e7f6ae354b198a70d30291",
+      "name": "AA4.jpg",
+      "width": 2480,
+      "height": 1890,
+      "source": "https://freight.cargo.site/t/original/i/def08aa0a60c6c02edbd907b1c7be17c66c34e7108e7f6ae354b198a70d30291/AA4.jpg",
+      "localPath": "/images/zines/antmag/abraham-dubin/03-aa4.jpg"
+    },
+    {
+      "index": 4,
+      "id": 239495713,
+      "hash": "65d09fc249be755bd338523f9ea275549d1075c8a196763734149d0839696037",
+      "name": "AA5.jpg",
+      "width": 2480,
+      "height": 1890,
+      "source": "https://freight.cargo.site/t/original/i/65d09fc249be755bd338523f9ea275549d1075c8a196763734149d0839696037/AA5.jpg",
+      "localPath": "/images/zines/antmag/abraham-dubin/04-aa5.jpg"
+    },
+    {
+      "index": 5,
+      "id": 239495717,
+      "hash": "91b843e52d5997b32fef0b4d9b50b140811452539f65e425c2979f3bba221fe5",
+      "name": "AA7.jpg",
+      "width": 2480,
+      "height": 1890,
+      "source": "https://freight.cargo.site/t/original/i/91b843e52d5997b32fef0b4d9b50b140811452539f65e425c2979f3bba221fe5/AA7.jpg",
+      "localPath": "/images/zines/antmag/abraham-dubin/05-aa7.jpg"
+    },
+    {
+      "index": 6,
+      "id": 239495737,
+      "hash": "8c5406d04f1829649a6b0a3a0d6e957aae3071826263645ff0b7639e3a157142",
+      "name": "AA8.jpg",
+      "width": 2480,
+      "height": 1890,
+      "source": "https://freight.cargo.site/t/original/i/8c5406d04f1829649a6b0a3a0d6e957aae3071826263645ff0b7639e3a157142/AA8.jpg",
+      "localPath": "/images/zines/antmag/abraham-dubin/06-aa8.jpg"
+    },
+    {
+      "index": 7,
+      "id": 239495742,
+      "hash": "1b04fc381c3ba6aac1cb2da69e57ecc8096cf70aec9b6e11919f4e59c6e3a257",
+      "name": "AA9.jpg",
+      "width": 2480,
+      "height": 1890,
+      "source": "https://freight.cargo.site/t/original/i/1b04fc381c3ba6aac1cb2da69e57ecc8096cf70aec9b6e11919f4e59c6e3a257/AA9.jpg",
+      "localPath": "/images/zines/antmag/abraham-dubin/07-aa9.jpg"
+    },
+    {
+      "index": 8,
+      "id": 241401403,
+      "hash": "d1156d446f6b818837910656fdfc7397f8006ec11bc6965ad1f90745d7688225",
+      "name": "pb9.jpg",
+      "width": 3370,
+      "height": 2451,
+      "source": "https://freight.cargo.site/t/original/i/d1156d446f6b818837910656fdfc7397f8006ec11bc6965ad1f90745d7688225/pb9.jpg",
+      "localPath": "/images/zines/antmag/abraham-dubin/08-pb9.jpg"
+    }
+  ]
+}

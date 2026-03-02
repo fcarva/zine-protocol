@@ -1,0 +1,67 @@
+{
+  "sourcePage": "https://antmagjpg.com/Lars-Duchateau",
+  "title": "Lars Duchateau",
+  "imageCount": 6,
+  "images": [
+    {
+      "index": 1,
+      "id": 217579341,
+      "hash": "2279100857ab410e155460c4db0216d2caebf39d6ddd1a918432c425930b89eb",
+      "name": "insta7.jpg",
+      "width": 1748,
+      "height": 1748,
+      "source": "https://freight.cargo.site/t/original/i/2279100857ab410e155460c4db0216d2caebf39d6ddd1a918432c425930b89eb/insta7.jpg",
+      "localPath": "/images/zines/antmag/lars-duchateau/01-insta7.jpg"
+    },
+    {
+      "index": 2,
+      "id": 217579343,
+      "hash": "f9edb6126ad89925b5704166d3ff32c540d496406f340d9a0749e19d7e29dfc3",
+      "name": "insta2.jpg",
+      "width": 1748,
+      "height": 1748,
+      "source": "https://freight.cargo.site/t/original/i/f9edb6126ad89925b5704166d3ff32c540d496406f340d9a0749e19d7e29dfc3/insta2.jpg",
+      "localPath": "/images/zines/antmag/lars-duchateau/02-insta2.jpg"
+    },
+    {
+      "index": 3,
+      "id": 217579345,
+      "hash": "3d930fa562dac0c9a9fe554d90bcfda06045aec0faff4d45b427260e625788df",
+      "name": "insta3.jpg",
+      "width": 1748,
+      "height": 1748,
+      "source": "https://freight.cargo.site/t/original/i/3d930fa562dac0c9a9fe554d90bcfda06045aec0faff4d45b427260e625788df/insta3.jpg",
+      "localPath": "/images/zines/antmag/lars-duchateau/03-insta3.jpg"
+    },
+    {
+      "index": 4,
+      "id": 217579347,
+      "hash": "392c4cec854a9fe398f1b9a99013638fc1b79f1b47fbec8f65ae4c4376702dde",
+      "name": "insta4.jpg",
+      "width": 1748,
+      "height": 1748,
+      "source": "https://freight.cargo.site/t/original/i/392c4cec854a9fe398f1b9a99013638fc1b79f1b47fbec8f65ae4c4376702dde/insta4.jpg",
+      "localPath": "/images/zines/antmag/lars-duchateau/04-insta4.jpg"
+    },
+    {
+      "index": 5,
+      "id": 217579349,
+      "hash": "5336d7bbaa5568e30e08a4445569c393ee09ecf98b5706507d2581d8e3fa1497",
+      "name": "insta5.jpg",
+      "width": 1748,
+      "height": 1748,
+      "source": "https://freight.cargo.site/t/original/i/5336d7bbaa5568e30e08a4445569c393ee09ecf98b5706507d2581d8e3fa1497/insta5.jpg",
+      "localPath": "/images/zines/antmag/lars-duchateau/05-insta5.jpg"
+    },
+    {
+      "index": 6,
+      "id": 217579350,
+      "hash": "757d0bf459d80d01d750818f5e042382ee6ac09dc6481f3573d5725f7fafaf2f",
+      "name": "insta6.jpg",
+      "width": 1748,
+      "height": 1748,
+      "source": "https://freight.cargo.site/t/original/i/757d0bf459d80d01d750818f5e042382ee6ac09dc6481f3573d5725f7fafaf2f/insta6.jpg",
+      "localPath": "/images/zines/antmag/lars-duchateau/06-insta6.jpg"
+    }
+  ]
+}

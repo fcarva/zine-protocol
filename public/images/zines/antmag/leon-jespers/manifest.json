@@ -1,0 +1,87 @@
+{
+  "sourcePage": "https://antmagjpg.com/Leon-Jespers",
+  "title": "Leon Jespers",
+  "imageCount": 8,
+  "images": [
+    {
+      "index": 1,
+      "id": 168701502,
+      "hash": "511693973b64818974e675ba021847bd44d09c8203a9717791dfd6a1601b698b",
+      "name": "LeonA2.jpg",
+      "width": 4455,
+      "height": 3150,
+      "source": "https://freight.cargo.site/t/original/i/511693973b64818974e675ba021847bd44d09c8203a9717791dfd6a1601b698b/LeonA2.jpg",
+      "localPath": "/images/zines/antmag/leon-jespers/01-leona2.jpg"
+    },
+    {
+      "index": 2,
+      "id": 168701503,
+      "hash": "dd7d5a632f12a4dcbbf24b70f53c44922685575c6907e49da01f461aa43708c7",
+      "name": "LeonA3.jpg",
+      "width": 4455,
+      "height": 3150,
+      "source": "https://freight.cargo.site/t/original/i/dd7d5a632f12a4dcbbf24b70f53c44922685575c6907e49da01f461aa43708c7/LeonA3.jpg",
+      "localPath": "/images/zines/antmag/leon-jespers/02-leona3.jpg"
+    },
+    {
+      "index": 3,
+      "id": 168701504,
+      "hash": "6af6e9a124607fac388443bfbc8e408f0308597db6daa067fe0ee13e483282db",
+      "name": "LeonA4.jpg",
+      "width": 4455,
+      "height": 3150,
+      "source": "https://freight.cargo.site/t/original/i/6af6e9a124607fac388443bfbc8e408f0308597db6daa067fe0ee13e483282db/LeonA4.jpg",
+      "localPath": "/images/zines/antmag/leon-jespers/03-leona4.jpg"
+    },
+    {
+      "index": 4,
+      "id": 168701505,
+      "hash": "f1264c1e947d5d061e0c2e6e6bc0b986806219c9ac8a64bae2b9e4872a763251",
+      "name": "LeonA5.jpg",
+      "width": 4455,
+      "height": 3150,
+      "source": "https://freight.cargo.site/t/original/i/f1264c1e947d5d061e0c2e6e6bc0b986806219c9ac8a64bae2b9e4872a763251/LeonA5.jpg",
+      "localPath": "/images/zines/antmag/leon-jespers/04-leona5.jpg"
+    },
+    {
+      "index": 5,
+      "id": 168701506,
+      "hash": "5ec4014d964389af19c603af6f6a963caed81d21ad10b093b2f8c177dd64458b",
+      "name": "LeonA6.jpg",
+      "width": 4455,
+      "height": 3150,
+      "source": "https://freight.cargo.site/t/original/i/5ec4014d964389af19c603af6f6a963caed81d21ad10b093b2f8c177dd64458b/LeonA6.jpg",
+      "localPath": "/images/zines/antmag/leon-jespers/05-leona6.jpg"
+    },
+    {
+      "index": 6,
+      "id": 168701507,
+      "hash": "f89f5c1d4b976968633582ebbd3088430632632dcccd6f4265f71ee89b3ea8c9",
+      "name": "LeonA7.jpg",
+      "width": 4455,
+      "height": 3150,
+      "source": "https://freight.cargo.site/t/original/i/f89f5c1d4b976968633582ebbd3088430632632dcccd6f4265f71ee89b3ea8c9/LeonA7.jpg",
+      "localPath": "/images/zines/antmag/leon-jespers/06-leona7.jpg"
+    },
+    {
+      "index": 7,
+      "id": 168701508,
+      "hash": "2f17dd4f744ce1f793dab640c14b64eedf6781de2bbd12d53a08fcf013b40190",
+      "name": "LeonA8.jpg",
+      "width": 4455,
+      "height": 3150,
+      "source": "https://freight.cargo.site/t/original/i/2f17dd4f744ce1f793dab640c14b64eedf6781de2bbd12d53a08fcf013b40190/LeonA8.jpg",
+      "localPath": "/images/zines/antmag/leon-jespers/07-leona8.jpg"
+    },
+    {
+      "index": 8,
+      "id": 168701509,
+      "hash": "3485bc04c804d82bfcd660faa8839f170a04f606c8db9ed6e568f7a45edfadc2",
+      "name": "LeonA9.jpg",
+      "width": 4455,
+      "height": 3150,
+      "source": "https://freight.cargo.site/t/original/i/3485bc04c804d82bfcd660faa8839f170a04f606c8db9ed6e568f7a45edfadc2/LeonA9.jpg",
+      "localPath": "/images/zines/antmag/leon-jespers/08-leona9.jpg"
+    }
+  ]
+}

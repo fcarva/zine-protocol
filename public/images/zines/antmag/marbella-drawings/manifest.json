@@ -1,0 +1,77 @@
+{
+  "sourcePage": "https://antmagjpg.com/Marbella-Drawings",
+  "title": "Marbella Drawings",
+  "imageCount": 7,
+  "images": [
+    {
+      "index": 1,
+      "id": 234811107,
+      "hash": "b8982565523b69eaff06dd40ae0ed9b8fc992686075418dd01f9f8157f9a42d9",
+      "name": "MD6.jpg",
+      "width": 4326,
+      "height": 3248,
+      "source": "https://freight.cargo.site/t/original/i/b8982565523b69eaff06dd40ae0ed9b8fc992686075418dd01f9f8157f9a42d9/MD6.jpg",
+      "localPath": "/images/zines/antmag/marbella-drawings/01-md6.jpg"
+    },
+    {
+      "index": 2,
+      "id": 234811109,
+      "hash": "3f2c95e3c90554d5ffaeca1af34831d1341267f5b6d2d579884cb8da4edb9ebf",
+      "name": "MD11.jpg",
+      "width": 4326,
+      "height": 3248,
+      "source": "https://freight.cargo.site/t/original/i/3f2c95e3c90554d5ffaeca1af34831d1341267f5b6d2d579884cb8da4edb9ebf/MD11.jpg",
+      "localPath": "/images/zines/antmag/marbella-drawings/02-md11.jpg"
+    },
+    {
+      "index": 3,
+      "id": 234859414,
+      "hash": "cf19b158bb7bd56433e145a7a5b0ce9c5bd08931a2a6abb0a50a8e9a15ca6f46",
+      "name": "MD2.jpg",
+      "width": 4326,
+      "height": 3248,
+      "source": "https://freight.cargo.site/t/original/i/cf19b158bb7bd56433e145a7a5b0ce9c5bd08931a2a6abb0a50a8e9a15ca6f46/MD2.jpg",
+      "localPath": "/images/zines/antmag/marbella-drawings/03-md2.jpg"
+    },
+    {
+      "index": 4,
+      "id": 234859415,
+      "hash": "528ed111d31ed4fabe6365003caff238da9011cb74d44e682ab3fcadcb104a9b",
+      "name": "MD3.jpg",
+      "width": 4326,
+      "height": 3248,
+      "source": "https://freight.cargo.site/t/original/i/528ed111d31ed4fabe6365003caff238da9011cb74d44e682ab3fcadcb104a9b/MD3.jpg",
+      "localPath": "/images/zines/antmag/marbella-drawings/04-md3.jpg"
+    },
+    {
+      "index": 5,
+      "id": 234859416,
+      "hash": "1e8b01ae9fd6a77a35dd0e3dd3746faf32f709b0dd1e8efff1b4ea49fe691435",
+      "name": "MD7.jpg",
+      "width": 4326,
+      "height": 3248,
+      "source": "https://freight.cargo.site/t/original/i/1e8b01ae9fd6a77a35dd0e3dd3746faf32f709b0dd1e8efff1b4ea49fe691435/MD7.jpg",
+      "localPath": "/images/zines/antmag/marbella-drawings/05-md7.jpg"
+    },
+    {
+      "index": 6,
+      "id": 234859417,
+      "hash": "142a82e60ce0cf1a47a6fccb7371d319148472433cc644c316c3ef3ee659686c",
+      "name": "MD10.jpg",
+      "width": 4326,
+      "height": 3248,
+      "source": "https://freight.cargo.site/t/original/i/142a82e60ce0cf1a47a6fccb7371d319148472433cc644c316c3ef3ee659686c/MD10.jpg",
+      "localPath": "/images/zines/antmag/marbella-drawings/06-md10.jpg"
+    },
+    {
+      "index": 7,
+      "id": 234859627,
+      "hash": "c483a1b9e902e77c0271d8fa2aff3f0b2f0a8af14bedbe6c6a09ac17c43861fd",
+      "name": "_1280930.jpg",
+      "width": 4592,
+      "height": 3448,
+      "source": "https://freight.cargo.site/t/original/i/c483a1b9e902e77c0271d8fa2aff3f0b2f0a8af14bedbe6c6a09ac17c43861fd/_1280930.jpg",
+      "localPath": "/images/zines/antmag/marbella-drawings/07-1280930.jpg"
+    }
+  ]
+}

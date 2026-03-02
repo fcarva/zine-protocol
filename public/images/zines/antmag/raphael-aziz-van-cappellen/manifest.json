@@ -1,0 +1,47 @@
+{
+  "sourcePage": "https://antmagjpg.com/Raphael-Aziz-Van-Cappellen",
+  "title": "Raphaël Aziz Van Cappellen",
+  "imageCount": 4,
+  "images": [
+    {
+      "index": 1,
+      "id": 212311996,
+      "hash": "b3625cf143fda09a812374a99ef2c633e19e9c1041ee5b8d01a6a461648cfffb",
+      "name": "Raphael_Tine-12.jpeg",
+      "width": 3361,
+      "height": 2444,
+      "source": "https://freight.cargo.site/t/original/i/b3625cf143fda09a812374a99ef2c633e19e9c1041ee5b8d01a6a461648cfffb/Raphael_Tine-12.jpeg",
+      "localPath": "/images/zines/antmag/raphael-aziz-van-cappellen/01-raphael-tine-12.jpeg"
+    },
+    {
+      "index": 2,
+      "id": 212312213,
+      "hash": "470bdc5c53ca69c9005437b1ac5e0b3a277a24c71253c575ca2f5b19816dac04",
+      "name": "Raphael_Tine-7.jpeg",
+      "width": 3361,
+      "height": 2444,
+      "source": "https://freight.cargo.site/t/original/i/470bdc5c53ca69c9005437b1ac5e0b3a277a24c71253c575ca2f5b19816dac04/Raphael_Tine-7.jpeg",
+      "localPath": "/images/zines/antmag/raphael-aziz-van-cappellen/02-raphael-tine-7.jpeg"
+    },
+    {
+      "index": 3,
+      "id": 212312577,
+      "hash": "01eed451edca1530b75e20859b3aad96644771a345d6afdb661547dcf65ea2cb",
+      "name": "Raphael_Tine-9.jpeg",
+      "width": 3361,
+      "height": 2444,
+      "source": "https://freight.cargo.site/t/original/i/01eed451edca1530b75e20859b3aad96644771a345d6afdb661547dcf65ea2cb/Raphael_Tine-9.jpeg",
+      "localPath": "/images/zines/antmag/raphael-aziz-van-cappellen/03-raphael-tine-9.jpeg"
+    },
+    {
+      "index": 4,
+      "id": 212312883,
+      "hash": "e5e67ff0a81548f16c0e6bffd54c1caf7f6440e19449f00540823ea31db7e809",
+      "name": "Raphael_Tine-11.jpeg",
+      "width": 3361,
+      "height": 2444,
+      "source": "https://freight.cargo.site/t/original/i/e5e67ff0a81548f16c0e6bffd54c1caf7f6440e19449f00540823ea31db7e809/Raphael_Tine-11.jpeg",
+      "localPath": "/images/zines/antmag/raphael-aziz-van-cappellen/04-raphael-tine-11.jpeg"
+    }
+  ]
+}

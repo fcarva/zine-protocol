@@ -38,6 +38,14 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Payload invalido." }, { status: 400 });
   }
 
+  const eventType = parsed.data.type.toLowerCase();
+  const paymentStatus = parsed.data.data.status?.toLowerCase();
+  const isPaidEvent = eventType.endsWith(".paid") || paymentStatus === "paid";
+
+  if (!isPaidEvent) {
+    return NextResponse.json({ ok: true, ignored: true });
+  }
+
   const chargeId = parsed.data.data.id;
   const charge = await getPixCharge(chargeId);
 

@@ -1,0 +1,67 @@
+{
+  "sourcePage": "https://antmagjpg.com/Eva-Steenbakkers",
+  "title": "Eva Steenbakkers",
+  "imageCount": 6,
+  "images": [
+    {
+      "index": 1,
+      "id": 167081404,
+      "hash": "2f486f8e3bfdabd8b9fcdfb4e23d23c1b22ecbb0176210aa7d247a970584f6b4",
+      "name": "Dive1_1.jpg",
+      "width": 8910,
+      "height": 6300,
+      "source": "https://freight.cargo.site/t/original/i/2f486f8e3bfdabd8b9fcdfb4e23d23c1b22ecbb0176210aa7d247a970584f6b4/Dive1_1.jpg",
+      "localPath": "/images/zines/antmag/eva-steenbakkers/01-dive1-1.jpg"
+    },
+    {
+      "index": 2,
+      "id": 167081406,
+      "hash": "7231546b1fdc27e9eb1eeb2436720fe8476709d34005520d9b3a9c2e1cf409e4",
+      "name": "Dive2_1.jpg",
+      "width": 8910,
+      "height": 6300,
+      "source": "https://freight.cargo.site/t/original/i/7231546b1fdc27e9eb1eeb2436720fe8476709d34005520d9b3a9c2e1cf409e4/Dive2_1.jpg",
+      "localPath": "/images/zines/antmag/eva-steenbakkers/02-dive2-1.jpg"
+    },
+    {
+      "index": 3,
+      "id": 167081481,
+      "hash": "7b28beea20d3ccf4339485c7853fd403efd7f34aa3b2541080a984d07192b4cf",
+      "name": "Dive20.jpg",
+      "width": 8910,
+      "height": 6300,
+      "source": "https://freight.cargo.site/t/original/i/7b28beea20d3ccf4339485c7853fd403efd7f34aa3b2541080a984d07192b4cf/Dive20.jpg",
+      "localPath": "/images/zines/antmag/eva-steenbakkers/03-dive20.jpg"
+    },
+    {
+      "index": 4,
+      "id": 167081790,
+      "hash": "c4c507e196ef08204dc240ee12da3833052fd54f0fab718b617bf6a21dd922e1",
+      "name": "Dive5_1.jpg",
+      "width": 8910,
+      "height": 6300,
+      "source": "https://freight.cargo.site/t/original/i/c4c507e196ef08204dc240ee12da3833052fd54f0fab718b617bf6a21dd922e1/Dive5_1.jpg",
+      "localPath": "/images/zines/antmag/eva-steenbakkers/04-dive5-1.jpg"
+    },
+    {
+      "index": 5,
+      "id": 167081861,
+      "hash": "65c4c8a6ce34abbffa33301509f439835637ef94021cfa0ba276a5eb42b02d0b",
+      "name": "Dive33.jpg",
+      "width": 8910,
+      "height": 6300,
+      "source": "https://freight.cargo.site/t/original/i/65c4c8a6ce34abbffa33301509f439835637ef94021cfa0ba276a5eb42b02d0b/Dive33.jpg",
+      "localPath": "/images/zines/antmag/eva-steenbakkers/05-dive33.jpg"
+    },
+    {
+      "index": 6,
+      "id": 167081876,
+      "hash": "47edafabb3f27bb9f7b260ca9e96be248844aac17a00a7d68b9572d6b8637fc8",
+      "name": "Dive6.jpg",
+      "width": 8910,
+      "height": 6300,
+      "source": "https://freight.cargo.site/t/original/i/47edafabb3f27bb9f7b260ca9e96be248844aac17a00a7d68b9572d6b8637fc8/Dive6.jpg",
+      "localPath": "/images/zines/antmag/eva-steenbakkers/06-dive6.jpg"
+    }
+  ]
+}

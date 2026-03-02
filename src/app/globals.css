@@ -3,36 +3,312 @@
 @tailwind utilities;
 
 :root {
-  --background: #f5f2ea;
-  --foreground: #1f1a17;
+  --background: #fffcf0;
+  --foreground: #100f0f;
+  --paper-edge: #dad8ce;
+  --sidebar-width: clamp(15rem, 19vw, 19rem);
 }
 
 html,
 body {
   background: var(--background);
   color: var(--foreground);
+  margin: 0;
+  padding: 0;
   font-family: var(--font-sans), sans-serif;
+  text-rendering: geometricPrecision;
+  line-height: 1.18;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.17em;
+}
+
+::selection {
+  background: rgba(236, 139, 73, 0.28);
 }
 
 h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-display), serif;
+  letter-spacing: -0.02em;
+  font-weight: 700;
 }
 
-.background-grid {
+.paper-noise {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 14% 12%, rgba(236, 139, 73, 0.07), transparent 40%),
+    radial-gradient(circle at 86% 82%, rgba(90, 189, 172, 0.06), transparent 38%),
+    linear-gradient(rgba(64, 62, 60, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(64, 62, 60, 0.025) 1px, transparent 1px);
+  background-size: auto, auto, 28px 28px, 28px 28px;
+  background-position: center;
+}
+
+.paper-noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(40, 39, 38, 0.08) 0.58px, transparent 0.58px);
+  background-size: 3px 3px;
+  opacity: 0.24;
+  mix-blend-mode: multiply;
+}
+
+.print-bleed {
   position: fixed;
   inset: 0;
   z-index: -2;
-  background-image:
-    radial-gradient(circle at 20% 10%, rgba(251, 191, 36, 0.14), transparent 42%),
-    radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.1), transparent 35%),
-    linear-gradient(rgba(35, 29, 24, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(35, 29, 24, 0.05) 1px, transparent 1px);
-  background-size: auto, auto, 34px 34px, 34px 34px;
-  background-position: center;
   pointer-events: none;
+  box-shadow:
+    inset 0 0 110px rgba(40, 39, 38, 0.06),
+    inset 0 0 8px rgba(64, 62, 60, 0.14);
+}
+
+.editorial-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--paper-edge);
+  background: rgba(255, 252, 240, 0.92);
+  box-shadow: 0 1px 0 rgba(40, 39, 38, 0.08);
+}
+
+.editorial-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(159, 157, 150, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(159, 157, 150, 0.045) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.editorial-card {
+  position: relative;
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.editorial-card:hover {
+  transform: translateY(-1px);
+}
+
+.xerox-image {
+  filter: contrast(1.04) saturate(0.93) brightness(0.99);
+}
+
+.stamp-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid #9f9d96;
+  background: rgba(255, 252, 240, 0.94);
+  padding: 0.2rem 0.52rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.tape-strip {
+  position: absolute;
+  top: -10px;
+  right: 16px;
+  height: 26px;
+  width: 90px;
+  transform: rotate(3deg);
+  border: 1px solid rgba(183, 181, 172, 0.78);
+  background: linear-gradient(
+    180deg,
+    rgba(242, 240, 229, 0.84) 0%,
+    rgba(218, 216, 206, 0.6) 100%
+  );
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.stagger-in {
+  opacity: 0;
+  animation: editorial-rise 680ms cubic-bezier(0.18, 0.82, 0.22, 1) forwards;
+}
+
+.markdown-content {
+  font-size: 0.94rem;
+  line-height: 1.44;
+  color: #403e3c;
+}
+
+.markdown-content > * + * {
+  margin-top: 0.62rem;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4 {
+  margin-top: 1.18rem;
+  margin-bottom: 0.3rem;
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 700;
+  line-height: 0.96;
+  letter-spacing: -0.02em;
+  color: #100f0f;
+  text-transform: uppercase;
+}
+
+.markdown-content h1 {
+  font-size: 1.45rem;
+}
+
+.markdown-content h2 {
+  font-size: 1.2rem;
+}
+
+.markdown-content h3 {
+  font-size: 1.05rem;
+}
+
+.markdown-content p {
+  margin: 0;
+  max-width: 70ch;
+}
+
+.markdown-content p.contains-image {
+  max-width: none;
+  margin: 0;
+}
+
+.markdown-content p.contains-image + p.contains-image {
+  margin-top: 0.62rem;
+}
+
+.markdown-content .zine-figure {
+  margin: 0.7rem auto;
+  width: 100%;
+}
+
+.markdown-content .zine-image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #b7b5ac;
+  border-radius: 8px;
+  background: #f2f0e5;
+  box-shadow:
+    0 1px 0 rgba(40, 39, 38, 0.08),
+    0 8px 20px rgba(40, 39, 38, 0.06);
+  image-rendering: auto;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  margin: 0.32rem 0 0.45rem 1rem;
+  padding: 0;
+}
+
+.markdown-content li + li {
+  margin-top: 0.18rem;
+}
+
+.markdown-content blockquote {
+  margin: 0.7rem 0;
+  border-left: 2px solid #b7b5ac;
+  padding-left: 0.75rem;
+  color: #575653;
+}
+
+.markdown-content hr {
+  margin: 0.9rem 0;
+  border: 0;
+  border-top: 1px solid #b7b5ac;
+}
+
+.markdown-content a {
+  color: #205ea6;
+  text-decoration: underline;
+  text-underline-offset: 0.17em;
+}
+
+.markdown-content img:not(.zine-image) {
+  margin: 0.45rem auto;
+  display: block;
+  width: min(100%, 1180px);
+  height: auto;
+  border: 1px solid #b7b5ac;
+  background: #f2f0e5;
+  image-rendering: auto;
+}
+
+@keyframes editorial-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px) rotate(var(--entry-tilt, 0deg));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    line-height: 1.24;
+  }
+
+  .editorial-panel {
+    box-shadow: 0 1px 0 rgba(40, 39, 38, 0.08);
+  }
+
+  .stamp-label {
+    letter-spacing: 0.13em;
+  }
+
+  .markdown-content {
+    font-size: 0.88rem;
+    line-height: 1.4;
+  }
+
+  .markdown-content h1 {
+    font-size: 1.28rem;
+  }
+
+  .markdown-content h2 {
+    font-size: 1.08rem;
+  }
+
+  .markdown-content .zine-figure {
+    margin: 0.52rem auto;
+  }
+
+  .markdown-content .zine-image {
+    border-radius: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger-in {
+    animation: none;
+    opacity: 1;
+  }
 }
 
 @layer utilities {

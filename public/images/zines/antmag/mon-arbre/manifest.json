@@ -1,0 +1,87 @@
+{
+  "sourcePage": "https://antmagjpg.com/Mon-Arbre",
+  "title": "Mon Arbre",
+  "imageCount": 8,
+  "images": [
+    {
+      "index": 1,
+      "id": 180958387,
+      "hash": "dda1e227b9045588e76abf25f4fa819b1713d3f08562138a88cd698db4a3fd39",
+      "name": "MN1.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/dda1e227b9045588e76abf25f4fa819b1713d3f08562138a88cd698db4a3fd39/MN1.jpg",
+      "localPath": "/images/zines/antmag/mon-arbre/01-mn1.jpg"
+    },
+    {
+      "index": 2,
+      "id": 180958388,
+      "hash": "9c968fc4f5e854569cbae709bd03f6d0616c7b4d99f3922275569d44c349d851",
+      "name": "MN2.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/9c968fc4f5e854569cbae709bd03f6d0616c7b4d99f3922275569d44c349d851/MN2.jpg",
+      "localPath": "/images/zines/antmag/mon-arbre/02-mn2.jpg"
+    },
+    {
+      "index": 3,
+      "id": 180958389,
+      "hash": "6fe7ecd6d33de18df8a0664bc33568f281061cd405ed30ac7a54f71440ac1e6b",
+      "name": "MN3.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/6fe7ecd6d33de18df8a0664bc33568f281061cd405ed30ac7a54f71440ac1e6b/MN3.jpg",
+      "localPath": "/images/zines/antmag/mon-arbre/03-mn3.jpg"
+    },
+    {
+      "index": 4,
+      "id": 180958390,
+      "hash": "bf851e41466ead55fd37b66f8f5ab3439c44f3f856a2f45007dc44f4c608eea1",
+      "name": "MN4.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/bf851e41466ead55fd37b66f8f5ab3439c44f3f856a2f45007dc44f4c608eea1/MN4.jpg",
+      "localPath": "/images/zines/antmag/mon-arbre/04-mn4.jpg"
+    },
+    {
+      "index": 5,
+      "id": 180958391,
+      "hash": "d0b08427cb76a3dc307f8ae192a4ac671f86a54b41c52b62ae7579810fba6101",
+      "name": "MN5.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/d0b08427cb76a3dc307f8ae192a4ac671f86a54b41c52b62ae7579810fba6101/MN5.jpg",
+      "localPath": "/images/zines/antmag/mon-arbre/05-mn5.jpg"
+    },
+    {
+      "index": 6,
+      "id": 180958392,
+      "hash": "7801730b923347308ce031a0fac8c723f0eabe2f15034dcedbcc189641262162",
+      "name": "MN6.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/7801730b923347308ce031a0fac8c723f0eabe2f15034dcedbcc189641262162/MN6.jpg",
+      "localPath": "/images/zines/antmag/mon-arbre/06-mn6.jpg"
+    },
+    {
+      "index": 7,
+      "id": 180958393,
+      "hash": "a9e042a7f65b33e66187ab088fad11f23e02aa0b045d27862e8966c60a438ca8",
+      "name": "MN8.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/a9e042a7f65b33e66187ab088fad11f23e02aa0b045d27862e8966c60a438ca8/MN8.jpg",
+      "localPath": "/images/zines/antmag/mon-arbre/07-mn8.jpg"
+    },
+    {
+      "index": 8,
+      "id": 180958394,
+      "hash": "7e6de902d679089f47e2f0680256d390e16a7a7b7714ce9092755fdf64380e6f",
+      "name": "MN10.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/7e6de902d679089f47e2f0680256d390e16a7a7b7714ce9092755fdf64380e6f/MN10.jpg",
+      "localPath": "/images/zines/antmag/mon-arbre/08-mn10.jpg"
+    }
+  ]
+}

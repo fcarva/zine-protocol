@@ -1,0 +1,97 @@
+{
+  "sourcePage": "https://antmagjpg.com/Hard-Crew",
+  "title": "Hard Crew",
+  "imageCount": 9,
+  "images": [
+    {
+      "index": 1,
+      "id": 180174474,
+      "hash": "d1231689ad88f0000b52b118bc477b1e7e61161ff35688ba829447ce08847ce9",
+      "name": "Jens1.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/d1231689ad88f0000b52b118bc477b1e7e61161ff35688ba829447ce08847ce9/Jens1.jpg",
+      "localPath": "/images/zines/antmag/hard-crew/01-jens1.jpg"
+    },
+    {
+      "index": 2,
+      "id": 180174475,
+      "hash": "9f5d50b3fc10979a24eb8664b69ed83ebfb8665e305a95f3912136be2fbc6975",
+      "name": "Jens2.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/9f5d50b3fc10979a24eb8664b69ed83ebfb8665e305a95f3912136be2fbc6975/Jens2.jpg",
+      "localPath": "/images/zines/antmag/hard-crew/02-jens2.jpg"
+    },
+    {
+      "index": 3,
+      "id": 180174476,
+      "hash": "15ea7faa4df8a7ced8a7e6f4411a95ba6f8b42b0d8286e02de33867dd5adc00b",
+      "name": "jens3.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/15ea7faa4df8a7ced8a7e6f4411a95ba6f8b42b0d8286e02de33867dd5adc00b/jens3.jpg",
+      "localPath": "/images/zines/antmag/hard-crew/03-jens3.jpg"
+    },
+    {
+      "index": 4,
+      "id": 180174477,
+      "hash": "752f4fceffda2640c7c8b064cbdbb98587e07d4a7f2acf44a22e997bcb662ed3",
+      "name": "jens4.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/752f4fceffda2640c7c8b064cbdbb98587e07d4a7f2acf44a22e997bcb662ed3/jens4.jpg",
+      "localPath": "/images/zines/antmag/hard-crew/04-jens4.jpg"
+    },
+    {
+      "index": 5,
+      "id": 180174478,
+      "hash": "c5d5ea5c2948af1d0c78d241b378ab2ab48a79ed6d7517fe37dec84bd79fb6f4",
+      "name": "jens5.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/c5d5ea5c2948af1d0c78d241b378ab2ab48a79ed6d7517fe37dec84bd79fb6f4/jens5.jpg",
+      "localPath": "/images/zines/antmag/hard-crew/05-jens5.jpg"
+    },
+    {
+      "index": 6,
+      "id": 180174479,
+      "hash": "147af8bf1beef1ffc34e8d4ad6f95d742521c6a0a711aadfaa6bef6fa349fee7",
+      "name": "jens6.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/147af8bf1beef1ffc34e8d4ad6f95d742521c6a0a711aadfaa6bef6fa349fee7/jens6.jpg",
+      "localPath": "/images/zines/antmag/hard-crew/06-jens6.jpg"
+    },
+    {
+      "index": 7,
+      "id": 180174480,
+      "hash": "673290a9f13bd79a4aae0b62814f1ae4d6ef46018127e901b8c996bec48a3153",
+      "name": "jens8.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/673290a9f13bd79a4aae0b62814f1ae4d6ef46018127e901b8c996bec48a3153/jens8.jpg",
+      "localPath": "/images/zines/antmag/hard-crew/07-jens8.jpg"
+    },
+    {
+      "index": 8,
+      "id": 180174481,
+      "hash": "09597a807b12680dea47ede9ad623bfcda27a8162333530b5ca97098c7dc8737",
+      "name": "jens10.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/09597a807b12680dea47ede9ad623bfcda27a8162333530b5ca97098c7dc8737/jens10.jpg",
+      "localPath": "/images/zines/antmag/hard-crew/08-jens10.jpg"
+    },
+    {
+      "index": 9,
+      "id": 180174482,
+      "hash": "12df9883c08a017f298f501c2ab799f1d14ee341bf03702fa840822294e59ecb",
+      "name": "Jens11.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/12df9883c08a017f298f501c2ab799f1d14ee341bf03702fa840822294e59ecb/Jens11.jpg",
+      "localPath": "/images/zines/antmag/hard-crew/09-jens11.jpg"
+    }
+  ]
+}

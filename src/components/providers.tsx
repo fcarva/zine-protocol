@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider, createConfig, http } from "wagmi";
 import { baseSepolia } from "wagmi/chains";
 import { injected } from "wagmi/connectors";
+import { CartProvider } from "@/components/cart-provider";
 import { publicEnv } from "@/lib/env";
 
 export function AppProviders({ children }: { children: ReactNode }) {
@@ -24,7 +25,9 @@ export function AppProviders({ children }: { children: ReactNode }) {
 
   return (
     <WagmiProvider config={config}>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        <CartProvider>{children}</CartProvider>
+      </QueryClientProvider>
     </WagmiProvider>
   );
 }

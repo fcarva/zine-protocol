@@ -1,0 +1,37 @@
+{
+  "sourcePage": "https://antmagjpg.com/AntMagu-knife",
+  "title": "AntMagu knife",
+  "imageCount": 3,
+  "images": [
+    {
+      "index": 1,
+      "id": 226931668,
+      "hash": "b65772d6f9562dde6e386aa3d2b02ae922e8d18a490b1690e7f23d0a78b0d933",
+      "name": "knife1.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/b65772d6f9562dde6e386aa3d2b02ae922e8d18a490b1690e7f23d0a78b0d933/knife1.jpg",
+      "localPath": "/images/zines/antmag/antmagu-knife/01-knife1.jpg"
+    },
+    {
+      "index": 2,
+      "id": 226931669,
+      "hash": "7d2c780e5c34afe9141500db8058365317a6bc37c8124c8d249e8b2a5dd00b4a",
+      "name": "knife2.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/7d2c780e5c34afe9141500db8058365317a6bc37c8124c8d249e8b2a5dd00b4a/knife2.jpg",
+      "localPath": "/images/zines/antmag/antmagu-knife/02-knife2.jpg"
+    },
+    {
+      "index": 3,
+      "id": 226931729,
+      "hash": "3b8a0299a955eb5d23731aaba2ab194d21fdf508652c9aa8bdae2b00ecf6bef5",
+      "name": "Ant_KNIFE.jpg",
+      "width": 2480,
+      "height": 3508,
+      "source": "https://freight.cargo.site/t/original/i/3b8a0299a955eb5d23731aaba2ab194d21fdf508652c9aa8bdae2b00ecf6bef5/Ant_KNIFE.jpg",
+      "localPath": "/images/zines/antmag/antmagu-knife/03-ant-knife.jpg"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "sourcePage": "https://antmagjpg.com/Jaco-Sette",
+  "title": "Jaco Sette",
+  "imageCount": 6,
+  "images": [
+    {
+      "index": 1,
+      "id": 201764926,
+      "hash": "00d03c67fe34afac8df3e92165bf1715d6b4d54716f7c8d0e8268ea2c4ff2360",
+      "name": "Jaco1.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/00d03c67fe34afac8df3e92165bf1715d6b4d54716f7c8d0e8268ea2c4ff2360/Jaco1.jpg",
+      "localPath": "/images/zines/antmag/jaco-sette/01-jaco1.jpg"
+    },
+    {
+      "index": 2,
+      "id": 201764932,
+      "hash": "b84ce62f6da6ac26567c3c0cf624cbd9a80f4e4f866caac426de7ed475625e4d",
+      "name": "Jaco2.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/b84ce62f6da6ac26567c3c0cf624cbd9a80f4e4f866caac426de7ed475625e4d/Jaco2.jpg",
+      "localPath": "/images/zines/antmag/jaco-sette/02-jaco2.jpg"
+    },
+    {
+      "index": 3,
+      "id": 201764957,
+      "hash": "932bea97bac5f60e32185c93d170668b8d47ede475285cff77e3e0e1f5935603",
+      "name": "jaco3.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/932bea97bac5f60e32185c93d170668b8d47ede475285cff77e3e0e1f5935603/jaco3.jpg",
+      "localPath": "/images/zines/antmag/jaco-sette/03-jaco3.jpg"
+    },
+    {
+      "index": 4,
+      "id": 201764959,
+      "hash": "4b3c0fb6d1c4c62088094506ea196775b306daea2f5289e3a0493e8cde3e0220",
+      "name": "jaco5.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/4b3c0fb6d1c4c62088094506ea196775b306daea2f5289e3a0493e8cde3e0220/jaco5.jpg",
+      "localPath": "/images/zines/antmag/jaco-sette/04-jaco5.jpg"
+    },
+    {
+      "index": 5,
+      "id": 201764963,
+      "hash": "c88d14f4ce842e878c90e80f881ae7118b422bac07ae85c8f0acb46221faac26",
+      "name": "jaco7.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/c88d14f4ce842e878c90e80f881ae7118b422bac07ae85c8f0acb46221faac26/jaco7.jpg",
+      "localPath": "/images/zines/antmag/jaco-sette/05-jaco7.jpg"
+    },
+    {
+      "index": 6,
+      "id": 201764970,
+      "hash": "1988ee24e5a73286230df815d30268508a54b1ccb4dd30ed4f9d5d274b22045c",
+      "name": "jaco8.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/1988ee24e5a73286230df815d30268508a54b1ccb4dd30ed4f9d5d274b22045c/jaco8.jpg",
+      "localPath": "/images/zines/antmag/jaco-sette/06-jaco8.jpg"
+    }
+  ]
+}

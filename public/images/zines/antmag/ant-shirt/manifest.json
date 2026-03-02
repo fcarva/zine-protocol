@@ -1,0 +1,27 @@
+{
+  "sourcePage": "https://antmagjpg.com/Ant-Shirt",
+  "title": "Ant Shirt",
+  "imageCount": 2,
+  "images": [
+    {
+      "index": 1,
+      "id": 212315564,
+      "hash": "4c927b2a778a67da2855b7fbe2fcf9f0704958c9b0e180411c0f4565309a9ec6",
+      "name": "anttee1.jpg",
+      "width": 4739,
+      "height": 6676,
+      "source": "https://freight.cargo.site/t/original/i/4c927b2a778a67da2855b7fbe2fcf9f0704958c9b0e180411c0f4565309a9ec6/anttee1.jpg",
+      "localPath": "/images/zines/antmag/ant-shirt/01-anttee1.jpg"
+    },
+    {
+      "index": 2,
+      "id": 212315571,
+      "hash": "a38e2c743b294155f1c13a9b1dbe4b7fa89926ebdde009ba2f996d3cf9e2a620",
+      "name": "anttee4.jpg",
+      "width": 4739,
+      "height": 6676,
+      "source": "https://freight.cargo.site/t/original/i/a38e2c743b294155f1c13a9b1dbe4b7fa89926ebdde009ba2f996d3cf9e2a620/anttee4.jpg",
+      "localPath": "/images/zines/antmag/ant-shirt/02-anttee4.jpg"
+    }
+  ]
+}

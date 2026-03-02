@@ -1,0 +1,77 @@
+{
+  "sourcePage": "https://antmagjpg.com/Amber-Wynants",
+  "title": "Amber Wynants",
+  "imageCount": 7,
+  "images": [
+    {
+      "index": 1,
+      "id": 184244085,
+      "hash": "ec686cda6160cf51feb641c00492ef7733f37ba329b57be548fb04a8699b943e",
+      "name": "ambercover.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/ec686cda6160cf51feb641c00492ef7733f37ba329b57be548fb04a8699b943e/ambercover.jpg",
+      "localPath": "/images/zines/antmag/amber-wynants/01-ambercover.jpg"
+    },
+    {
+      "index": 2,
+      "id": 184244134,
+      "hash": "7bbed77bebab4a753a3dcf14492b01b8a0760a565bf2e2635869cf81199f0dc8",
+      "name": "amber20.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/7bbed77bebab4a753a3dcf14492b01b8a0760a565bf2e2635869cf81199f0dc8/amber20.jpg",
+      "localPath": "/images/zines/antmag/amber-wynants/02-amber20.jpg"
+    },
+    {
+      "index": 3,
+      "id": 184244304,
+      "hash": "b3a7d22027349cee4f31be1a5452216a63f0cff0d744f61615be47c685605f21",
+      "name": "amber21.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/b3a7d22027349cee4f31be1a5452216a63f0cff0d744f61615be47c685605f21/amber21.jpg",
+      "localPath": "/images/zines/antmag/amber-wynants/03-amber21.jpg"
+    },
+    {
+      "index": 4,
+      "id": 184244305,
+      "hash": "dd65fce48e2d6d1c101d235be7a4df5dffe42f2b61178b394f28f2eb9b8dace4",
+      "name": "amber22.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/dd65fce48e2d6d1c101d235be7a4df5dffe42f2b61178b394f28f2eb9b8dace4/amber22.jpg",
+      "localPath": "/images/zines/antmag/amber-wynants/04-amber22.jpg"
+    },
+    {
+      "index": 5,
+      "id": 184244306,
+      "hash": "fd910854f1e2a448413668470bdec77f4f587ad97786a6546d6ba098a349c300",
+      "name": "amber23.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/fd910854f1e2a448413668470bdec77f4f587ad97786a6546d6ba098a349c300/amber23.jpg",
+      "localPath": "/images/zines/antmag/amber-wynants/05-amber23.jpg"
+    },
+    {
+      "index": 6,
+      "id": 184244480,
+      "hash": "5055c7c14bd91af7db0b2bd6566be3aecb45e0cedcd7510d82e5a957af4cd5ce",
+      "name": "amber24.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/5055c7c14bd91af7db0b2bd6566be3aecb45e0cedcd7510d82e5a957af4cd5ce/amber24.jpg",
+      "localPath": "/images/zines/antmag/amber-wynants/06-amber24.jpg"
+    },
+    {
+      "index": 7,
+      "id": 184244494,
+      "hash": "9b91f6fca80501adaaa0d72336646e82c6a35facd8bd34c71c76f7dcd411738b",
+      "name": "amber25.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/9b91f6fca80501adaaa0d72336646e82c6a35facd8bd34c71c76f7dcd411738b/amber25.jpg",
+      "localPath": "/images/zines/antmag/amber-wynants/07-amber25.jpg"
+    }
+  ]
+}

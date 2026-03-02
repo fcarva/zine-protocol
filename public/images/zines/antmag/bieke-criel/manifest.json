@@ -1,0 +1,57 @@
+{
+  "sourcePage": "https://antmagjpg.com/Bieke-Criel",
+  "title": "Bieke Criel",
+  "imageCount": 5,
+  "images": [
+    {
+      "index": 1,
+      "id": 231583659,
+      "hash": "ee08f3137bc63ec99bef236a36819d8b077ec263a428e09378fd34355fb27509",
+      "name": "1.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/ee08f3137bc63ec99bef236a36819d8b077ec263a428e09378fd34355fb27509/1.jpg",
+      "localPath": "/images/zines/antmag/bieke-criel/01-1.jpg"
+    },
+    {
+      "index": 2,
+      "id": 231583660,
+      "hash": "14bddfbb4426b735df6c7ec14dcd1ec346faacfb3351a94c994bcef98a69f79a",
+      "name": "2.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/14bddfbb4426b735df6c7ec14dcd1ec346faacfb3351a94c994bcef98a69f79a/2.jpg",
+      "localPath": "/images/zines/antmag/bieke-criel/02-2.jpg"
+    },
+    {
+      "index": 3,
+      "id": 231583661,
+      "hash": "a64911a7c7a3197d64957e6205f4c3069e4f825f9e173cf1b927022013de5f90",
+      "name": "6.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/a64911a7c7a3197d64957e6205f4c3069e4f825f9e173cf1b927022013de5f90/6.jpg",
+      "localPath": "/images/zines/antmag/bieke-criel/03-6.jpg"
+    },
+    {
+      "index": 4,
+      "id": 231583662,
+      "hash": "41e478d878085998f3d60277de5992a0c4bccbbf6dde6fcdf52beadb63eff658",
+      "name": "3.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/41e478d878085998f3d60277de5992a0c4bccbbf6dde6fcdf52beadb63eff658/3.jpg",
+      "localPath": "/images/zines/antmag/bieke-criel/04-3.jpg"
+    },
+    {
+      "index": 5,
+      "id": 231583668,
+      "hash": "82b3ff9352b73aa26aa130b9d07669777d193a2bb3aca69c2fe2dd3a1d6c9d16",
+      "name": "4.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/82b3ff9352b73aa26aa130b9d07669777d193a2bb3aca69c2fe2dd3a1d6c9d16/4.jpg",
+      "localPath": "/images/zines/antmag/bieke-criel/05-4.jpg"
+    }
+  ]
+}

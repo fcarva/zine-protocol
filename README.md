@@ -1,80 +1,97 @@
 # Zine Protocol
 
-Plataforma de curadoria e apoio para zines independentes, focada no MVP de demonstracao para Artizen.
-
-## Escopo do MVP
-
-- Catalogo com zines em Markdown (Git-first)
-- Leitura aberta de cada zine em `/zines/[slug]`
-- Apoio Web3 em Base Sepolia apontando para `revnet_project_id`
-- Pix sandbox com QR code + webhook assinado + status
-- Log de apoios em `support_events`
+MVP editorial para Artizen: leitura aberta de zines + apoio direto (Wallet, Email, Pix sandbox), com curadoria Git-first.
 
 ## Stack
 
-- Next.js 14 (App Router)
-- TypeScript + Tailwind CSS
-- Wagmi + Viem
-- Prisma (PostgreSQL) com fallback em memoria no ambiente local
+- Next.js 15 (App Router)
+- TypeScript + Tailwind (Flexoki)
+- Wagmi + Viem (Base Sepolia)
+- Prisma (PostgreSQL, com fallback local em memoria)
 - Vitest
 
-## Estrutura de conteudo
+## Estrutura do projeto
 
-Cada zine fica em `content/zines/<slug>/index.md` com frontmatter obrigatorio:
+- `src/app/` rotas da aplicacao (home, manifesto, zines, checkout, APIs)
+- `src/components/` UI e fluxos de apoio
+- `src/lib/` parser de zines, env, pix, revnet, storage
+- `content/zines/` zines em Markdown com frontmatter
+- `public/images/zines/` capas e paginas
+- `scripts/import-antmag.cjs` importador de paginas do antmag para Markdown + imagens
+
+## Frontmatter obrigatorio
 
 ```yaml
 slug: "nome-do-zine"
 title: "Titulo"
 artist_name: "Nome"
 artist_wallet: "0x..."
-cover_image: "/images/zines/capa.svg"
+cover_image: "/images/zines/capa.jpg"
 excerpt: "Resumo"
 tags: ["arte", "zine"]
 revnet_project_id: 123
 funding_mode: "campaign" # campaign | continuous
 target_usdc: 500         # obrigatorio se campaign
 deadline_iso: "2026-06-30T23:59:59Z" # obrigatorio se campaign
-status: "published"     # draft | published
-sort_order: 1
+status: "published"      # draft | published
+sort_order: 10
 ```
-
-## API endpoints
-
-- `POST /api/pix/checkout`
-- `GET /api/pix/status/:chargeId`
-- `POST /api/webhooks/abacatepay`
-- `POST /api/support/web3/log`
 
 ## Como rodar
 
-1. Copie `.env.example` para `.env`.
-2. Instale dependencias:
-
 ```bash
 corepack pnpm install
+npm run dev -- --port 3000
 ```
 
-3. Gere Prisma client:
+## Qualidade
 
 ```bash
-corepack pnpm prisma:generate
+npm run typecheck
+npm run lint
+npm run test
 ```
 
-4. Suba em dev:
+Ou tudo de uma vez:
 
 ```bash
-corepack pnpm dev
+npm run check:all
 ```
 
-## Testes
+## Importacao de referencias antmag
+
+O importador usa arquivos HTML em `antmag_fetch/` (diretorio local, ignorado pelo Git) e gera:
+
+- `content/zines/<slug>/index.md`
+- `public/images/zines/antmag/<slug>/...`
+
+Comando:
 
 ```bash
-corepack pnpm test
+npm run import:antmag
 ```
 
-## Observacoes
+## Otimizacao de imagens (antes do push)
 
-- O termo "mint" nao aparece na interface do MVP.
-- Curadoria e fechada por convite no momento.
-- Pix esta em modo sandbox, sem liquidacao BRL->USDC em producao.
+Para reduzir peso do repositorio sem quebrar paths do conteudo:
 
+```bash
+npm run optimize:antmag
+```
+
+O script reprocessa JPG/JPEG/PNG em `public/images/zines/antmag`, redimensiona imagens muito grandes e substitui somente quando o arquivo final fica menor.
+
+## Pronto para merge (checklist)
+
+1. `npm run check:all`
+2. `npm run build`
+3. Validar home, `/manifesto`, `/zines/[slug]`, `/checkout` no desktop e mobile
+4. Revisar `.env.example` e segredos antes de push
+5. Fazer commit em lotes logicos (layout, conteudo, pagamentos, docs)
+
+## Observacoes do MVP
+
+- Sem NFT no MVP
+- Linguagem principal do CTA: `Apoiar este zine`
+- Pix em sandbox (sem liquidacao BRL -> USDC em producao)
+- Curadoria por convite

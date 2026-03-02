@@ -1,0 +1,67 @@
+{
+  "sourcePage": "https://antmagjpg.com/Coopman-CVL",
+  "title": "Coopman CVL",
+  "imageCount": 6,
+  "images": [
+    {
+      "index": 1,
+      "id": 233982995,
+      "hash": "550151d67f519580cda361aaf649b09c1efa798b990134a6df69d78794207a82",
+      "name": "CMA41.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/550151d67f519580cda361aaf649b09c1efa798b990134a6df69d78794207a82/CMA41.jpg",
+      "localPath": "/images/zines/antmag/coopman-cvl/01-cma41.jpg"
+    },
+    {
+      "index": 2,
+      "id": 233982996,
+      "hash": "43bc47751687a4388133b97fdb1a4c34de78bb60cda4995bb0d3b87afccdd596",
+      "name": "CMA43.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/43bc47751687a4388133b97fdb1a4c34de78bb60cda4995bb0d3b87afccdd596/CMA43.jpg",
+      "localPath": "/images/zines/antmag/coopman-cvl/02-cma43.jpg"
+    },
+    {
+      "index": 3,
+      "id": 233982997,
+      "hash": "6f46fd7c34d641bd47e22e131944ae4b735f2f2443b2de1846e59a536b77aad9",
+      "name": "CMA44.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/6f46fd7c34d641bd47e22e131944ae4b735f2f2443b2de1846e59a536b77aad9/CMA44.jpg",
+      "localPath": "/images/zines/antmag/coopman-cvl/03-cma44.jpg"
+    },
+    {
+      "index": 4,
+      "id": 233982998,
+      "hash": "87a0119d3fcb484e82e2c23c4626b3e1556e2e8d72eabb4f7ffcc810ef42b699",
+      "name": "CMA45.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/87a0119d3fcb484e82e2c23c4626b3e1556e2e8d72eabb4f7ffcc810ef42b699/CMA45.jpg",
+      "localPath": "/images/zines/antmag/coopman-cvl/04-cma45.jpg"
+    },
+    {
+      "index": 5,
+      "id": 233982999,
+      "hash": "ed28b476be26e55bcde516559b4897f67e4dd04c91b280c0f0756deee6fb6e99",
+      "name": "CMA46.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/ed28b476be26e55bcde516559b4897f67e4dd04c91b280c0f0756deee6fb6e99/CMA46.jpg",
+      "localPath": "/images/zines/antmag/coopman-cvl/05-cma46.jpg"
+    },
+    {
+      "index": 6,
+      "id": 233983000,
+      "hash": "c46123541aa4b7281ce9ce1a8677737a60a40935aea5c3a7e97023409b083646",
+      "name": "CPA42.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/c46123541aa4b7281ce9ce1a8677737a60a40935aea5c3a7e97023409b083646/CPA42.jpg",
+      "localPath": "/images/zines/antmag/coopman-cvl/06-cpa42.jpg"
+    }
+  ]
+}

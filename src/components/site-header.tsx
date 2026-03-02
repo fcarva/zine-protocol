@@ -1,27 +1,74 @@
 import Link from "next/link";
+import { CartLink } from "@/components/cart-link";
+
+const navLinks = [
+  { href: "/", label: "Zines", index: "01" },
+  { href: "/manifesto", label: "Manifesto", index: "02" },
+];
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-30 border-b border-stone-300/70 bg-stone-50/95 backdrop-blur">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3 sm:px-8">
-        <Link href="/" className="text-xl font-semibold tracking-tight text-stone-900">
-          Zine Protocol
-        </Link>
+    <>
+      <header className="editorial-panel relative z-40 border-x-0 border-t-0 px-3 py-2 lg:hidden">
+        <div className="flex items-center justify-between gap-3">
+          <Link href="/" className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-ink">
+            Zine Protocol
+          </Link>
+          <nav className="flex items-center gap-2.5 text-[0.58rem] uppercase tracking-[0.13em] text-base-700">
+            {navLinks.map((item) => (
+              <Link key={item.href} href={item.href} className="hover:text-ink">
+                {item.label}
+              </Link>
+            ))}
+            <CartLink className="hover:text-ink" compact />
+          </nav>
+        </div>
+      </header>
 
-        <nav className="flex items-center gap-4 text-sm">
-          <Link className="text-stone-700 transition hover:text-stone-900" href="/">
-            Catalogo
+      <aside className="editorial-panel !fixed inset-y-0 left-0 z-30 hidden w-[var(--sidebar-width)] flex-col rounded-none border-y-0 border-l-0 border-r border-r-base-300 lg:flex">
+        <div className="space-y-3.5 p-8 xl:p-10">
+          <Link href="/" className="inline-flex flex-col leading-none">
+            <span className="font-mono text-[0.6rem] uppercase tracking-[0.22em] text-base-600">
+              Curadoria
+            </span>
+            <span className="mt-2 text-[1.8rem] font-black uppercase tracking-[-0.04em] text-ink">
+              Zine
+            </span>
+            <span className="-mt-1 text-[1.8rem] font-black uppercase tracking-[-0.04em] text-ink">
+              Protocol
+            </span>
           </Link>
-          <Link
-            className="text-stone-700 transition hover:text-stone-900"
-            href="/manifesto"
-          >
-            Manifesto
-          </Link>
-        </nav>
-      </div>
-      <div className="h-[2px] w-full bg-gradient-to-r from-amber-400 via-lime-500 to-sky-500" />
-    </header>
+
+          <p className="max-w-[12.8rem] text-[0.86rem] leading-snug text-base-700">
+            Catalogo editorial de leitura aberta com apoio direto a artistas e coletivos de zine.
+          </p>
+
+          <div className="h-px w-full bg-base-300/90" />
+
+          <nav className="space-y-0.5 pt-0.5">
+            {navLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group flex items-baseline justify-between rounded px-1 py-1.5 transition hover:bg-base-100/80"
+              >
+                <span className="font-mono text-[0.58rem] uppercase tracking-[0.2em] text-base-500">
+                  {item.index}
+                </span>
+                <span className="text-[0.94rem] font-semibold uppercase tracking-[-0.01em] text-base-800 transition group-hover:text-ink">
+                  {item.label}
+                </span>
+              </Link>
+            ))}
+
+            <div className="group flex items-baseline justify-between rounded px-1 py-1.5 transition hover:bg-base-100/80">
+              <span className="font-mono text-[0.58rem] uppercase tracking-[0.2em] text-base-500">03</span>
+              <CartLink className="text-[0.94rem] font-semibold uppercase tracking-[-0.01em] text-base-800 transition group-hover:text-ink" />
+            </div>
+          </nav>
+        </div>
+      </aside>
+    </>
   );
 }
 

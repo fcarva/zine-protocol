@@ -1,0 +1,67 @@
+{
+  "sourcePage": "https://antmagjpg.com/Steven-Smis",
+  "title": "Steven Smis",
+  "imageCount": 6,
+  "images": [
+    {
+      "index": 1,
+      "id": 167119482,
+      "hash": "c532cd0887a1538393ec20c2a3704820cdb60fd8efb180fe7802903795552db5",
+      "name": "SS1.jpg",
+      "width": 8910,
+      "height": 6300,
+      "source": "https://freight.cargo.site/t/original/i/c532cd0887a1538393ec20c2a3704820cdb60fd8efb180fe7802903795552db5/SS1.jpg",
+      "localPath": "/images/zines/antmag/steven-smis/01-ss1.jpg"
+    },
+    {
+      "index": 2,
+      "id": 167119483,
+      "hash": "b0670b9a34dd166c9d95a45f720769bfb8708b6e90abfe393077cac6ea8f7779",
+      "name": "SS2.jpg",
+      "width": 8910,
+      "height": 6300,
+      "source": "https://freight.cargo.site/t/original/i/b0670b9a34dd166c9d95a45f720769bfb8708b6e90abfe393077cac6ea8f7779/SS2.jpg",
+      "localPath": "/images/zines/antmag/steven-smis/02-ss2.jpg"
+    },
+    {
+      "index": 3,
+      "id": 167119484,
+      "hash": "b69474b562b8d0d9154806074908a85e17f228c08d4649490fe3fc899efb5f1b",
+      "name": "SS3.jpg",
+      "width": 8910,
+      "height": 6300,
+      "source": "https://freight.cargo.site/t/original/i/b69474b562b8d0d9154806074908a85e17f228c08d4649490fe3fc899efb5f1b/SS3.jpg",
+      "localPath": "/images/zines/antmag/steven-smis/03-ss3.jpg"
+    },
+    {
+      "index": 4,
+      "id": 167119486,
+      "hash": "a8324cb658e355eea6189d4aefce43b120002aba56f20bdf36820a5e370c1745",
+      "name": "SS5.jpg",
+      "width": 4455,
+      "height": 3150,
+      "source": "https://freight.cargo.site/t/original/i/a8324cb658e355eea6189d4aefce43b120002aba56f20bdf36820a5e370c1745/SS5.jpg",
+      "localPath": "/images/zines/antmag/steven-smis/04-ss5.jpg"
+    },
+    {
+      "index": 5,
+      "id": 167119487,
+      "hash": "9200240d86d7fb6c8ce91dea4e939af2edede68953e347af123735a6a9bf6f2a",
+      "name": "SS6.jpg",
+      "width": 4455,
+      "height": 3150,
+      "source": "https://freight.cargo.site/t/original/i/9200240d86d7fb6c8ce91dea4e939af2edede68953e347af123735a6a9bf6f2a/SS6.jpg",
+      "localPath": "/images/zines/antmag/steven-smis/05-ss6.jpg"
+    },
+    {
+      "index": 6,
+      "id": 167119584,
+      "hash": "c55b9cd573cf09dd8973799beab7e3bfad7ae4b21baf0d8ddad9142ac33d397c",
+      "name": "SS8.jpg",
+      "width": 4455,
+      "height": 3150,
+      "source": "https://freight.cargo.site/t/original/i/c55b9cd573cf09dd8973799beab7e3bfad7ae4b21baf0d8ddad9142ac33d397c/SS8.jpg",
+      "localPath": "/images/zines/antmag/steven-smis/06-ss8.jpg"
+    }
+  ]
+}

@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Space_Grotesk } from "next/font/google";
+import { Archivo, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { AppProviders } from "@/components/providers";
 import { SiteHeader } from "@/components/site-header";
 
-const display = Cormorant_Garamond({
+const sans = Archivo({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-display",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-sans",
 });
 
-const sans = Space_Grotesk({
+const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-sans",
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
@@ -28,13 +28,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${display.variable} ${sans.variable}`}>
+    <html lang="pt-BR" className={`${sans.variable} ${mono.variable}`}>
       <body>
         <AppProviders>
-          <div className="relative min-h-screen">
-            <div className="background-grid" />
+          <div className="relative min-h-screen overflow-x-clip">
+            <div className="paper-noise" />
+            <div className="print-bleed" />
             <SiteHeader />
-            <main className="mx-auto w-full max-w-6xl px-4 pb-16 pt-8 sm:px-8">{children}</main>
+            <main className="relative z-10 min-h-screen px-3 pb-8 pt-0 sm:px-4 sm:pb-9 sm:pt-0 lg:ml-[var(--sidebar-width)] lg:px-4 lg:pt-0 xl:px-5">
+              <div className="w-full max-w-[1400px] lg:pr-6 xl:pr-8">{children}</div>
+            </main>
           </div>
         </AppProviders>
       </body>

@@ -3,9 +3,10 @@ import { getPixCharge } from "@/lib/storage";
 
 export async function GET(
   _request: Request,
-  { params }: { params: { chargeId: string } },
+  { params }: { params: Promise<{ chargeId: string }> },
 ) {
-  const charge = await getPixCharge(params.chargeId);
+  const { chargeId } = await params;
+  const charge = await getPixCharge(chargeId);
   if (!charge) {
     return NextResponse.json({ error: "ChargeId nao encontrado." }, { status: 404 });
   }

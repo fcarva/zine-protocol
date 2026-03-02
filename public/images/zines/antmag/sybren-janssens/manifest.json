@@ -1,0 +1,77 @@
+{
+  "sourcePage": "https://antmagjpg.com/Sybren-Janssens",
+  "title": "Sybren Janssens",
+  "imageCount": 7,
+  "images": [
+    {
+      "index": 1,
+      "id": 180959690,
+      "hash": "1095a1e8f93916516b49a7bf4f5230794221451e34152be8219cf584504222d6",
+      "name": "SS1.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/1095a1e8f93916516b49a7bf4f5230794221451e34152be8219cf584504222d6/SS1.jpg",
+      "localPath": "/images/zines/antmag/sybren-janssens/01-ss1.jpg"
+    },
+    {
+      "index": 2,
+      "id": 180959692,
+      "hash": "a70c6c4f2acf0234b4b4a07200ba5ce3e0ae127e86416c6ee5aa3e92b6d0d995",
+      "name": "SS2.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/a70c6c4f2acf0234b4b4a07200ba5ce3e0ae127e86416c6ee5aa3e92b6d0d995/SS2.jpg",
+      "localPath": "/images/zines/antmag/sybren-janssens/02-ss2.jpg"
+    },
+    {
+      "index": 3,
+      "id": 180959693,
+      "hash": "e3cc3b95e71f64bcf36bf328b023a130a0cbb20fd49e84f0e3f9ffdfaaa459be",
+      "name": "SS3.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/e3cc3b95e71f64bcf36bf328b023a130a0cbb20fd49e84f0e3f9ffdfaaa459be/SS3.jpg",
+      "localPath": "/images/zines/antmag/sybren-janssens/03-ss3.jpg"
+    },
+    {
+      "index": 4,
+      "id": 180959695,
+      "hash": "277b729bd1b2fe608cc1a30fa5b4b7cda8810cb7b9b92a5c98123efa7632ed83",
+      "name": "SS4.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/277b729bd1b2fe608cc1a30fa5b4b7cda8810cb7b9b92a5c98123efa7632ed83/SS4.jpg",
+      "localPath": "/images/zines/antmag/sybren-janssens/04-ss4.jpg"
+    },
+    {
+      "index": 5,
+      "id": 180959696,
+      "hash": "ac8c1af15b829da7f5cc068ab902b7723904a31e0714c54a23df04a9984ba7cc",
+      "name": "SS6.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/ac8c1af15b829da7f5cc068ab902b7723904a31e0714c54a23df04a9984ba7cc/SS6.jpg",
+      "localPath": "/images/zines/antmag/sybren-janssens/05-ss6.jpg"
+    },
+    {
+      "index": 6,
+      "id": 180959698,
+      "hash": "e3e63ae19a36aa34216a75e9f65b0d372c8973f64405c00eef75c02cbb34e92f",
+      "name": "SS8.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/e3e63ae19a36aa34216a75e9f65b0d372c8973f64405c00eef75c02cbb34e92f/SS8.jpg",
+      "localPath": "/images/zines/antmag/sybren-janssens/06-ss8.jpg"
+    },
+    {
+      "index": 7,
+      "id": 180959700,
+      "hash": "adfaacdb86c00c38086b5458123afe38ccc495de0b2c64ea42ee67c3746c38ab",
+      "name": "SS9.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/adfaacdb86c00c38086b5458123afe38ccc495de0b2c64ea42ee67c3746c38ab/SS9.jpg",
+      "localPath": "/images/zines/antmag/sybren-janssens/07-ss9.jpg"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "sourcePage": "https://antmagjpg.com/Henri-Cuelenaere",
+  "title": "Henri Cuelenaere",
+  "imageCount": 7,
+  "images": [
+    {
+      "index": 1,
+      "id": 171664763,
+      "hash": "e00cfa59369b268575ee3c62a2a507ef50293f1011ed47cd479e7e934b374dc8",
+      "name": "Website1.jpg",
+      "width": 4455,
+      "height": 3150,
+      "source": "https://freight.cargo.site/t/original/i/e00cfa59369b268575ee3c62a2a507ef50293f1011ed47cd479e7e934b374dc8/Website1.jpg",
+      "localPath": "/images/zines/antmag/henri-cuelenaere/01-website1.jpg"
+    },
+    {
+      "index": 2,
+      "id": 171664803,
+      "hash": "8415452c512f66872b528fc3fd141db986d49202856bd259d9ffa0bebfd07af2",
+      "name": "website2.jpg",
+      "width": 4455,
+      "height": 3150,
+      "source": "https://freight.cargo.site/t/original/i/8415452c512f66872b528fc3fd141db986d49202856bd259d9ffa0bebfd07af2/website2.jpg",
+      "localPath": "/images/zines/antmag/henri-cuelenaere/02-website2.jpg"
+    },
+    {
+      "index": 3,
+      "id": 171664804,
+      "hash": "fd63630b98301e86ec7d990dd426bbe3ef0050efbb157df61b467aad1749354c",
+      "name": "website3.jpg",
+      "width": 4455,
+      "height": 3150,
+      "source": "https://freight.cargo.site/t/original/i/fd63630b98301e86ec7d990dd426bbe3ef0050efbb157df61b467aad1749354c/website3.jpg",
+      "localPath": "/images/zines/antmag/henri-cuelenaere/03-website3.jpg"
+    },
+    {
+      "index": 4,
+      "id": 171664805,
+      "hash": "1e9e4f242533db51b1a71c9ea138fca9f387f89fca93e041ba02a72e94e0e47d",
+      "name": "website4.jpg",
+      "width": 4455,
+      "height": 3150,
+      "source": "https://freight.cargo.site/t/original/i/1e9e4f242533db51b1a71c9ea138fca9f387f89fca93e041ba02a72e94e0e47d/website4.jpg",
+      "localPath": "/images/zines/antmag/henri-cuelenaere/04-website4.jpg"
+    },
+    {
+      "index": 5,
+      "id": 171664806,
+      "hash": "8234c724574e27988a45a25dd940a3b32ac341e11eecd5637fb49c1b4006b7b7",
+      "name": "website5.jpg",
+      "width": 4455,
+      "height": 3150,
+      "source": "https://freight.cargo.site/t/original/i/8234c724574e27988a45a25dd940a3b32ac341e11eecd5637fb49c1b4006b7b7/website5.jpg",
+      "localPath": "/images/zines/antmag/henri-cuelenaere/05-website5.jpg"
+    },
+    {
+      "index": 6,
+      "id": 171664807,
+      "hash": "187c1fb3a87d578886da4deba83e5f1d416d0b049e0d94abae52d4bd6ff4779f",
+      "name": "website6.jpg",
+      "width": 4455,
+      "height": 3150,
+      "source": "https://freight.cargo.site/t/original/i/187c1fb3a87d578886da4deba83e5f1d416d0b049e0d94abae52d4bd6ff4779f/website6.jpg",
+      "localPath": "/images/zines/antmag/henri-cuelenaere/06-website6.jpg"
+    },
+    {
+      "index": 7,
+      "id": 171664808,
+      "hash": "45e763d82163eefe5558623954589ff31634f3b2acc3e798e9ed9fa9033dff99",
+      "name": "website7.jpg",
+      "width": 4455,
+      "height": 3150,
+      "source": "https://freight.cargo.site/t/original/i/45e763d82163eefe5558623954589ff31634f3b2acc3e798e9ed9fa9033dff99/website7.jpg",
+      "localPath": "/images/zines/antmag/henri-cuelenaere/07-website7.jpg"
+    }
+  ]
+}

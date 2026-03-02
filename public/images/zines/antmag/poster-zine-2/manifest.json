@@ -1,0 +1,67 @@
+{
+  "sourcePage": "https://antmagjpg.com/Poster-Zine-2",
+  "title": "Poster Zine 2",
+  "imageCount": 6,
+  "images": [
+    {
+      "index": 1,
+      "id": 231825298,
+      "hash": "2867a643abb59a1c1ceadef62e8886b4f08d5fbec89a98ebbdecfee6e03050a9",
+      "name": "PZ2.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/2867a643abb59a1c1ceadef62e8886b4f08d5fbec89a98ebbdecfee6e03050a9/PZ2.jpg",
+      "localPath": "/images/zines/antmag/poster-zine-2/01-pz2.jpg"
+    },
+    {
+      "index": 2,
+      "id": 231825301,
+      "hash": "7364625247e59809b13f26554ad38e6eed22719abe2c358ed776872651c36c5e",
+      "name": "PZ22.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/7364625247e59809b13f26554ad38e6eed22719abe2c358ed776872651c36c5e/PZ22.jpg",
+      "localPath": "/images/zines/antmag/poster-zine-2/02-pz22.jpg"
+    },
+    {
+      "index": 3,
+      "id": 231825309,
+      "hash": "12d012a70e73396f60df0a249202428be29ff017cb1e421349b22da187c1db58",
+      "name": "PZ24.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/12d012a70e73396f60df0a249202428be29ff017cb1e421349b22da187c1db58/PZ24.jpg",
+      "localPath": "/images/zines/antmag/poster-zine-2/03-pz24.jpg"
+    },
+    {
+      "index": 4,
+      "id": 231825319,
+      "hash": "0b8c733ea014022cafecd86770dbf34d4b4b13ea4b4663181f0b4774b189e300",
+      "name": "PZ25.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/0b8c733ea014022cafecd86770dbf34d4b4b13ea4b4663181f0b4774b189e300/PZ25.jpg",
+      "localPath": "/images/zines/antmag/poster-zine-2/04-pz25.jpg"
+    },
+    {
+      "index": 5,
+      "id": 231825331,
+      "hash": "fb27fe4374f396382ae56d6be30e0aea8292a160c318c38cb5577b16fb2f4863",
+      "name": "PZ26.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/fb27fe4374f396382ae56d6be30e0aea8292a160c318c38cb5577b16fb2f4863/PZ26.jpg",
+      "localPath": "/images/zines/antmag/poster-zine-2/05-pz26.jpg"
+    },
+    {
+      "index": 6,
+      "id": 231825341,
+      "hash": "2424f0d33e217921ca824c5a7d318e3fc1bb7b2584a1032d485550001e7ef138",
+      "name": "PZ23.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/2424f0d33e217921ca824c5a7d318e3fc1bb7b2584a1032d485550001e7ef138/PZ23.jpg",
+      "localPath": "/images/zines/antmag/poster-zine-2/06-pz23.jpg"
+    }
+  ]
+}

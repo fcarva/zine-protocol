@@ -1,0 +1,67 @@
+{
+  "sourcePage": "https://antmagjpg.com/SMD5",
+  "title": "SMD5",
+  "imageCount": 6,
+  "images": [
+    {
+      "index": 1,
+      "id": 208595680,
+      "hash": "cdaaca8aa838fbdcd2779870e8fa556b1f3f49466976475176cf957b16518fd3",
+      "name": "2.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/cdaaca8aa838fbdcd2779870e8fa556b1f3f49466976475176cf957b16518fd3/2.jpg",
+      "localPath": "/images/zines/antmag/smd5/01-2.jpg"
+    },
+    {
+      "index": 2,
+      "id": 208595681,
+      "hash": "b873cadf33862ee2e5061f19998ab4df34364ac2601b9197ccdb733ba3745ba1",
+      "name": "3.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/b873cadf33862ee2e5061f19998ab4df34364ac2601b9197ccdb733ba3745ba1/3.jpg",
+      "localPath": "/images/zines/antmag/smd5/02-3.jpg"
+    },
+    {
+      "index": 3,
+      "id": 208595682,
+      "hash": "7fee00fb1ce705ed98614f114813174f4b746179c4106a2feffde1115538a75a",
+      "name": "5.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/7fee00fb1ce705ed98614f114813174f4b746179c4106a2feffde1115538a75a/5.jpg",
+      "localPath": "/images/zines/antmag/smd5/03-5.jpg"
+    },
+    {
+      "index": 4,
+      "id": 208595683,
+      "hash": "29ae078e2c6cf4b08ba3045549a64722624ee3355776ff044ab261619b5a3a98",
+      "name": "8.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/29ae078e2c6cf4b08ba3045549a64722624ee3355776ff044ab261619b5a3a98/8.jpg",
+      "localPath": "/images/zines/antmag/smd5/04-8.jpg"
+    },
+    {
+      "index": 5,
+      "id": 208595684,
+      "hash": "1d9eb1599eb2e491b0bf46d23f4b9472bab0f03f9fe196bd200a53c4f51879fe",
+      "name": "9.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/1d9eb1599eb2e491b0bf46d23f4b9472bab0f03f9fe196bd200a53c4f51879fe/9.jpg",
+      "localPath": "/images/zines/antmag/smd5/05-9.jpg"
+    },
+    {
+      "index": 6,
+      "id": 208595736,
+      "hash": "e4266b33c937e3a187150c828b4f665b263e59751c592873bfea993dda36ab46",
+      "name": "SMD5_picca.jpg",
+      "width": 1500,
+      "height": 1080,
+      "source": "https://freight.cargo.site/t/original/i/e4266b33c937e3a187150c828b4f665b263e59751c592873bfea993dda36ab46/SMD5_picca.jpg",
+      "localPath": "/images/zines/antmag/smd5/06-smd5-picca.jpg"
+    }
+  ]
+}

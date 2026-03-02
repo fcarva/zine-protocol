@@ -1,0 +1,67 @@
+{
+  "sourcePage": "https://antmagjpg.com/Rik-Vonckx",
+  "title": "Rik Vonckx",
+  "imageCount": 6,
+  "images": [
+    {
+      "index": 1,
+      "id": 167078817,
+      "hash": "b390e9b177d3bc74aa2335bd9833dc1d42be095fe55195a70b9f0f95918079c4",
+      "name": "Rik1.jpg",
+      "width": 8019,
+      "height": 5670,
+      "source": "https://freight.cargo.site/t/original/i/b390e9b177d3bc74aa2335bd9833dc1d42be095fe55195a70b9f0f95918079c4/Rik1.jpg",
+      "localPath": "/images/zines/antmag/rik-vonckx/01-rik1.jpg"
+    },
+    {
+      "index": 2,
+      "id": 167078818,
+      "hash": "110c40fd4b4db267be84b591249e902698ac2239e17f451f56ba57363499b4a3",
+      "name": "Rik2.jpg",
+      "width": 8019,
+      "height": 5670,
+      "source": "https://freight.cargo.site/t/original/i/110c40fd4b4db267be84b591249e902698ac2239e17f451f56ba57363499b4a3/Rik2.jpg",
+      "localPath": "/images/zines/antmag/rik-vonckx/02-rik2.jpg"
+    },
+    {
+      "index": 3,
+      "id": 167078819,
+      "hash": "aaf00ba01e4ea9ac7bac28c713167cb4f499dbf16642c9f60e830994c993c88d",
+      "name": "Rik3.jpg",
+      "width": 8019,
+      "height": 5670,
+      "source": "https://freight.cargo.site/t/original/i/aaf00ba01e4ea9ac7bac28c713167cb4f499dbf16642c9f60e830994c993c88d/Rik3.jpg",
+      "localPath": "/images/zines/antmag/rik-vonckx/03-rik3.jpg"
+    },
+    {
+      "index": 4,
+      "id": 167078821,
+      "hash": "d1f23d65367f8eaa1f0f0a696af3912b3c59a09448b3ab94e06986c03f44d6e4",
+      "name": "Rik4.jpg",
+      "width": 8019,
+      "height": 5670,
+      "source": "https://freight.cargo.site/t/original/i/d1f23d65367f8eaa1f0f0a696af3912b3c59a09448b3ab94e06986c03f44d6e4/Rik4.jpg",
+      "localPath": "/images/zines/antmag/rik-vonckx/04-rik4.jpg"
+    },
+    {
+      "index": 5,
+      "id": 167078822,
+      "hash": "ce59e2587509bc5d9a42f332b01256d1cc08dff67691c8a0ee7ae093c4084d37",
+      "name": "Rik5.jpg",
+      "width": 8019,
+      "height": 5670,
+      "source": "https://freight.cargo.site/t/original/i/ce59e2587509bc5d9a42f332b01256d1cc08dff67691c8a0ee7ae093c4084d37/Rik5.jpg",
+      "localPath": "/images/zines/antmag/rik-vonckx/05-rik5.jpg"
+    },
+    {
+      "index": 6,
+      "id": 167078823,
+      "hash": "ef9f48f975c36b1ec4719def6221fc80141ec94e1809b8467de6b15e6b8bfe9a",
+      "name": "Rik6.jpg",
+      "width": 8019,
+      "height": 5670,
+      "source": "https://freight.cargo.site/t/original/i/ef9f48f975c36b1ec4719def6221fc80141ec94e1809b8467de6b15e6b8bfe9a/Rik6.jpg",
+      "localPath": "/images/zines/antmag/rik-vonckx/06-rik6.jpg"
+    }
+  ]
+}

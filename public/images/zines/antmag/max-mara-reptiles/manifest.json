@@ -1,0 +1,67 @@
+{
+  "sourcePage": "https://antmagjpg.com/Max-Mara-Reptiles",
+  "title": "Max Mara Reptiles",
+  "imageCount": 6,
+  "images": [
+    {
+      "index": 1,
+      "id": 180955724,
+      "hash": "d88b15e09e1d38abddc0db49040224240a5263c94db097c451838154bb49b5c5",
+      "name": "MM6.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/d88b15e09e1d38abddc0db49040224240a5263c94db097c451838154bb49b5c5/MM6.jpg",
+      "localPath": "/images/zines/antmag/max-mara-reptiles/01-mm6.jpg"
+    },
+    {
+      "index": 2,
+      "id": 180955736,
+      "hash": "0356408ac1dc36356a6cc8f269534017b0361ea71c539091a9510b857ff50ff9",
+      "name": "MM.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/0356408ac1dc36356a6cc8f269534017b0361ea71c539091a9510b857ff50ff9/MM.jpg",
+      "localPath": "/images/zines/antmag/max-mara-reptiles/02-mm.jpg"
+    },
+    {
+      "index": 3,
+      "id": 180955737,
+      "hash": "56d87b1b5d01672d2aa69bc36a17c45c09d115d0a0ac14e924ac2f82690c1b6f",
+      "name": "MM1.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/56d87b1b5d01672d2aa69bc36a17c45c09d115d0a0ac14e924ac2f82690c1b6f/MM1.jpg",
+      "localPath": "/images/zines/antmag/max-mara-reptiles/03-mm1.jpg"
+    },
+    {
+      "index": 4,
+      "id": 180955738,
+      "hash": "28ae5243e885f77ec3fe0d857ac54a5ae750960df9767c6a751bfa6e8c3c8924",
+      "name": "MM2.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/28ae5243e885f77ec3fe0d857ac54a5ae750960df9767c6a751bfa6e8c3c8924/MM2.jpg",
+      "localPath": "/images/zines/antmag/max-mara-reptiles/04-mm2.jpg"
+    },
+    {
+      "index": 5,
+      "id": 180955739,
+      "hash": "af6fbcaee2cd91d8ae34dc68e1518cef2c3ee2736ba31d1f3469712654bd28e4",
+      "name": "MM3.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/af6fbcaee2cd91d8ae34dc68e1518cef2c3ee2736ba31d1f3469712654bd28e4/MM3.jpg",
+      "localPath": "/images/zines/antmag/max-mara-reptiles/05-mm3.jpg"
+    },
+    {
+      "index": 6,
+      "id": 180955741,
+      "hash": "913793c0797551349e138a0dae4f4f00cb2b73fb015c710a35d13a79966e1518",
+      "name": "MM4.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/913793c0797551349e138a0dae4f4f00cb2b73fb015c710a35d13a79966e1518/MM4.jpg",
+      "localPath": "/images/zines/antmag/max-mara-reptiles/06-mm4.jpg"
+    }
+  ]
+}

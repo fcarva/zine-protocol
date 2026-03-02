@@ -3,7 +3,7 @@ slug: "rua-das-copias"
 title: "Rua das Copias"
 artist_name: "Lia Nascimento"
 artist_wallet: "0x1111111111111111111111111111111111111111"
-cover_image: "/images/zines/rua-das-copias.svg"
+cover_image: "/images/zines/antmag/rua-das-copias-cover.png"
 excerpt: "Fotocopia, memoria e cartografia afetiva do centro de Sao Paulo."
 tags:
   - "zine"
@@ -20,6 +20,8 @@ sort_order: 1
 ## Sobre
 
 Este zine nasceu de caminhadas entre bancas, graficas de bairro e papelarias de rua. Cada pagina mistura fotografia, texto curto e recortes de cartazes.
+
+![Pagina interna do zine Rua das Copias](/images/zines/antmag/rua-das-copias-01.jpg)
 
 ## Porque apoiar
 

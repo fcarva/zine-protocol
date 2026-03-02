@@ -1,0 +1,37 @@
+{
+  "sourcePage": "https://antmagjpg.com/Ant-Deck",
+  "title": "Ant Deck",
+  "imageCount": 3,
+  "images": [
+    {
+      "index": 1,
+      "id": 242500274,
+      "hash": "16cb61c3253a6bd43e9b1ead988f74cec9c8e431e9b04f7bb3c14d46cff33c47",
+      "name": "Deck3.jpg",
+      "width": 2480,
+      "height": 3100,
+      "source": "https://freight.cargo.site/t/original/i/16cb61c3253a6bd43e9b1ead988f74cec9c8e431e9b04f7bb3c14d46cff33c47/Deck3.jpg",
+      "localPath": "/images/zines/antmag/ant-deck/01-deck3.jpg"
+    },
+    {
+      "index": 2,
+      "id": 242500275,
+      "hash": "1aa0f5973b5f8c6366edb74b319818d33178ea159bf15c0a122cb03539ec3556",
+      "name": "ANT_DECK.jpg",
+      "width": 3300,
+      "height": 2550,
+      "source": "https://freight.cargo.site/t/original/i/1aa0f5973b5f8c6366edb74b319818d33178ea159bf15c0a122cb03539ec3556/ANT_DECK.jpg",
+      "localPath": "/images/zines/antmag/ant-deck/02-ant-deck.jpg"
+    },
+    {
+      "index": 3,
+      "id": 242500278,
+      "hash": "1fd82ab0279001c5df21cb4af709a702807d39e0fd3421549cf99e963cceb585",
+      "name": "IMG_7684-2.JPG",
+      "width": 4155,
+      "height": 5194,
+      "source": "https://freight.cargo.site/t/original/i/1fd82ab0279001c5df21cb4af709a702807d39e0fd3421549cf99e963cceb585/IMG_7684-2.JPG",
+      "localPath": "/images/zines/antmag/ant-deck/03-img-7684-2-jpg.jpg"
+    }
+  ]
+}

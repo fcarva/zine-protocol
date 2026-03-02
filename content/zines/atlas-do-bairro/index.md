@@ -3,8 +3,8 @@ slug: "atlas-do-bairro"
 title: "Atlas do Bairro"
 artist_name: "Maya Reis"
 artist_wallet: "0x3333333333333333333333333333333333333333"
-cover_image: "/images/zines/atlas-do-bairro.svg"
-excerpt: "Mapas afetivos feitos com moradores, memoria oral e ilustrações."
+cover_image: "/images/zines/antmag/atlas-do-bairro-cover.jpg"
+excerpt: "Mapas afetivos feitos com moradores, memoria oral e ilustracoes."
 tags:
   - "mapa"
   - "memoria"
@@ -20,6 +20,8 @@ sort_order: 3
 ## Territorio vivo
 
 Atlas do Bairro registra pracas, comedores populares, hortas urbanas e historias de quem sustenta a cidade.
+
+![Pagina interna do zine Atlas do Bairro](/images/zines/antmag/atlas-do-bairro-01.jpg)
 
 ## Plano de distribuicao
 

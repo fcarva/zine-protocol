@@ -1,0 +1,87 @@
+{
+  "sourcePage": "https://antmagjpg.com/Paul-Barsch-Matti-Gajek",
+  "title": "Paul Barsch & Matti Gajek",
+  "imageCount": 8,
+  "images": [
+    {
+      "index": 1,
+      "id": 239609468,
+      "hash": "e6180551cf7ffb448e7238cc86e38aa7aad14b50cab7dcbcda4f1c0440d119d4",
+      "name": "PP4.jpg",
+      "width": 2480,
+      "height": 1890,
+      "source": "https://freight.cargo.site/t/original/i/e6180551cf7ffb448e7238cc86e38aa7aad14b50cab7dcbcda4f1c0440d119d4/PP4.jpg",
+      "localPath": "/images/zines/antmag/paul-barsch-matti-gajek/01-pp4.jpg"
+    },
+    {
+      "index": 2,
+      "id": 239609469,
+      "hash": "9b9992f3b8fbec8912684fe78f3548c92f0215bc30b426ab836d99c83c080f13",
+      "name": "PP6.jpg",
+      "width": 2480,
+      "height": 1890,
+      "source": "https://freight.cargo.site/t/original/i/9b9992f3b8fbec8912684fe78f3548c92f0215bc30b426ab836d99c83c080f13/PP6.jpg",
+      "localPath": "/images/zines/antmag/paul-barsch-matti-gajek/02-pp6.jpg"
+    },
+    {
+      "index": 3,
+      "id": 239609470,
+      "hash": "8a9a5d7a891ec3ed9c809cd81c863a5500b71b9de8dd6fa0fc3cd6cd716fbf05",
+      "name": "PP8.jpg",
+      "width": 2480,
+      "height": 1890,
+      "source": "https://freight.cargo.site/t/original/i/8a9a5d7a891ec3ed9c809cd81c863a5500b71b9de8dd6fa0fc3cd6cd716fbf05/PP8.jpg",
+      "localPath": "/images/zines/antmag/paul-barsch-matti-gajek/03-pp8.jpg"
+    },
+    {
+      "index": 4,
+      "id": 239609471,
+      "hash": "cb01e171fa02a8c98b589a6a21b01b83d8b51588d18a2d20ba4171f11d9cd362",
+      "name": "PP9.jpg",
+      "width": 2480,
+      "height": 1890,
+      "source": "https://freight.cargo.site/t/original/i/cb01e171fa02a8c98b589a6a21b01b83d8b51588d18a2d20ba4171f11d9cd362/PP9.jpg",
+      "localPath": "/images/zines/antmag/paul-barsch-matti-gajek/04-pp9.jpg"
+    },
+    {
+      "index": 5,
+      "id": 239609496,
+      "hash": "7a43433030ceb8bf74d213ce67c677b7c39ea0cbd44149f6de36c44b246ae2fa",
+      "name": "PP1.jpg",
+      "width": 2480,
+      "height": 1890,
+      "source": "https://freight.cargo.site/t/original/i/7a43433030ceb8bf74d213ce67c677b7c39ea0cbd44149f6de36c44b246ae2fa/PP1.jpg",
+      "localPath": "/images/zines/antmag/paul-barsch-matti-gajek/05-pp1.jpg"
+    },
+    {
+      "index": 6,
+      "id": 239609497,
+      "hash": "e7ba3f6eb197bd8d5737af051c3994a394c8dc9bc362a55da337a6c0b9290d6d",
+      "name": "PP2.jpg",
+      "width": 2480,
+      "height": 1890,
+      "source": "https://freight.cargo.site/t/original/i/e7ba3f6eb197bd8d5737af051c3994a394c8dc9bc362a55da337a6c0b9290d6d/PP2.jpg",
+      "localPath": "/images/zines/antmag/paul-barsch-matti-gajek/06-pp2.jpg"
+    },
+    {
+      "index": 7,
+      "id": 239609498,
+      "hash": "ddfde201d19b2abb8192bbcac48d63344177e8504e0e394d27a5d5d488d5b407",
+      "name": "PP3.jpg",
+      "width": 2480,
+      "height": 1890,
+      "source": "https://freight.cargo.site/t/original/i/ddfde201d19b2abb8192bbcac48d63344177e8504e0e394d27a5d5d488d5b407/PP3.jpg",
+      "localPath": "/images/zines/antmag/paul-barsch-matti-gajek/07-pp3.jpg"
+    },
+    {
+      "index": 8,
+      "id": 240363834,
+      "hash": "3739bfce4d811955f9a263a25d55e9673d84a8361d138a74dd8a20c16258b09e",
+      "name": "PP10-copy.jpg",
+      "width": 2480,
+      "height": 1890,
+      "source": "https://freight.cargo.site/t/original/i/3739bfce4d811955f9a263a25d55e9673d84a8361d138a74dd8a20c16258b09e/PP10-copy.jpg",
+      "localPath": "/images/zines/antmag/paul-barsch-matti-gajek/08-pp10-copy.jpg"
+    }
+  ]
+}

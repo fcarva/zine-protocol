@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { QRCodeSVG } from "qrcode.react";
-import { erc20Abi, formatUnits, parseUnits } from "viem";
+import { erc20Abi, formatUnits } from "viem";
 import {
   useAccount,
   useChainId,
@@ -12,6 +13,7 @@ import {
   useWriteContract,
 } from "wagmi";
 import { baseSepolia } from "wagmi/chains";
+import { useCart } from "@/components/cart-provider";
 import { publicEnv } from "@/lib/env";
 import { formatCurrencyBRL } from "@/lib/format";
 import { revnetTerminalAbi } from "@/lib/revnet";
@@ -26,24 +28,85 @@ interface PixCheckoutResponse {
   expiresAt: string;
 }
 
+interface CurrencyQuote {
+  usdToBrl: number;
+  usdToEth: number;
+  source: "fallback" | "live";
+}
+
+const FALLBACK_QUOTE: CurrencyQuote = {
+  usdToBrl: 5.2,
+  usdToEth: 1 / 3000,
+  source: "fallback",
+};
+
+function formatCurrencyUSD(value: number): string {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(value);
+}
+
+function formatEth(value: number): string {
+  return `${value.toLocaleString("en-US", {
+    minimumFractionDigits: value >= 1 ? 3 : 4,
+    maximumFractionDigits: value >= 1 ? 4 : 6,
+  })} ETH`;
+}
+
+function parsePositiveAmount(value: string): number {
+  const normalized = value.replace(",", ".").trim();
+  const parsed = Number(normalized);
+  if (!Number.isFinite(parsed) || parsed <= 0) return 0;
+  return parsed;
+}
+
+type PaymentCurrency = "usd" | "brl" | "eth";
+
+const paymentCurrencyOptions: Array<{
+  id: PaymentCurrency;
+  label: string;
+  symbol: string;
+}> = [
+  { id: "usd", label: "US$", symbol: "$" },
+  { id: "brl", label: "R$", symbol: "R$" },
+  { id: "eth", label: "ETH", symbol: "ETH" },
+];
+
+function convertToUsd(amount: number, currency: PaymentCurrency, quote: CurrencyQuote): number {
+  if (amount <= 0) return 0;
+  if (currency === "usd") return amount;
+  if (currency === "brl") return quote.usdToBrl > 0 ? amount / quote.usdToBrl : 0;
+  return quote.usdToEth > 0 ? amount / quote.usdToEth : 0;
+}
+
+function formatByCurrency(amount: number, currency: PaymentCurrency): string {
+  if (currency === "usd") return formatCurrencyUSD(amount);
+  if (currency === "brl") return formatCurrencyBRL(amount);
+  return formatEth(amount);
+}
+
 export function SupportPanel({ zine }: { zine: Zine }) {
   const [tab, setTab] = useState<"web3" | "pix">("web3");
+  const { addItem, itemCount } = useCart();
 
   return (
-    <aside className="space-y-4 rounded-2xl border border-stone-300 bg-white p-4 shadow-sm">
-      <div className="space-y-1">
-        <p className="text-xs uppercase tracking-[0.16em] text-stone-500">Apoio</p>
-        <h2 className="text-2xl font-semibold text-stone-900">Apoiar este zine</h2>
-        <p className="text-sm text-stone-700">
+    <aside className="editorial-panel stagger-in space-y-3 rounded-xl p-3">
+      <div className="space-y-1.5">
+        <p className="font-mono text-[0.56rem] uppercase tracking-[0.14em] text-base-600">Apoio</p>
+        <h2 className="text-[1.15rem] font-semibold tracking-[-0.02em] text-ink">Apoiar este zine</h2>
+        <p className="text-[0.82rem] leading-snug text-base-700">
           Leitura aberta para todos. O apoio sustenta artistas, devs, curadoria e tesouro da
-          comunidade.
+          comunidade em continuidade com o Laboratorio de Zines do Faisca Lab.
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-2 rounded-xl bg-stone-100 p-1">
+      <div className="grid grid-cols-2 gap-1.5 rounded-lg border border-base-300 bg-base-100 p-1">
         <button
-          className={`rounded-lg px-3 py-2 text-sm transition ${
-            tab === "web3" ? "bg-white text-stone-900 shadow" : "text-stone-600"
+          className={`rounded-md px-3 py-1.5 font-mono text-[0.61rem] uppercase tracking-[0.12em] transition ${
+            tab === "web3" ? "bg-paper text-ink shadow-sm" : "text-base-600"
           }`}
           onClick={() => setTab("web3")}
           type="button"
@@ -51,8 +114,8 @@ export function SupportPanel({ zine }: { zine: Zine }) {
           Carteira
         </button>
         <button
-          className={`rounded-lg px-3 py-2 text-sm transition ${
-            tab === "pix" ? "bg-white text-stone-900 shadow" : "text-stone-600"
+          className={`rounded-md px-3 py-1.5 font-mono text-[0.61rem] uppercase tracking-[0.12em] transition ${
+            tab === "pix" ? "bg-paper text-ink shadow-sm" : "text-base-600"
           }`}
           onClick={() => setTab("pix")}
           type="button"
@@ -61,9 +124,34 @@ export function SupportPanel({ zine }: { zine: Zine }) {
         </button>
       </div>
 
+      <div className="flex items-center gap-2">
+        <button
+          type="button"
+          onClick={() =>
+            addItem({
+              slug: zine.slug,
+              title: zine.title,
+              artistName: zine.artist_name,
+              coverImage: zine.cover_image,
+              revnetProjectId: zine.revnet_project_id,
+              amountBRL: 25,
+            })
+          }
+          className="flex-1 rounded-lg border border-base-300 bg-paper px-3 py-2 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-base-800 transition hover:bg-base-50"
+        >
+          Adicionar ao carrinho
+        </button>
+        <Link
+          href="/checkout"
+          className="rounded-lg border border-base-300 bg-base-50 px-3 py-2 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-base-700 transition hover:bg-base-100"
+        >
+          Checkout ({itemCount})
+        </Link>
+      </div>
+
       {tab === "web3" ? <Web3Support zine={zine} /> : <PixSupport zine={zine} />}
 
-      <div className="rounded-xl border border-dashed border-stone-300 p-3 text-xs text-stone-600">
+      <div className="rounded-lg border border-dashed border-base-300 bg-base-50/60 p-2.5 text-[0.68rem] leading-snug text-base-600">
         Publicacao por convite. Quer publicar seu zine? Entre em contato com a curadoria.
       </div>
     </aside>
@@ -72,9 +160,13 @@ export function SupportPanel({ zine }: { zine: Zine }) {
 
 function Web3Support({ zine }: { zine: Zine }) {
   const [amount, setAmount] = useState("10");
+  const [paymentCurrency, setPaymentCurrency] = useState<PaymentCurrency>("usd");
   const [status, setStatus] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [txHash, setTxHash] = useState<string>("");
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [quote, setQuote] = useState<CurrencyQuote>(FALLBACK_QUOTE);
+  const [isLoadingQuote, setIsLoadingQuote] = useState(false);
 
   const { address, isConnected } = useAccount();
   const chainId = useChainId();
@@ -84,26 +176,71 @@ function Web3Support({ zine }: { zine: Zine }) {
   const publicClient = usePublicClient();
 
   const revnetLink = `${publicEnv.revnetAppUrl}/base:${zine.revnet_project_id}`;
+  const enteredAmount = useMemo(() => parsePositiveAmount(amount), [amount]);
+  const amountUsd = useMemo(
+    () => convertToUsd(enteredAmount, paymentCurrency, quote),
+    [enteredAmount, paymentCurrency, quote],
+  );
+  const amountBrl = amountUsd * quote.usdToBrl;
+  const amountEth = amountUsd * quote.usdToEth;
 
   const amountUsdc6 = useMemo(() => {
-    try {
-      return parseUnits(amount || "0", 6);
-    } catch {
-      return BigInt(0);
+    if (amountUsd <= 0) return BigInt(0);
+    return BigInt(Math.round(amountUsd * 1_000_000));
+  }, [amountUsd]);
+
+  useEffect(() => {
+    let mounted = true;
+    const controller = new AbortController();
+
+    async function loadQuote() {
+      setIsLoadingQuote(true);
+      try {
+        const response = await fetch("https://api.coinbase.com/v2/exchange-rates?currency=USD", {
+          cache: "no-store",
+          signal: controller.signal,
+        });
+        if (!response.ok) return;
+        const payload = (await response.json()) as {
+          data?: { rates?: Record<string, string> };
+        };
+        const brlRate = Number(payload.data?.rates?.BRL);
+        const ethRate = Number(payload.data?.rates?.ETH);
+        if (!Number.isFinite(brlRate) || !Number.isFinite(ethRate)) return;
+        if (brlRate <= 0 || ethRate <= 0) return;
+        if (!mounted) return;
+        setQuote({
+          usdToBrl: brlRate,
+          usdToEth: ethRate,
+          source: "live",
+        });
+      } catch {
+        // Mantem fallback para evitar bloqueio no fluxo de apoio.
+      } finally {
+        if (mounted) setIsLoadingQuote(false);
+      }
     }
-  }, [amount]);
+
+    loadQuote();
+    return () => {
+      mounted = false;
+      controller.abort();
+    };
+  }, []);
 
   const canTransact =
     isConnected &&
     !!publicEnv.usdcAddress &&
     !!publicEnv.revnetTerminalAddress &&
     amountUsdc6 > BigInt(0) &&
-    chainId === baseSepolia.id;
+    chainId === baseSepolia.id &&
+    !isProcessing;
 
   async function handleSupportWeb3() {
-    if (!address || !publicClient) return;
+    if (!address || !publicClient || isProcessing) return;
 
     setError("");
+    setIsProcessing(true);
     setStatus("Aprovando USDC...");
 
     try {
@@ -154,23 +291,25 @@ function Web3Support({ zine }: { zine: Zine }) {
       const message = rawError instanceof Error ? rawError.message : "Erro ao apoiar via carteira.";
       setError(message);
       setStatus("");
+    } finally {
+      setIsProcessing(false);
     }
   }
 
   return (
     <div className="space-y-3">
-      <p className="text-xs text-stone-600">
+      <p className="font-mono text-[0.66rem] uppercase tracking-[0.15em] text-base-600">
         Projeto Revnet: <span className="font-semibold">#{zine.revnet_project_id}</span>
       </p>
 
       {!isConnected ? (
         <div className="space-y-2">
-          <p className="text-sm text-stone-700">Conecte uma carteira para apoiar onchain.</p>
+          <p className="text-sm text-base-700">Conecte uma carteira para apoiar onchain.</p>
           <div className="flex flex-wrap gap-2">
             {connectors.map((connector) => (
               <button
                 key={connector.uid}
-                className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-800"
+                className="rounded-lg border border-base-300 bg-paper px-3 py-2 font-mono text-[0.67rem] uppercase tracking-[0.14em] text-base-800"
                 disabled={isConnecting}
                 onClick={() => connect({ connector })}
                 type="button"
@@ -179,26 +318,81 @@ function Web3Support({ zine }: { zine: Zine }) {
               </button>
             ))}
           </div>
-          <p className="text-xs text-stone-500">
-            Para por email pode ser conectado aqui via provedor compatível em fase seguinte.
+          <p className="text-xs text-base-500">
+            Para por email pode ser conectado aqui via provedor compativel em fase seguinte.
           </p>
         </div>
       ) : (
         <>
-          <div className="rounded-lg border border-stone-300 bg-stone-50 px-3 py-2 text-sm text-stone-700">
+          <div className="rounded-lg border border-base-300 bg-base-50 px-3 py-2 text-xs text-base-700">
             Carteira conectada: {address}
           </div>
 
-          <label className="block text-sm text-stone-700" htmlFor="amount-usdc">
-            Valor de apoio (USDC)
+          <label className="block font-mono text-[0.66rem] uppercase tracking-[0.16em] text-base-700" htmlFor="amount-usdc">
+            Escolha a moeda
           </label>
-          <input
-            id="amount-usdc"
-            inputMode="decimal"
-            value={amount}
-            onChange={(event) => setAmount(event.target.value)}
-            className="w-full rounded-lg border border-stone-300 px-3 py-2 text-stone-900 focus:border-stone-500 focus:outline-none"
-          />
+          <div className="grid grid-cols-3 gap-1 rounded-lg border border-base-300 bg-base-100 p-1">
+            {paymentCurrencyOptions.map((option) => (
+              <button
+                key={option.id}
+                type="button"
+                onClick={() => setPaymentCurrency(option.id)}
+                className={`rounded-md px-2 py-1.5 font-mono text-[0.61rem] uppercase tracking-[0.12em] transition ${
+                  paymentCurrency === option.id
+                    ? "bg-paper text-ink shadow-sm"
+                    : "text-base-600 hover:bg-base-50"
+                }`}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+
+          <label className="block font-mono text-[0.66rem] uppercase tracking-[0.16em] text-base-700" htmlFor="amount-usdc">
+            Valor de apoio ({paymentCurrency.toUpperCase()})
+          </label>
+          <div className="flex items-center gap-2 rounded-lg border border-base-300 bg-paper px-3 py-2">
+            <span className="font-mono text-[0.66rem] uppercase tracking-[0.14em] text-base-600">
+              {paymentCurrencyOptions.find((option) => option.id === paymentCurrency)?.symbol}
+            </span>
+            <input
+              id="amount-usdc"
+              inputMode="decimal"
+              value={amount}
+              onChange={(event) => setAmount(event.target.value)}
+              className="w-full border-0 bg-transparent p-0 text-[0.98rem] font-semibold text-ink focus:outline-none"
+            />
+          </div>
+
+          <div className="space-y-1 rounded-lg border border-base-300 bg-base-50 px-2.5 py-2">
+            <div className="grid grid-cols-3 gap-2">
+              <div className="space-y-0.5">
+                <p className="font-mono text-[0.5rem] uppercase tracking-[0.12em] text-base-500">US$</p>
+                <p className="text-[0.78rem] font-semibold text-base-900">
+                  {amountUsd > 0 ? formatCurrencyUSD(amountUsd) : "-"}
+                </p>
+              </div>
+              <div className="space-y-0.5">
+                <p className="font-mono text-[0.5rem] uppercase tracking-[0.12em] text-base-500">R$</p>
+                <p className="text-[0.78rem] font-semibold text-base-900">
+                  {amountUsd > 0 ? formatCurrencyBRL(amountBrl) : "-"}
+                </p>
+              </div>
+              <div className="space-y-0.5">
+                <p className="font-mono text-[0.5rem] uppercase tracking-[0.12em] text-base-500">ETH</p>
+                <p className="text-[0.78rem] font-semibold text-base-900">
+                  {amountUsd > 0 ? formatEth(amountEth) : "-"}
+                </p>
+              </div>
+            </div>
+            <p className="font-mono text-[0.5rem] uppercase tracking-[0.13em] text-base-500">
+              {isLoadingQuote
+                ? "Atualizando cotacao..."
+                : quote.source === "live"
+                  ? "Cotacao publica em tempo real"
+                  : "Cotacao estimada (fallback)"}
+            </p>
+          </div>
 
           {chainId !== baseSepolia.id && (
             <p className="text-sm text-red-700">Troque para Base Sepolia para continuar.</p>
@@ -209,14 +403,21 @@ function Web3Support({ zine }: { zine: Zine }) {
               type="button"
               onClick={handleSupportWeb3}
               disabled={!canTransact}
-              className="flex-1 rounded-lg bg-stone-900 px-4 py-2 text-sm text-white disabled:cursor-not-allowed disabled:bg-stone-400"
+              className="flex-1 rounded-lg border border-base-900 bg-base-900 px-3 py-2.5 text-left transition hover:bg-base-950 disabled:cursor-not-allowed disabled:border-base-400 disabled:bg-base-400"
             >
-              Apoiar este zine
+              <span className="block font-mono text-[0.58rem] uppercase tracking-[0.14em] text-base-100">
+                {isProcessing ? "Processando apoio..." : "Apoiar este zine"}
+              </span>
+              <span className="mt-0.5 block text-[0.72rem] font-semibold text-paper">
+                {amountUsd > 0
+                  ? `${formatByCurrency(enteredAmount, paymentCurrency)} | ${formatCurrencyUSD(amountUsd)} | ${formatCurrencyBRL(amountBrl)} | ${formatEth(amountEth)}`
+                  : "Defina um valor para apoiar"}
+              </span>
             </button>
             <button
               type="button"
               onClick={() => disconnect()}
-              className="rounded-lg border border-stone-300 px-4 py-2 text-sm text-stone-700"
+              className="rounded-lg border border-base-300 bg-paper px-4 py-2 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-base-700"
             >
               Sair
             </button>
@@ -225,7 +426,7 @@ function Web3Support({ zine }: { zine: Zine }) {
       )}
 
       <a
-        className="inline-flex text-xs font-medium text-sky-700 hover:text-sky-800"
+        className="inline-flex font-mono text-[0.66rem] uppercase tracking-[0.14em] text-blue-700 hover:text-blue-800"
         href={revnetLink}
         rel="noreferrer"
         target="_blank"
@@ -233,10 +434,10 @@ function Web3Support({ zine }: { zine: Zine }) {
         Abrir projeto no Revnet
       </a>
 
-      {status && <p className="text-sm text-emerald-700">{status}</p>}
+      {status && <p className="text-sm text-green-700">{status}</p>}
       {txHash && (
-        <p className="break-all text-xs text-stone-600">
-          Tx: {txHash} ({formatUnits(amountUsdc6, 6)} USDC)
+        <p className="break-all text-xs text-base-600">
+          Tx: {txHash} ({formatUnits(amountUsdc6, 6)} USDC enviado onchain)
         </p>
       )}
       {error && <p className="text-sm text-red-700">{error}</p>}
@@ -250,6 +451,7 @@ function PixSupport({ zine }: { zine: Zine }) {
   const [charge, setCharge] = useState<PixCheckoutResponse | null>(null);
   const [status, setStatus] = useState<PixStatus>("pending");
   const [error, setError] = useState("");
+  const [isCreatingCharge, setIsCreatingCharge] = useState(false);
 
   useEffect(() => {
     if (!charge || status !== "pending") return;
@@ -277,29 +479,34 @@ function PixSupport({ zine }: { zine: Zine }) {
       return;
     }
 
-    const response = await fetch("/api/pix/checkout", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        zineSlug: zine.slug,
-        amountBRL: amountNumber,
-        payerEmail: email,
-      }),
-    });
+    setIsCreatingCharge(true);
+    try {
+      const response = await fetch("/api/pix/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          zineSlug: zine.slug,
+          amountBRL: amountNumber,
+          payerEmail: email,
+        }),
+      });
 
-    if (!response.ok) {
-      const payload = (await response.json().catch(() => ({}))) as { error?: string };
-      setError(payload.error || "Falha ao gerar cobranca Pix.");
-      return;
+      if (!response.ok) {
+        const payload = (await response.json().catch(() => ({}))) as { error?: string };
+        setError(payload.error || "Falha ao gerar cobranca Pix.");
+        return;
+      }
+
+      const payload = (await response.json()) as PixCheckoutResponse;
+      setCharge(payload);
+    } finally {
+      setIsCreatingCharge(false);
     }
-
-    const payload = (await response.json()) as PixCheckoutResponse;
-    setCharge(payload);
   }
 
   return (
     <div className="space-y-3">
-      <label className="block text-sm text-stone-700" htmlFor="pix-email">
+      <label className="block font-mono text-[0.66rem] uppercase tracking-[0.16em] text-base-700" htmlFor="pix-email">
         Email para comprovante
       </label>
       <input
@@ -307,10 +514,10 @@ function PixSupport({ zine }: { zine: Zine }) {
         type="email"
         value={email}
         onChange={(event) => setEmail(event.target.value)}
-        className="w-full rounded-lg border border-stone-300 px-3 py-2 text-stone-900 focus:border-stone-500 focus:outline-none"
+        className="w-full rounded-lg border border-base-300 bg-paper px-3 py-2 text-ink focus:border-base-500 focus:outline-none"
       />
 
-      <label className="block text-sm text-stone-700" htmlFor="pix-amount">
+      <label className="block font-mono text-[0.66rem] uppercase tracking-[0.16em] text-base-700" htmlFor="pix-amount">
         Valor em BRL
       </label>
       <input
@@ -318,30 +525,35 @@ function PixSupport({ zine }: { zine: Zine }) {
         inputMode="decimal"
         value={amount}
         onChange={(event) => setAmount(event.target.value)}
-        className="w-full rounded-lg border border-stone-300 px-3 py-2 text-stone-900 focus:border-stone-500 focus:outline-none"
+        className="w-full rounded-lg border border-base-300 bg-paper px-3 py-2 text-ink focus:border-base-500 focus:outline-none"
       />
 
       <button
         type="button"
         onClick={handleCreateCharge}
-        className="w-full rounded-lg bg-stone-900 px-4 py-2 text-sm text-white"
+        disabled={isCreatingCharge}
+        className="w-full rounded-lg border border-orange-700 bg-orange-600 px-4 py-2 font-mono text-[0.66rem] uppercase tracking-[0.14em] text-paper shadow-[0_1px_0_rgba(0,0,0,0.25)] transition hover:bg-orange-700 disabled:cursor-not-allowed disabled:border-base-400 disabled:bg-base-400"
       >
-        Gerar Pix sandbox ({formatCurrencyBRL(Number(amount) || 0)})
+        {isCreatingCharge
+          ? "Gerando Pix..."
+          : `Gerar Pix sandbox (${formatCurrencyBRL(Number(amount) || 0)})`}
       </button>
 
       {charge && (
-        <div className="space-y-2 rounded-lg border border-stone-300 bg-stone-50 p-3">
-          <p className="text-sm text-stone-700">Escaneie o QR ou copie o codigo Pix:</p>
+        <div className="space-y-2 rounded-lg border border-base-300 bg-base-50 p-3">
+          <p className="text-sm text-base-700">Escaneie o QR ou copie o codigo Pix:</p>
 
-          <div className="mx-auto w-fit rounded-lg bg-white p-2">
+          <div className="mx-auto w-fit rounded-lg bg-paper p-2">
             <QRCodeSVG value={charge.pixQrCode} size={172} includeMargin />
           </div>
 
-          <p className="break-all rounded-md border border-stone-300 bg-white p-2 text-xs text-stone-700">
+          <p className="break-all rounded-md border border-base-300 bg-paper p-2 text-xs text-base-700">
             {charge.pixCopyPaste}
           </p>
 
-          <p className="text-xs text-stone-600">ChargeId: {charge.chargeId}</p>
+          <p className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-base-600">
+            ChargeId: {charge.chargeId}
+          </p>
 
           <p className="text-sm">
             Status: <span className="font-semibold">{status}</span>

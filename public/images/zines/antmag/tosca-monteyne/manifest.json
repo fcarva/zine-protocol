@@ -1,0 +1,67 @@
+{
+  "sourcePage": "https://antmagjpg.com/Tosca-Monteyne",
+  "title": "Tosca Monteyne",
+  "imageCount": 6,
+  "images": [
+    {
+      "index": 1,
+      "id": 193986168,
+      "hash": "fcdc02c8c8aa8ac066b4e264b2cdcb15e1ec67066f8bdf844f39baa84d9567a6",
+      "name": "03.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/fcdc02c8c8aa8ac066b4e264b2cdcb15e1ec67066f8bdf844f39baa84d9567a6/03.jpg",
+      "localPath": "/images/zines/antmag/tosca-monteyne/01-03.jpg"
+    },
+    {
+      "index": 2,
+      "id": 193986169,
+      "hash": "b5b54c9ffc4d0c1fbdc99b84f12333e4cc60021815dbef3197fc326135a5ff55",
+      "name": "04.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/b5b54c9ffc4d0c1fbdc99b84f12333e4cc60021815dbef3197fc326135a5ff55/04.jpg",
+      "localPath": "/images/zines/antmag/tosca-monteyne/02-04.jpg"
+    },
+    {
+      "index": 3,
+      "id": 193986171,
+      "hash": "25d47fe04f7ef1fc64ab4f27ee5ca6c8d74926324f8db2661812924dd7ff6fe4",
+      "name": "05.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/25d47fe04f7ef1fc64ab4f27ee5ca6c8d74926324f8db2661812924dd7ff6fe4/05.jpg",
+      "localPath": "/images/zines/antmag/tosca-monteyne/03-05.jpg"
+    },
+    {
+      "index": 4,
+      "id": 193986172,
+      "hash": "ebb216e87f98d9229f9bcd8cd39e2856a9f34c980f604caae71a91d307e4856b",
+      "name": "O1.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/ebb216e87f98d9229f9bcd8cd39e2856a9f34c980f604caae71a91d307e4856b/O1.jpg",
+      "localPath": "/images/zines/antmag/tosca-monteyne/04-o1.jpg"
+    },
+    {
+      "index": 5,
+      "id": 193986174,
+      "hash": "ba926a90987f135320b73be49f426f504f271bfdc738ba96533c0bc1b410f597",
+      "name": "O2.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/ba926a90987f135320b73be49f426f504f271bfdc738ba96533c0bc1b410f597/O2.jpg",
+      "localPath": "/images/zines/antmag/tosca-monteyne/05-o2.jpg"
+    },
+    {
+      "index": 6,
+      "id": 193986368,
+      "hash": "9d1e7e0812db798a55e2e781f3c2031f8387f96eaa1664ab0349ee7e00bb036d",
+      "name": "O0.jpg",
+      "width": 3508,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/9d1e7e0812db798a55e2e781f3c2031f8387f96eaa1664ab0349ee7e00bb036d/O0.jpg",
+      "localPath": "/images/zines/antmag/tosca-monteyne/06-o0.jpg"
+    }
+  ]
+}

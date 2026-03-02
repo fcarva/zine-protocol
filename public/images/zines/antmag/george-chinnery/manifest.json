@@ -1,0 +1,77 @@
+{
+  "sourcePage": "https://antmagjpg.com/George-Chinnery",
+  "title": "George Chinnery",
+  "imageCount": 7,
+  "images": [
+    {
+      "index": 1,
+      "id": 180956814,
+      "hash": "29b893d3735883a01873aee10a58dad78f8d31875aff1a138928aa9461fa616a",
+      "name": "GG1.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/29b893d3735883a01873aee10a58dad78f8d31875aff1a138928aa9461fa616a/GG1.jpg",
+      "localPath": "/images/zines/antmag/george-chinnery/01-gg1.jpg"
+    },
+    {
+      "index": 2,
+      "id": 180956815,
+      "hash": "1a9eade19570faee59feeb0517aa2991ec646bebd1ce4c5c618f830a67a592e0",
+      "name": "GG2.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/1a9eade19570faee59feeb0517aa2991ec646bebd1ce4c5c618f830a67a592e0/GG2.jpg",
+      "localPath": "/images/zines/antmag/george-chinnery/02-gg2.jpg"
+    },
+    {
+      "index": 3,
+      "id": 180956816,
+      "hash": "95398137fcaeed25f832098b546ad19231cb31b0a72bc3c24d87d2e7a21c7db6",
+      "name": "GG3.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/95398137fcaeed25f832098b546ad19231cb31b0a72bc3c24d87d2e7a21c7db6/GG3.jpg",
+      "localPath": "/images/zines/antmag/george-chinnery/03-gg3.jpg"
+    },
+    {
+      "index": 4,
+      "id": 180956817,
+      "hash": "d3fcebc5d6315204b64aebbd6779b555008c4cdee0f0ced616cd708c73fa3987",
+      "name": "GG4.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/d3fcebc5d6315204b64aebbd6779b555008c4cdee0f0ced616cd708c73fa3987/GG4.jpg",
+      "localPath": "/images/zines/antmag/george-chinnery/04-gg4.jpg"
+    },
+    {
+      "index": 5,
+      "id": 180956819,
+      "hash": "c62a5dd44b2063acb59032b31d90dab93f5e762a23a91467f17c650660ffe7ae",
+      "name": "GG5.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/c62a5dd44b2063acb59032b31d90dab93f5e762a23a91467f17c650660ffe7ae/GG5.jpg",
+      "localPath": "/images/zines/antmag/george-chinnery/05-gg5.jpg"
+    },
+    {
+      "index": 6,
+      "id": 180956820,
+      "hash": "d5acffd687807c577a764ac78dfc1aaf2083d4fa7d01ffd84dff3b57a1d8e8a9",
+      "name": "GG7.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/d5acffd687807c577a764ac78dfc1aaf2083d4fa7d01ffd84dff3b57a1d8e8a9/GG7.jpg",
+      "localPath": "/images/zines/antmag/george-chinnery/06-gg7.jpg"
+    },
+    {
+      "index": 7,
+      "id": 180956821,
+      "hash": "8181ed36d0c19ee539401c1c2dab4dcf0b01f9d1231eb0721f810fe7b907edd6",
+      "name": "GG8.jpg",
+      "width": 1754,
+      "height": 1240,
+      "source": "https://freight.cargo.site/t/original/i/8181ed36d0c19ee539401c1c2dab4dcf0b01f9d1231eb0721f810fe7b907edd6/GG8.jpg",
+      "localPath": "/images/zines/antmag/george-chinnery/07-gg8.jpg"
+    }
+  ]
+}

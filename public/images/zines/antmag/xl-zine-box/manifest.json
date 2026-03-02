@@ -1,0 +1,27 @@
+{
+  "sourcePage": "https://antmagjpg.com/XL-Zine-box",
+  "title": "XL Zine box",
+  "imageCount": 2,
+  "images": [
+    {
+      "index": 1,
+      "id": 241823410,
+      "hash": "fbb5048c230e2c0286906c8d6ce734fe23629d52f24253db8f3275b8133beb72",
+      "name": "b1.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/fbb5048c230e2c0286906c8d6ce734fe23629d52f24253db8f3275b8133beb72/b1.jpg",
+      "localPath": "/images/zines/antmag/xl-zine-box/01-b1.jpg"
+    },
+    {
+      "index": 2,
+      "id": 241823411,
+      "hash": "87e5d7a5db1f4249331028c67b43a5c3624135ec95719718b3824d01e704c72e",
+      "name": "B2.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/87e5d7a5db1f4249331028c67b43a5c3624135ec95719718b3824d01e704c72e/B2.jpg",
+      "localPath": "/images/zines/antmag/xl-zine-box/02-b2.jpg"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "sourcePage": "https://antmagjpg.com/Fidel-Storme",
+  "title": "Fidel Storme",
+  "imageCount": 5,
+  "images": [
+    {
+      "index": 1,
+      "id": 208595291,
+      "hash": "70ec8171d4210813e5fc343a8fd41ae4067a1dc29b9c0d8122169de11362d561",
+      "name": "fidelA4.jpg",
+      "width": 1500,
+      "height": 1080,
+      "source": "https://freight.cargo.site/t/original/i/70ec8171d4210813e5fc343a8fd41ae4067a1dc29b9c0d8122169de11362d561/fidelA4.jpg",
+      "localPath": "/images/zines/antmag/fidel-storme/01-fidela4.jpg"
+    },
+    {
+      "index": 2,
+      "id": 208595316,
+      "hash": "b5a9948114dc98fa964499a24903460399a772b95f1b7747682440197a9c0767",
+      "name": "fidel7.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/b5a9948114dc98fa964499a24903460399a772b95f1b7747682440197a9c0767/fidel7.jpg",
+      "localPath": "/images/zines/antmag/fidel-storme/02-fidel7.jpg"
+    },
+    {
+      "index": 3,
+      "id": 208595321,
+      "hash": "c2092656b78f4bb8e8664712b741afa3c1d0a942c0060b62dae11ed569a32237",
+      "name": "fidel8.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/c2092656b78f4bb8e8664712b741afa3c1d0a942c0060b62dae11ed569a32237/fidel8.jpg",
+      "localPath": "/images/zines/antmag/fidel-storme/03-fidel8.jpg"
+    },
+    {
+      "index": 4,
+      "id": 208595324,
+      "hash": "7c04dc94abdb92cb5987b5bda17903a7742f301eb20e87a7894e3d0785ccdd35",
+      "name": "fidel3.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/7c04dc94abdb92cb5987b5bda17903a7742f301eb20e87a7894e3d0785ccdd35/fidel3.jpg",
+      "localPath": "/images/zines/antmag/fidel-storme/04-fidel3.jpg"
+    },
+    {
+      "index": 5,
+      "id": 208595365,
+      "hash": "69b6aa89f02ddfc6bd371a51650041eca5bfb47ba012d2176cd57b638347c882",
+      "name": "fidel6.jpg",
+      "width": 2480,
+      "height": 2480,
+      "source": "https://freight.cargo.site/t/original/i/69b6aa89f02ddfc6bd371a51650041eca5bfb47ba012d2176cd57b638347c882/fidel6.jpg",
+      "localPath": "/images/zines/antmag/fidel-storme/05-fidel6.jpg"
+    }
+  ]
+}
