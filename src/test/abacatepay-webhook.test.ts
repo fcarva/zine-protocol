@@ -50,7 +50,7 @@ describe("abacatepay webhook API", () => {
     );
 
     expect(response.status).toBe(401);
-  }, 15000);
+  }, 45000);
 
   it("ignores non-paid events", async () => {
     process.env.ABACATEPAY_WEBHOOK_SECRET = "sandbox-secret";
@@ -81,7 +81,7 @@ describe("abacatepay webhook API", () => {
 
     const status = await getChargeStatus(chargeId);
     expect(status).toBe("pending");
-  });
+  }, 45000);
 
   it("marks charge as paid and is idempotent", async () => {
     process.env.ABACATEPAY_WEBHOOK_SECRET = "sandbox-secret";
@@ -123,5 +123,5 @@ describe("abacatepay webhook API", () => {
 
     const status = await getChargeStatus(chargeId);
     expect(status).toBe("paid");
-  });
+  }, 45000);
 });

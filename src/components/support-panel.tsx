@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Coffee } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
-import { erc20Abi, formatUnits } from "viem";
+import { type Address, erc20Abi, formatUnits } from "viem";
 import {
   useAccount,
   useChainId,
@@ -15,9 +15,9 @@ import {
 } from "wagmi";
 import { baseSepolia } from "wagmi/chains";
 import { useCart } from "@/components/cart-provider";
-import { publicEnv } from "@/lib/env";
+import { getWeb3ConfigErrorMessage, publicEnv } from "@/lib/env";
 import { formatCurrencyBRL } from "@/lib/format";
-import { revnetTerminalAbi } from "@/lib/revnet";
+import { resolveRevnetTerminalAddress, revnetTerminalAbi } from "@/lib/revnet";
 import { type Zine } from "@/types/zine";
 
 type PixStatus = "pending" | "paid" | "expired" | "failed";
@@ -76,6 +76,12 @@ const paymentCurrencyOptions: Array<{
   { id: "eth", label: "ETH", symbol: "ETH" },
 ];
 
+const quickAmountByCurrency: Record<PaymentCurrency, string[]> = {
+  usd: ["5", "10", "25"],
+  brl: ["20", "50", "100"],
+  eth: ["0.003", "0.005", "0.01"],
+};
+
 function convertToUsd(amount: number, currency: PaymentCurrency, quote: CurrencyQuote): number {
   if (amount <= 0) return 0;
   if (currency === "usd") return amount;
@@ -90,7 +96,11 @@ function formatByCurrency(amount: number, currency: PaymentCurrency): string {
 }
 
 const primaryPaymentButtonClass =
-  "relative overflow-hidden rounded-xl border border-yellow-600 bg-yellow-150 px-4 py-2.5 text-left text-ink shadow-[0_2px_0_#8E6B01] transition duration-150 hover:-translate-y-[1px] hover:bg-yellow-200 hover:shadow-[0_3px_0_#8E6B01] active:translate-y-0 active:shadow-[0_1px_0_#8E6B01] disabled:cursor-not-allowed disabled:translate-y-0 disabled:border-base-400 disabled:bg-base-200 disabled:shadow-none disabled:text-base-600";
+  "ui-btn ui-btn-primary relative overflow-hidden !rounded-xl px-4 py-2.5 text-left text-ink";
+
+function tabButtonClass(active: boolean): string {
+  return active ? "ui-tab is-active" : "ui-tab";
+}
 
 export function SupportPanel({ zine }: { zine: Zine }) {
   const [tab, setTab] = useState<"web3" | "pix">("web3");
@@ -109,18 +119,14 @@ export function SupportPanel({ zine }: { zine: Zine }) {
 
       <div className="grid grid-cols-2 gap-1.5 rounded-lg border border-base-300 bg-base-100 p-1">
         <button
-          className={`rounded-md px-3 py-1.5 font-mono text-[0.61rem] uppercase tracking-[0.12em] transition ${
-            tab === "web3" ? "bg-paper text-ink shadow-sm" : "text-base-600"
-          }`}
+          className={tabButtonClass(tab === "web3")}
           onClick={() => setTab("web3")}
           type="button"
         >
           Carteira
         </button>
         <button
-          className={`rounded-md px-3 py-1.5 font-mono text-[0.61rem] uppercase tracking-[0.12em] transition ${
-            tab === "pix" ? "bg-paper text-ink shadow-sm" : "text-base-600"
-          }`}
+          className={tabButtonClass(tab === "pix")}
           onClick={() => setTab("pix")}
           type="button"
         >
@@ -141,13 +147,13 @@ export function SupportPanel({ zine }: { zine: Zine }) {
               amountBRL: 25,
             })
           }
-          className="flex-1 rounded-lg border border-base-300 bg-paper px-3 py-2 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-base-800 transition hover:bg-base-50"
+          className="ui-btn flex-1"
         >
           Adicionar ao carrinho
         </button>
         <Link
           href="/checkout"
-          className="rounded-lg border border-base-300 bg-base-50 px-3 py-2 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-base-700 transition hover:bg-base-100"
+          className="ui-btn"
         >
           Apoiar ({itemCount})
         </Link>
@@ -178,6 +184,7 @@ function Web3Support({ zine }: { zine: Zine }) {
   const { disconnect } = useDisconnect();
   const { writeContractAsync } = useWriteContract();
   const publicClient = usePublicClient();
+  const web3ConfigError = getWeb3ConfigErrorMessage();
 
   const revnetLink = `${publicEnv.revnetAppUrl}/base:${zine.revnet_project_id}`;
   const enteredAmount = useMemo(() => parsePositiveAmount(amount), [amount]);
@@ -187,6 +194,7 @@ function Web3Support({ zine }: { zine: Zine }) {
   );
   const amountBrl = amountUsd * quote.usdToBrl;
   const amountEth = amountUsd * quote.usdToEth;
+  const quickAmounts = quickAmountByCurrency[paymentCurrency];
 
   const amountUsdc6 = useMemo(() => {
     if (amountUsd <= 0) return BigInt(0);
@@ -234,25 +242,39 @@ function Web3Support({ zine }: { zine: Zine }) {
 
   const canTransact =
     isConnected &&
-    !!publicEnv.usdcAddress &&
-    !!publicEnv.revnetTerminalAddress &&
+    !web3ConfigError &&
     amountUsdc6 > BigInt(0) &&
     chainId === baseSepolia.id &&
     !isProcessing;
 
   async function handleSupportWeb3() {
     if (!address || !publicClient || isProcessing) return;
+    if (web3ConfigError) {
+      setError(web3ConfigError);
+      return;
+    }
 
     setError("");
     setIsProcessing(true);
-    setStatus("Aprovando USDC...");
 
     try {
+      const resolvedTerminalAddress = await resolveRevnetTerminalAddress({
+        publicClient,
+        projectId: zine.revnet_project_id,
+        tokenAddress: publicEnv.usdcAddress as Address,
+        fallbackTerminalAddress: publicEnv.revnetTerminalAddress as Address,
+      });
+
+      if (!resolvedTerminalAddress) {
+        throw new Error("Projeto Revnet sem terminal ativo para USDC em Base Sepolia.");
+      }
+
+      setStatus("Aprovando USDC...");
       const approveHash = await writeContractAsync({
         address: publicEnv.usdcAddress as `0x${string}`,
         abi: erc20Abi,
         functionName: "approve",
-        args: [publicEnv.revnetTerminalAddress as `0x${string}`, amountUsdc6],
+        args: [resolvedTerminalAddress, amountUsdc6],
         chainId: baseSepolia.id,
       });
 
@@ -260,7 +282,7 @@ function Web3Support({ zine }: { zine: Zine }) {
 
       setStatus("Enviando apoio para Revnet...");
       const payHash = await writeContractAsync({
-        address: publicEnv.revnetTerminalAddress as `0x${string}`,
+        address: resolvedTerminalAddress,
         abi: revnetTerminalAbi,
         functionName: "pay",
         args: [
@@ -309,11 +331,16 @@ function Web3Support({ zine }: { zine: Zine }) {
       {!isConnected ? (
         <div className="space-y-2">
           <p className="text-sm text-base-700">Conecte uma carteira para apoiar onchain.</p>
+          {web3ConfigError && (
+            <p className="rounded-lg border border-red-300 bg-red-50 px-2 py-1 text-xs text-red-700">
+              {web3ConfigError}
+            </p>
+          )}
           <div className="flex flex-wrap gap-2">
             {connectors.map((connector) => (
               <button
                 key={connector.uid}
-                className="rounded-lg border border-base-300 bg-paper px-3 py-2 font-mono text-[0.67rem] uppercase tracking-[0.14em] text-base-800"
+                className="ui-btn"
                 disabled={isConnecting}
                 onClick={() => connect({ connector })}
                 type="button"
@@ -328,6 +355,11 @@ function Web3Support({ zine }: { zine: Zine }) {
         </div>
       ) : (
         <>
+          {web3ConfigError && (
+            <p className="rounded-lg border border-red-300 bg-red-50 px-2 py-1 text-xs text-red-700">
+              {web3ConfigError}
+            </p>
+          )}
           <div className="rounded-lg border border-base-300 bg-base-50 px-3 py-2 text-xs text-base-700">
             Carteira conectada: {address}
           </div>
@@ -341,11 +373,7 @@ function Web3Support({ zine }: { zine: Zine }) {
                 key={option.id}
                 type="button"
                 onClick={() => setPaymentCurrency(option.id)}
-                className={`rounded-md px-2 py-1.5 font-mono text-[0.61rem] uppercase tracking-[0.12em] transition ${
-                  paymentCurrency === option.id
-                    ? "bg-paper text-ink shadow-sm"
-                    : "text-base-600 hover:bg-base-50"
-                }`}
+                className={tabButtonClass(paymentCurrency === option.id)}
               >
                 {option.label}
               </button>
@@ -364,8 +392,21 @@ function Web3Support({ zine }: { zine: Zine }) {
               inputMode="decimal"
               value={amount}
               onChange={(event) => setAmount(event.target.value)}
-              className="w-full border-0 bg-transparent p-0 text-[0.98rem] font-semibold text-ink focus:outline-none"
+              className="ui-input w-full border-0 bg-transparent p-0 text-[0.98rem] font-semibold text-ink"
             />
+          </div>
+
+          <div className="flex flex-wrap gap-1">
+            {quickAmounts.map((value) => (
+              <button
+                key={value}
+                type="button"
+                onClick={() => setAmount(value)}
+                className={`ui-pill ${amount.trim() === value ? "is-active" : ""}`}
+              >
+                {formatByCurrency(Number(value), paymentCurrency)}
+              </button>
+            ))}
           </div>
 
           <div className="space-y-1 rounded-lg border border-base-300 bg-base-50 px-2.5 py-2">
@@ -425,7 +466,7 @@ function Web3Support({ zine }: { zine: Zine }) {
             <button
               type="button"
               onClick={() => disconnect()}
-              className="rounded-lg border border-base-300 bg-paper px-4 py-2 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-base-700"
+              className="ui-btn"
             >
               Sair
             </button>
@@ -434,7 +475,7 @@ function Web3Support({ zine }: { zine: Zine }) {
       )}
 
       <a
-        className="inline-flex font-mono text-[0.66rem] uppercase tracking-[0.14em] text-blue-700 hover:text-blue-800"
+        className="ui-link !text-blue-700 hover:!text-blue-800"
         href={revnetLink}
         rel="noreferrer"
         target="_blank"
@@ -460,6 +501,7 @@ function PixSupport({ zine }: { zine: Zine }) {
   const [status, setStatus] = useState<PixStatus>("pending");
   const [error, setError] = useState("");
   const [isCreatingCharge, setIsCreatingCharge] = useState(false);
+  const [copyState, setCopyState] = useState<"idle" | "copied" | "error">("idle");
 
   useEffect(() => {
     if (!charge || status !== "pending") return;
@@ -480,6 +522,7 @@ function PixSupport({ zine }: { zine: Zine }) {
     setError("");
     setCharge(null);
     setStatus("pending");
+    setCopyState("idle");
 
     const amountNumber = Number(amount);
     if (!email || !Number.isFinite(amountNumber) || amountNumber <= 0) {
@@ -512,6 +555,16 @@ function PixSupport({ zine }: { zine: Zine }) {
     }
   }
 
+  async function handleCopyPixCode() {
+    if (!charge) return;
+    try {
+      await navigator.clipboard.writeText(charge.pixCopyPaste);
+      setCopyState("copied");
+    } catch {
+      setCopyState("error");
+    }
+  }
+
   return (
     <div className="space-y-3">
       <label className="block font-mono text-[0.66rem] uppercase tracking-[0.16em] text-base-700" htmlFor="pix-email">
@@ -522,7 +575,7 @@ function PixSupport({ zine }: { zine: Zine }) {
         type="email"
         value={email}
         onChange={(event) => setEmail(event.target.value)}
-        className="w-full rounded-lg border border-base-300 bg-paper px-3 py-2 text-ink focus:border-base-500 focus:outline-none"
+        className="ui-input px-3 py-2 text-ink"
       />
 
       <label className="block font-mono text-[0.66rem] uppercase tracking-[0.16em] text-base-700" htmlFor="pix-amount">
@@ -533,7 +586,7 @@ function PixSupport({ zine }: { zine: Zine }) {
         inputMode="decimal"
         value={amount}
         onChange={(event) => setAmount(event.target.value)}
-        className="w-full rounded-lg border border-base-300 bg-paper px-3 py-2 text-ink focus:border-base-500 focus:outline-none"
+        className="ui-input px-3 py-2 text-ink"
       />
 
       <button
@@ -561,6 +614,14 @@ function PixSupport({ zine }: { zine: Zine }) {
           <p className="break-all rounded-md border border-base-300 bg-paper p-2 text-xs text-base-700">
             {charge.pixCopyPaste}
           </p>
+
+          <button type="button" className="ui-btn w-full" onClick={handleCopyPixCode}>
+            {copyState === "copied"
+              ? "Código Pix copiado"
+              : copyState === "error"
+                ? "Falha ao copiar"
+                : "Copiar código Pix"}
+          </button>
 
           <p className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-base-600">
             ChargeId: {charge.chargeId}

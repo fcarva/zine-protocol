@@ -1,6 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import CheckoutPage from "@/app/checkout/page";
 
@@ -46,18 +45,17 @@ vi.mock("@/components/cart-provider", () => ({
 
 describe("CheckoutPage UI smoke", () => {
   it("switches checkout methods and renders method-specific fields", async () => {
-    const user = userEvent.setup();
     render(<CheckoutPage />);
 
     expect(screen.getByText(/Finalizar compra/i)).toBeInTheDocument();
 
-    await user.click(screen.getByRole("button", { name: "Email" }));
+    fireEvent.click(screen.getByRole("button", { name: "Email" }));
     expect(screen.getByLabelText(/Email para finalizar/i)).toBeInTheDocument();
 
-    await user.click(screen.getByRole("button", { name: "Pix" }));
+    fireEvent.click(screen.getByRole("button", { name: "Pix" }));
     expect(screen.getByLabelText(/Email para comprovante/i)).toBeInTheDocument();
 
-    await user.click(screen.getByRole("button", { name: "Wallet" }));
+    fireEvent.click(screen.getByRole("button", { name: "Wallet" }));
     expect(screen.getByText(/Conecte uma carteira para pagar no checkout/i)).toBeInTheDocument();
   });
 });

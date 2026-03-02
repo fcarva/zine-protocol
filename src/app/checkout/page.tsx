@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { Coffee } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
-import { erc20Abi, parseUnits } from "viem";
+import { type Address, erc20Abi, parseUnits } from "viem";
 import {
   useAccount,
   useChainId,
@@ -16,9 +16,9 @@ import {
 } from "wagmi";
 import { baseSepolia } from "wagmi/chains";
 import { useCart } from "@/components/cart-provider";
-import { publicEnv } from "@/lib/env";
+import { getWeb3ConfigErrorMessage, publicEnv } from "@/lib/env";
 import { formatCurrencyBRL } from "@/lib/format";
-import { revnetTerminalAbi } from "@/lib/revnet";
+import { resolveRevnetTerminalAddress, revnetTerminalAbi } from "@/lib/revnet";
 
 type PixStatus = "pending" | "paid" | "expired" | "failed";
 
@@ -42,7 +42,11 @@ interface EmailCheckoutResult {
 }
 
 const primaryCheckoutButtonClass =
-  "w-full rounded-xl border border-yellow-600 bg-yellow-150 px-3 py-2.5 text-left shadow-[0_2px_0_#8E6B01] transition duration-150 hover:-translate-y-[1px] hover:bg-yellow-200 hover:shadow-[0_3px_0_#8E6B01] active:translate-y-0 active:shadow-[0_1px_0_#8E6B01] disabled:cursor-not-allowed disabled:translate-y-0 disabled:border-base-400 disabled:bg-base-200 disabled:shadow-none";
+  "ui-btn ui-btn-primary w-full !rounded-xl px-3 py-2.5 text-left";
+
+function checkoutTabClass(active: boolean): string {
+  return active ? "ui-tab is-active w-full" : "ui-tab w-full";
+}
 
 export default function CheckoutPage() {
   const { items, totalBRL, itemCount, updateQuantity, updateAmountBRL, removeItem, clearCart } = useCart();
@@ -69,14 +73,14 @@ export default function CheckoutPage() {
   const { disconnect } = useDisconnect();
   const { writeContractAsync } = useWriteContract();
   const publicClient = usePublicClient();
+  const web3ConfigError = getWeb3ConfigErrorMessage();
 
   const hasItems = items.length > 0;
 
   const walletCheckoutEnabled =
     hasItems &&
     isConnected &&
-    !!publicEnv.usdcAddress &&
-    !!publicEnv.revnetTerminalAddress &&
+    !web3ConfigError &&
     chainId === baseSepolia.id &&
     !isWalletLoading;
 
@@ -219,6 +223,10 @@ export default function CheckoutPage() {
 
   async function handleWalletCheckout() {
     if (!address || !publicClient || isWalletLoading || !walletCheckoutEnabled) return;
+    if (web3ConfigError) {
+      setWalletError(web3ConfigError);
+      return;
+    }
 
     setWalletStatus("Iniciando checkout wallet...");
     setWalletError("");
@@ -230,20 +238,30 @@ export default function CheckoutPage() {
       for (const item of items) {
         const itemTotalBRL = Number((item.amountBRL * item.quantity).toFixed(2));
         const amountUsdc6 = parseUnits(itemTotalBRL.toFixed(2), 6);
+        const resolvedTerminalAddress = await resolveRevnetTerminalAddress({
+          publicClient,
+          projectId: item.revnetProjectId,
+          tokenAddress: publicEnv.usdcAddress as Address,
+          fallbackTerminalAddress: publicEnv.revnetTerminalAddress as Address,
+        });
+
+        if (!resolvedTerminalAddress) {
+          throw new Error(`Projeto Revnet sem terminal ativo para ${item.title} em Base Sepolia.`);
+        }
 
         setWalletStatus(`Aprovando USDC para ${item.title}...`);
         const approveHash = await writeContractAsync({
           address: publicEnv.usdcAddress as `0x${string}`,
           abi: erc20Abi,
           functionName: "approve",
-          args: [publicEnv.revnetTerminalAddress as `0x${string}`, amountUsdc6],
+          args: [resolvedTerminalAddress, amountUsdc6],
           chainId: baseSepolia.id,
         });
         await publicClient.waitForTransactionReceipt({ hash: approveHash });
 
         setWalletStatus(`Enviando apoio para ${item.title}...`);
         const payHash = await writeContractAsync({
-          address: publicEnv.revnetTerminalAddress as `0x${string}`,
+          address: resolvedTerminalAddress,
           abi: revnetTerminalAbi,
           functionName: "pay",
           args: [
@@ -307,7 +325,7 @@ export default function CheckoutPage() {
           <p className="text-sm text-base-700">Seu carrinho está vazio.</p>
           <Link
             href="/"
-            className="mt-3 inline-flex rounded-lg border border-base-300 bg-paper px-3 py-2 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-base-700"
+            className="ui-btn mt-3 inline-flex"
           >
             Voltar para catálogo
           </Link>
@@ -345,7 +363,7 @@ export default function CheckoutPage() {
                         max={99}
                         value={item.quantity}
                         onChange={(event) => updateQuantity(item.slug, Number(event.target.value))}
-                        className="w-16 rounded border border-base-300 bg-paper px-2 py-1 text-xs text-ink"
+                        className="ui-input w-16 px-2 py-1 text-xs text-ink"
                       />
 
                       <label className="font-mono text-[0.5rem] uppercase tracking-[0.12em] text-base-600">
@@ -357,7 +375,7 @@ export default function CheckoutPage() {
                         step="1"
                         value={item.amountBRL}
                         onChange={(event) => updateAmountBRL(item.slug, Number(event.target.value))}
-                        className="w-20 rounded border border-base-300 bg-paper px-2 py-1 text-xs text-ink"
+                        className="ui-input w-20 px-2 py-1 text-xs text-ink"
                       />
                     </div>
                   </div>
@@ -369,7 +387,7 @@ export default function CheckoutPage() {
                     <button
                       type="button"
                       onClick={() => removeItem(item.slug)}
-                      className="rounded border border-base-300 px-2 py-1 font-mono text-[0.5rem] uppercase tracking-[0.12em] text-base-600 hover:bg-base-100"
+                      className="ui-btn ui-btn-danger px-2 py-1 text-[0.5rem]"
                     >
                       Remover
                     </button>
@@ -389,27 +407,21 @@ export default function CheckoutPage() {
               <button
                 type="button"
                 onClick={() => setMethod("wallet")}
-                className={`rounded px-2 py-1.5 font-mono text-[0.56rem] uppercase tracking-[0.12em] ${
-                  method === "wallet" ? "bg-paper text-ink" : "text-base-600"
-                }`}
+                className={checkoutTabClass(method === "wallet")}
               >
                 Wallet
               </button>
               <button
                 type="button"
                 onClick={() => setMethod("email")}
-                className={`rounded px-2 py-1.5 font-mono text-[0.56rem] uppercase tracking-[0.12em] ${
-                  method === "email" ? "bg-paper text-ink" : "text-base-600"
-                }`}
+                className={checkoutTabClass(method === "email")}
               >
                 Email
               </button>
               <button
                 type="button"
                 onClick={() => setMethod("pix")}
-                className={`rounded px-2 py-1.5 font-mono text-[0.56rem] uppercase tracking-[0.12em] ${
-                  method === "pix" ? "bg-paper text-ink" : "text-base-600"
-                }`}
+                className={checkoutTabClass(method === "pix")}
               >
                 Pix
               </button>
@@ -420,6 +432,11 @@ export default function CheckoutPage() {
                 {!isConnected ? (
                   <>
                     <p className="text-sm text-base-700">Conecte uma carteira para pagar no checkout.</p>
+                    {web3ConfigError && (
+                      <p className="rounded-lg border border-red-300 bg-red-50 px-2 py-1 text-xs text-red-700">
+                        {web3ConfigError}
+                      </p>
+                    )}
                     <div className="flex flex-wrap gap-2">
                       {connectors.map((connector) => (
                         <button
@@ -427,7 +444,7 @@ export default function CheckoutPage() {
                           type="button"
                           disabled={isConnecting}
                           onClick={() => connect({ connector })}
-                          className="rounded border border-base-300 bg-paper px-2.5 py-1.5 font-mono text-[0.58rem] uppercase tracking-[0.12em]"
+                          className="ui-btn px-2.5 py-1.5 text-[0.58rem]"
                         >
                           {connector.name}
                         </button>
@@ -436,6 +453,11 @@ export default function CheckoutPage() {
                   </>
                 ) : (
                   <>
+                    {web3ConfigError && (
+                      <p className="rounded-lg border border-red-300 bg-red-50 px-2 py-1 text-xs text-red-700">
+                        {web3ConfigError}
+                      </p>
+                    )}
                     <p className="rounded border border-base-300 bg-base-50 px-2 py-1 text-xs text-base-700">
                       Carteira: {address}
                     </p>
@@ -456,7 +478,7 @@ export default function CheckoutPage() {
                     <button
                       type="button"
                       onClick={() => disconnect()}
-                      className="w-full rounded-lg border border-base-300 bg-paper px-3 py-2 font-mono text-[0.6rem] uppercase tracking-[0.12em] text-base-700"
+                      className="ui-btn w-full"
                     >
                       Desconectar
                     </button>
@@ -490,7 +512,7 @@ export default function CheckoutPage() {
                   type="email"
                   value={emailCheckout}
                   onChange={(event) => setEmailCheckout(event.target.value)}
-                  className="w-full rounded-lg border border-base-300 bg-paper px-3 py-2 text-sm text-ink"
+                  className="ui-input px-3 py-2 text-sm text-ink"
                 />
                 <button
                   type="button"
@@ -527,7 +549,7 @@ export default function CheckoutPage() {
                   type="email"
                   value={pixEmail}
                   onChange={(event) => setPixEmail(event.target.value)}
-                  className="w-full rounded-lg border border-base-300 bg-paper px-3 py-2 text-sm text-ink"
+                  className="ui-input px-3 py-2 text-sm text-ink"
                 />
                 <button
                   type="button"

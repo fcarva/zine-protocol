@@ -9,18 +9,18 @@ const navLinks = [
 export function SiteHeader() {
   return (
     <>
-      <header className="editorial-panel relative z-40 border-x-0 border-t-0 px-3 py-2 font-sans lg:hidden">
+      <header className="editorial-panel relative z-40 border-x-0 border-t-0 px-3 py-2 font-sans backdrop-blur-[2px] lg:hidden">
         <div className="flex items-center justify-between gap-3">
-          <Link href="/" className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-ink">
+          <Link href="/" className="ui-link !text-[0.62rem] !tracking-[0.16em] !text-ink">
             Zine Protocol
           </Link>
           <nav className="flex items-center gap-2.5 text-[0.58rem] uppercase tracking-[0.13em] text-base-700">
             {navLinks.map((item) => (
-              <Link key={item.href} href={item.href} className="hover:text-ink">
+              <Link key={item.href} href={item.href} className="ui-link !text-[0.58rem] !tracking-[0.13em]">
                 {item.label}
               </Link>
             ))}
-            <CartLink className="hover:text-ink" compact />
+            <CartLink className="ui-link !text-[0.58rem] !tracking-[0.13em]" compact />
           </nav>
         </div>
       </header>
@@ -47,7 +47,7 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="group flex items-baseline justify-between rounded px-1 py-1.5 transition hover:bg-base-100/80"
+                className="group flex items-baseline justify-between rounded-md border border-transparent px-1.5 py-1.5 transition hover:border-base-300 hover:bg-base-100/80"
               >
                 <span className="font-mono text-[0.58rem] uppercase tracking-[0.2em] text-base-500">
                   {item.index}
@@ -58,7 +58,7 @@ export function SiteHeader() {
               </Link>
             ))}
 
-            <div className="group flex items-baseline justify-between rounded px-1 py-1.5 transition hover:bg-base-100/80">
+            <div className="group flex items-baseline justify-between rounded-md border border-transparent px-1.5 py-1.5 transition hover:border-base-300 hover:bg-base-100/80">
               <span className="font-mono text-[0.58rem] uppercase tracking-[0.2em] text-base-500">03</span>
               <CartLink className="text-[0.94rem] font-semibold uppercase tracking-[-0.01em] text-base-800 transition group-hover:text-ink" />
             </div>

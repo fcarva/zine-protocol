@@ -78,10 +78,13 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                   Objeto, formato e ritmo visual de zine com navegação limpa de revista digital.
                 </p>
               </div>
-              <div className="flex flex-wrap items-start gap-x-3 gap-y-1.5 sm:justify-end">
+              <div className="flex flex-wrap items-start gap-1.5 sm:justify-end">
+                <Link href="#indice-curatorial" className="ui-btn ui-btn-primary">
+                  Explorar arquivo
+                </Link>
                 <EditorialLink href="/manifesto" label="Manifesto" />
                 <EditorialLink href="/checkout" label="Apoiar" />
-                <EditorialLink href="#indice-curatorial" label="Índice Curatorial" />
+                <EditorialLink href="#indice-curatorial" label="Índice curatorial" />
               </div>
             </div>
           </div>
@@ -89,7 +92,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
           {featured && (
             <Link
               href={`/zines/${featured.slug}`}
-              className="editorial-card group block space-y-1.5 rounded-md border border-base-300 bg-base-50 p-1.5"
+              className="editorial-card group block space-y-1.5 rounded-md border border-base-300 bg-base-50 p-1.5 hover:shadow-[0_14px_24px_rgba(40,39,38,0.07)]"
             >
               <div className="relative aspect-[3/4] overflow-hidden rounded-md border border-base-300 bg-base-150 p-2">
                 <div className="absolute inset-1 rounded-sm border border-base-200 bg-base-200/60" />
@@ -98,7 +101,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                   alt={`Capa de ${featured.title}`}
                   fill
                   sizes="(max-width: 1024px) 100vw, 330px"
-                  className="xerox-image object-contain object-center p-1 transition duration-500 group-hover:scale-[1.01]"
+                  className="xerox-image object-contain object-center p-1 transition duration-500 group-hover:scale-[1.018]"
                 />
               </div>
               <div className="space-y-0.5 px-1 pb-0.5 pt-2">
@@ -217,10 +220,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
 function EditorialLink({ href, label }: { href: string; label: string }) {
   return (
-    <Link
-      href={href}
-      className="font-mono text-[0.54rem] uppercase tracking-[0.14em] text-base-700 underline-offset-[0.18em] hover:underline"
-    >
+    <Link href={href} className="ui-link">
       {label}
     </Link>
   );
@@ -238,11 +238,7 @@ function FilterPill({
   return (
     <Link
       href={href}
-      className={`rounded-full border px-2 py-0.5 font-mono text-[0.52rem] uppercase tracking-[0.12em] transition ${
-        active
-          ? "border-base-700 bg-base-700 text-paper"
-          : "border-base-300 bg-base-50 text-base-700 hover:bg-base-100"
-      }`}
+      className={`ui-pill ${active ? "is-active" : ""}`}
     >
       {label}
     </Link>

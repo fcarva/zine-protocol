@@ -99,3 +99,78 @@ Consolidar o MVP do Zine Protocol para demo Artizen com foco em:
    - URL
    - SHA
    - data/hora
+
+## Mega Sprint Barnard -> Zine Protocol
+
+Referência de contexto: `research/barnard/BARNARD_CONTEXT.md`
+
+### Objetivo
+
+Evoluir o MVP de "catalogo com apoio" para um produto editorial completo com 4 camadas:
+
+1. Arquivo (zines e leitura aberta)
+2. Apoio (wallet/email/pix)
+3. Editorial (series e narrativa recorrente)
+4. Ecossistema (ensino, recursos, rede de zines)
+
+### Janela sugerida
+
+6 semanas (3 blocos de 2 semanas), mantendo produção deployavel ao fim de cada bloco.
+
+### Bloco A - Editorial Core (Semanas 1-2)
+
+1. Home com bloco "Series editoriais" (1 destaque + 3 relacionados).
+2. Pagina `/curadoria` com politica de convite, criterios e fluxo de submissao.
+3. Pagina `/como-apoiar` com explicacao clara de wallet/email/pix sem jargao.
+4. CTA e framing consistentes com "Apoiar este zine".
+
+Definicao de pronto:
+
+1. Conteudo de curadoria e apoio publicado em pt-BR.
+2. Navegacao principal aponta para as novas paginas.
+3. Teste guiado de 5 minutos sem bloqueios do fluxo catalogo -> apoio.
+
+### Bloco B - Metadata + Descoberta (Semanas 3-4)
+
+1. Expandir frontmatter com campos:
+   - `language`
+   - `city`
+   - `year`
+   - `format`
+   - `themes_controlled`
+2. Validacao de schema para novos campos no parser.
+3. Filtros novos na home e pagina de arquivo (tema controlado, cidade, idioma).
+4. Melhorar cards e pagina de zine para exibir metadados editoriais.
+
+Definicao de pronto:
+
+1. Parser rejeita markdown com campos invalidos.
+2. Filtros funcionam sem regressao dos filtros atuais.
+3. Pelo menos 12 zines com metadados novos preenchidos.
+
+### Bloco C - Ecossistema (Semanas 5-6)
+
+1. Secao `/ensino` com kits de uso (aula, oficina, leitura guiada).
+2. Secao `/recursos` com links de zineotecas, bibliografia e ferramentas.
+3. Secao `/eventos` com grade editorial de workshops/convocatorias.
+4. Landing com calendario editorial mensal (news + eventos + chamadas).
+
+Definicao de pronto:
+
+1. 3 trilhas de conteudo publicadas (ensino, recursos, eventos).
+2. Estrutura navegavel desktop/mobile com mesma linguagem visual.
+3. Conteudo operacional apto para demo/pitch (sem lorem ipsum).
+
+### Metricas do mega sprint
+
+1. Tempo medio catalogo -> apoio < 2 minutos.
+2. >= 20 apoios registrados em ambiente demo.
+3. >= 30 zines com metadados completos (campos novos).
+4. >= 2 publicacoes editoriais por semana (news/eventos).
+
+### Riscos e mitigacao
+
+1. Escopo excessivo: gate por bloco e corte por prioridade (C corta antes de A/B).
+2. Taxonomia confusa: vocabulario controlado + tags livres.
+3. Sobrecarga operacional: templates de conteudo para curadoria publicar rapido.
+4. Regressao visual: manter `check:all` + build + smoke manual por release.

@@ -1,4 +1,5 @@
 import { PrismaClient, PixChargeStatus, SupportSource } from "@prisma/client";
+import { databaseEnv } from "@/lib/env";
 import { type PixChargeRecord } from "@/lib/pix";
 
 export interface SupportEventInput {
@@ -15,9 +16,14 @@ export interface SupportEventInput {
 }
 
 const prisma =
-  shouldUsePrisma(process.env.DATABASE_URL)
+  shouldUsePrisma(databaseEnv.url)
     ? globalThis.__zinePrisma ||
       new PrismaClient({
+        datasources: {
+          db: {
+            url: databaseEnv.url,
+          },
+        },
         log: process.env.NODE_ENV === "development" ? ["error"] : ["error"],
       })
     : null;
