@@ -26,7 +26,7 @@ Consolidar o MVP do Zine Protocol para demo Artizen com foco em:
    - padronização de botões de checkout (`Wallet`, `Email`, `Pix`) com estilo clean.
 4. Deploy de produção publicado:
    - URL: `https://zine-protocol.vercel.app`
-   - Deployment: `https://zine-protocol-5zqge4nsv-fcarvas-projects.vercel.app`
+   - Deployment: `https://zine-protocol-qyyqa0gxc-fcarvas-projects.vercel.app`
 5. CI de validação criado:
    - arquivo: `.github/workflows/ci.yml`
    - executa `pnpm install --frozen-lockfile`, `npm run check:all` e `npm run build`.
