@@ -28,10 +28,7 @@ export function SiteHeader() {
       <aside className="editorial-panel !fixed inset-y-0 left-0 z-30 hidden w-[var(--sidebar-width)] flex-col rounded-none border-y-0 border-l-0 border-r border-r-base-300 lg:flex">
         <div className="space-y-3.5 p-8 xl:p-10">
           <Link href="/" className="inline-flex flex-col leading-none">
-            <span className="font-mono text-[0.6rem] uppercase tracking-[0.22em] text-base-600">
-              Curadoria
-            </span>
-            <span className="mt-2 text-[1.8rem] font-black uppercase tracking-[-0.04em] text-ink">
+            <span className="text-[1.8rem] font-black uppercase tracking-[-0.04em] text-ink">
               Zine
             </span>
             <span className="-mt-1 text-[1.8rem] font-black uppercase tracking-[-0.04em] text-ink">

@@ -41,24 +41,33 @@ export default async function HomePage({ searchParams }: HomePageProps) {
     <div className="space-y-2.5 sm:space-y-3.5">
       <section className="stagger-in border-b border-base-300 pb-3">
         <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
-          <div className="space-y-3">
-            <p className="font-mono text-[0.55rem] uppercase tracking-[0.16em] text-base-600">
-              Pitch Artizen Session 6
-            </p>
-            <h1 className="max-w-4xl text-[1.85rem] font-semibold uppercase leading-[0.88] tracking-[-0.04em] text-ink sm:text-[2.25rem]">
-              Zine Protocol E Infraestrutura Editorial Para Leitura Aberta E Apoio Direto A
-              Artistas De Zine
+          <div className="space-y-3.5">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[0.54rem] uppercase tracking-[0.15em] text-base-600">
+              <span>Artizen Session 6</span>
+              <span className="text-base-400">/</span>
+              <span>Featured</span>
+              <span className="text-base-400">/</span>
+              <span>Most read</span>
+              <span className="text-base-400">/</span>
+              <span>Recent</span>
+            </div>
+            <h1 className="max-w-4xl text-[1.85rem] font-semibold uppercase leading-[0.88] tracking-[-0.04em] text-ink sm:text-[2.3rem]">
+              Arquivo Curado De Zines Para Leitura Aberta E Apoio Direto
             </h1>
-            <p className="max-w-[76ch] text-[0.9rem] leading-snug text-base-700">
-              Uma landing de curadoria com linguagem de revista: cada zine entra como edicao
-              aberta, com ficha tecnica publica e rota de apoio financeiro sem paywall. O fluxo de
-              apoio no MVP combina Wallet, Email e Pix sandbox para validar narrativa e operacao de
-              comunidade antes da fase de producao.
+            <p className="max-w-[76ch] text-[0.92rem] leading-snug text-base-700">
+              Plataforma editorial para publicar, ler e apoiar zines com linguagem de revista
+              digital. A proposta combina curadoria visual, ficha tecnica aberta e checkout direto
+              para fortalecer artistas e coletivos sem paywall.
             </p>
-            <div className="grid gap-2 border-t border-base-300 pt-2 sm:grid-cols-3">
-              <InlineMetric label="Arquivo ativo" value={`${zines.length} zines publicados`} />
-              <InlineMetric label="Apoio" value="Wallet / Email / Pix sandbox" />
-              <InlineMetric label="Curadoria" value="Publicacao por convite" />
+            <div className="grid gap-2 border-y border-base-300 py-2 sm:grid-cols-3">
+              <InlineMetric label="Featured" value={`${zines.length} zines em arquivo`} />
+              <InlineMetric label="Most read" value="Leitura aberta, sem bloqueio" />
+              <InlineMetric label="Recent" value="Wallet / Email / Pix sandbox" />
+            </div>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-base-300 pt-2">
+              <EditorialLink href="/manifesto" label="Manifesto" />
+              <EditorialLink href="/checkout" label="Checkout" />
+              <EditorialLink href="#indice-curatorial" label="Indice Curatorial" />
             </div>
           </div>
 
@@ -67,14 +76,14 @@ export default async function HomePage({ searchParams }: HomePageProps) {
               href={`/zines/${featured.slug}`}
               className="editorial-card group block space-y-1.5 rounded-md border border-base-300 bg-base-50 p-1.5"
             >
-              <div className="relative aspect-[3/4] overflow-hidden rounded-md border border-base-300 bg-base-150">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-md border border-base-300 bg-base-150 p-2">
                 <div className="absolute inset-1 rounded-sm border border-base-200 bg-base-200/60" />
                 <Image
                   src={featured.cover_image}
                   alt={`Capa de ${featured.title}`}
                   fill
                   sizes="320px"
-                  className="xerox-image object-cover object-center transition duration-500 group-hover:scale-[1.01]"
+                  className="xerox-image object-contain object-center p-1 transition duration-500 group-hover:scale-[1.01]"
                 />
               </div>
               <div className="space-y-0.5 px-1 pb-0.5 pt-2">
@@ -142,7 +151,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         </div>
       </section>
 
-      <section className="space-y-2">
+      <section id="indice-curatorial" className="space-y-2">
         <div className="flex items-end justify-between gap-3">
           <h2 className="text-[1.45rem] font-semibold uppercase leading-[0.9] tracking-[-0.03em] text-ink sm:text-[1.75rem]">
             Indice Curatorial
@@ -168,6 +177,17 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       </section>
 
     </div>
+  );
+}
+
+function EditorialLink({ href, label }: { href: string; label: string }) {
+  return (
+    <Link
+      href={href}
+      className="font-mono text-[0.54rem] uppercase tracking-[0.14em] text-base-700 underline-offset-[0.18em] hover:underline"
+    >
+      {label}
+    </Link>
   );
 }
 

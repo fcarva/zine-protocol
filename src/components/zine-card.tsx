@@ -12,14 +12,14 @@ export function ZineCard({ zine, index }: { zine: Zine; index: number }) {
       style={{ animationDelay: `${120 + index * 90}ms` }}
     >
       <article className="editorial-panel overflow-hidden rounded-lg p-1.5">
-        <figure className="relative aspect-[3/4] overflow-hidden rounded-md border border-base-300 bg-base-150">
+        <figure className="relative aspect-[3/4] overflow-hidden rounded-md border border-base-300 bg-base-150 p-2">
           <div className="absolute inset-1 rounded-sm border border-base-200 bg-base-200/60" />
           <Image
             src={zine.cover_image}
             alt={`Capa de ${zine.title}`}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
-            className="xerox-image object-cover object-center transition duration-500 group-hover:scale-[1.01]"
+            className="xerox-image object-contain object-center p-1 transition duration-500 group-hover:scale-[1.01]"
           />
 
           <span className="absolute left-1 top-1 rounded border border-base-300 bg-paper/90 px-1.5 py-0.5 font-mono text-[0.5rem] uppercase tracking-[0.14em] text-base-700">
