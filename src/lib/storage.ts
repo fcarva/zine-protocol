@@ -15,7 +15,7 @@ export interface SupportEventInput {
 }
 
 const prisma =
-  process.env.DATABASE_URL
+  shouldUsePrisma(process.env.DATABASE_URL)
     ? globalThis.__zinePrisma ||
       new PrismaClient({
         log: process.env.NODE_ENV === "development" ? ["error"] : ["error"],
@@ -28,6 +28,21 @@ if (process.env.NODE_ENV !== "production" && prisma) {
 
 const memoryCharges = new Map<string, PixChargeRecord>();
 const memorySupportEvents: Array<SupportEventInput & { createdAt: Date }> = [];
+let didWarnStorageFallback = false;
+
+function shouldUsePrisma(databaseUrl: string | undefined): boolean {
+  if (!databaseUrl || !databaseUrl.trim()) return false;
+
+  // Prevent noisy startup failures on Vercel when a local placeholder URL is present.
+  if (
+    process.env.NODE_ENV === "production" &&
+    /localhost|127\.0\.0\.1/i.test(databaseUrl)
+  ) {
+    return false;
+  }
+
+  return true;
+}
 
 async function withFallback<T>(
   primary: () => Promise<T>,
@@ -40,7 +55,15 @@ async function withFallback<T>(
   try {
     return await primary();
   } catch (error) {
-    console.warn("Storage fallback active:", error);
+    if (!didWarnStorageFallback) {
+      didWarnStorageFallback = true;
+      console.warn(
+        "Storage fallback active: Prisma indisponivel, usando armazenamento em memoria.",
+      );
+      if (process.env.NODE_ENV !== "production") {
+        console.warn(error);
+      }
+    }
     return fallback();
   }
 }
