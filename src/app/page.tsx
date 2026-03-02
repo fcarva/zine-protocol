@@ -167,14 +167,6 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         )}
       </section>
 
-      <section className="border-t border-base-300 pt-2">
-        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-          <InlineMetric label="Meta Artizen" value="3 zines publicados" />
-          <InlineMetric label="Meta de apoio" value="10 apoios registrados" />
-          <InlineMetric label="Meta financeira" value="R$300 equivalente" />
-          <InlineMetric label="Curadoria" value="Publicacao por convite" />
-        </div>
-      </section>
     </div>
   );
 }
