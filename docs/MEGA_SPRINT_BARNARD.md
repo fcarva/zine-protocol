@@ -34,6 +34,15 @@ DoD:
 2. `npm run build` verde.
 3. Smoke manual de rotas novas sem erro de layout mobile/desktop.
 
+Status de execucao (2026-03-02):
+
+1. Concluido: pagina `/curadoria` publicada.
+2. Concluido: pagina `/como-apoiar` publicada.
+3. Concluido: home com bloco `Series editoriais` (1 destaque + 3 itens).
+4. Concluido: navegacao atualizada para destacar `Manifesto`, `Curadoria`, `Como apoiar` e `Apoiar`.
+5. Concluido: gate tecnico (`check:all` e `build`) validado.
+6. Pendente: smoke manual final em producao para desktop/mobile.
+
 ## Sprint 2 (2 semanas) - Metadata and Discovery
 
 Escopo:

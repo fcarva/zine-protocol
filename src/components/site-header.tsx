@@ -4,6 +4,8 @@ import { CartLink } from "@/components/cart-link";
 const navLinks = [
   { href: "/", label: "Zines", index: "01" },
   { href: "/manifesto", label: "Manifesto", index: "02" },
+  { href: "/curadoria", label: "Curadoria", index: "03" },
+  { href: "/como-apoiar", label: "Como apoiar", index: "04" },
 ];
 
 export function SiteHeader() {
@@ -59,7 +61,7 @@ export function SiteHeader() {
             ))}
 
             <div className="group flex items-baseline justify-between rounded-md border border-transparent px-1.5 py-1.5 transition hover:border-base-300 hover:bg-base-100/80">
-              <span className="font-mono text-[0.58rem] uppercase tracking-[0.2em] text-base-500">03</span>
+              <span className="font-mono text-[0.58rem] uppercase tracking-[0.2em] text-base-500">05</span>
               <CartLink className="text-[0.94rem] font-semibold uppercase tracking-[-0.01em] text-base-800 transition group-hover:text-ink" />
             </div>
           </nav>

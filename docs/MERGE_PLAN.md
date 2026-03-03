@@ -146,6 +146,14 @@ Definicao de pronto:
 2. Navegacao principal aponta para as novas paginas.
 3. Teste guiado de 5 minutos sem bloqueios do fluxo catalogo -> apoio.
 
+Status atual (2026-03-02):
+
+1. Entregue: `/curadoria` com politica de convite e criterios.
+2. Entregue: `/como-apoiar` com explicacao wallet/email/pix em linguagem simples.
+3. Entregue: bloco `Series editoriais` na home com 1 destaque + 3 itens.
+4. Entregue: navegacao lateral e mobile com foco em manifesto, curadoria e apoio.
+5. Entregue: limpeza de copy com mojibake nas paginas publicas tocadas.
+
 ### Bloco B - Metadata + Descoberta (Semanas 3-4)
 
 1. Expandir frontmatter com campos:

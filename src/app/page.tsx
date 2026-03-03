@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EditorialSeries } from "@/components/editorial-series";
 import { TopZineGallery } from "@/components/top-zine-gallery";
 import { ZineCard } from "@/components/zine-card";
 import { getPublishedZines } from "@/lib/zines";
@@ -37,12 +38,17 @@ export default async function HomePage({ searchParams }: HomePageProps) {
   });
 
   const heroGallery = (filteredZines.length > 0 ? filteredZines : zines).slice(0, 3);
+  const editorialSeries = (filteredZines.length > 0 ? filteredZines : zines).slice(0, 4);
   const hasActiveFilters = activeTag !== "all" || activeMode !== "all";
 
   return (
     <div className="space-y-2.5 font-sans sm:space-y-3.5">
       <section className="stagger-in border-b border-base-300 pb-3.5">
         <TopZineGallery zines={heroGallery} />
+      </section>
+
+      <section className="stagger-in border-b border-base-300 pb-3.5" style={{ animationDelay: "90ms" }}>
+        <EditorialSeries zines={editorialSeries} />
       </section>
 
       <section className="border-y border-base-300 py-2.5 sm:py-3">
