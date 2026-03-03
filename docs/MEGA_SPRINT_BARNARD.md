@@ -3,6 +3,7 @@
 Data base: 2026-03-02
 Referencia: `research/barnard/BARNARD_CONTEXT.md`
 Referencia complementar: `docs/ESTAR_MAG_CONTEXT.md`
+Referencia revnet: `docs/REVNET_ZINE_DAO_BLUEPRINT.md`
 
 ## 1. Product thesis
 

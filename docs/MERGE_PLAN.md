@@ -120,6 +120,7 @@ Consolidar o MVP do Zine Protocol para demo Artizen com foco em:
 
 Referência de contexto: `research/barnard/BARNARD_CONTEXT.md`
 Referência complementar: `docs/ESTAR_MAG_CONTEXT.md`
+Referência revnet: `docs/REVNET_ZINE_DAO_BLUEPRINT.md`
 
 ### Objetivo
 

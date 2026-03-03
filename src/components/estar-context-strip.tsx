@@ -2,6 +2,7 @@ import Link from "next/link";
 
 const items = [
   { href: "/", label: "Visitar arquivo" },
+  { href: "/zine-dao", label: "Governanca DAO" },
   { href: "/checkout", label: "Store de apoio" },
   { href: "/curadoria", label: "Curadoria" },
   { href: "/ensino", label: "Ensino" },
