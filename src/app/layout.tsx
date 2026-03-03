@@ -3,6 +3,7 @@ import { Archivo, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { AppProviders } from "@/components/providers";
 import { SiteHeader } from "@/components/site-header";
+import { TopEditorialBar } from "@/components/top-editorial-bar";
 
 const sans = Archivo({
   subsets: ["latin"],
@@ -35,7 +36,10 @@ export default function RootLayout({
             <div className="print-bleed" />
             <SiteHeader />
             <main className="relative z-10 min-h-screen px-3 pb-8 pt-0 sm:px-4 sm:pb-9 sm:pt-0 lg:ml-[var(--sidebar-width)] lg:px-4 lg:pt-0 xl:px-5">
-              <div className="w-full max-w-[1400px] lg:pr-6 xl:pr-8">{children}</div>
+              <div className="w-full max-w-[1400px] lg:pr-6 xl:pr-8">
+                <TopEditorialBar />
+                <div className="pt-2 sm:pt-2.5">{children}</div>
+              </div>
             </main>
           </div>
         </AppProviders>
