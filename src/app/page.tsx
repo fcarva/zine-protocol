@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { EditorialSeries } from "@/components/editorial-series";
+import { EcosystemCalendar } from "@/components/ecosystem-calendar";
 import { EstarContextStrip } from "@/components/estar-context-strip";
 import { ExhibitionSpaceBlock } from "@/components/exhibition-space-block";
 import { TopZineGallery } from "@/components/top-zine-gallery";
 import { ZineCard } from "@/components/zine-card";
+import { editorialEvents } from "@/lib/ecosystem";
 import { getPublishedZines } from "@/lib/zines";
 import { type FundingMode } from "@/types/zine";
 
@@ -85,6 +87,10 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
       <section className="stagger-in border-b border-base-300 pb-3.5" style={{ animationDelay: "120ms" }}>
         <ExhibitionSpaceBlock zines={source} />
+      </section>
+
+      <section className="stagger-in border-b border-base-300 pb-3.5" style={{ animationDelay: "150ms" }}>
+        <EcosystemCalendar events={editorialEvents} />
       </section>
 
       <section className="border-y border-base-300 py-2.5 sm:py-3">

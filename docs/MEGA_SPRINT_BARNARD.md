@@ -98,6 +98,15 @@ DoD:
 2. Conteudo real publicado (sem placeholders).
 3. Layout consistente com identidade atual.
 
+Status de execucao (2026-03-03):
+
+1. Concluido: pagina `/ensino` com 3 trilhas (aula, seminario e laboratorio).
+2. Concluido: pagina `/recursos` com bibliografia, diretorios e ferramentas.
+3. Concluido: pagina `/eventos` com agenda editorial/curatorial.
+4. Concluido: home com bloco `Calendario editorial` para o mes em curso.
+5. Concluido: navegacao ecossistema adicionada no `context strip`.
+6. Concluido: gate tecnico (`check:all` e `build`) validado.
+
 ## 3. Cross-cutting requirements
 
 1. Copy sem jargao "mint"; manter CTA "Apoiar este zine".

@@ -194,6 +194,14 @@ Definicao de pronto:
 2. Estrutura navegavel desktop/mobile com mesma linguagem visual.
 3. Conteudo operacional apto para demo/pitch (sem lorem ipsum).
 
+Status atual (2026-03-03):
+
+1. Entregue: `/ensino` com modelos de aula/oficina e resultado esperado por trilha.
+2. Entregue: `/recursos` com bibliografia, zineotecas e ferramentas de publicacao.
+3. Entregue: `/eventos` com agenda editorial/curatorial com datas publicas.
+4. Entregue: bloco `Calendario editorial` na home com CTA para trilhas do ecossistema.
+5. Entregue: contexto ESTAR + Barnard consolidado em narrativa de ecossistema.
+
 ### Metricas do mega sprint
 
 1. Tempo medio catalogo -> apoio < 2 minutos.
