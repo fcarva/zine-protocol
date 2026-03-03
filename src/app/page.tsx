@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { EditorialSeries } from "@/components/editorial-series";
+import { EstarContextStrip } from "@/components/estar-context-strip";
+import { ExhibitionSpaceBlock } from "@/components/exhibition-space-block";
 import { TopZineGallery } from "@/components/top-zine-gallery";
 import { ZineCard } from "@/components/zine-card";
 import { getPublishedZines } from "@/lib/zines";
@@ -8,10 +10,23 @@ import { type FundingMode } from "@/types/zine";
 type SearchParams = {
   tag?: string;
   mode?: string;
+  language?: string;
+  city?: string;
+  format?: string;
+  theme?: string;
 };
 
 interface HomePageProps {
   searchParams: Promise<SearchParams>;
+}
+
+interface FilterState {
+  tag: string;
+  mode: "all" | FundingMode;
+  language: string;
+  city: string;
+  format: string;
+  theme: string;
 }
 
 const modeOptions: Array<{ value: "all" | FundingMode; label: string }> = [
@@ -23,23 +38,38 @@ const modeOptions: Array<{ value: "all" | FundingMode; label: string }> = [
 export default async function HomePage({ searchParams }: HomePageProps) {
   const zines = await getPublishedZines();
   const params = await searchParams;
-  const tags = Array.from(new Set(zines.flatMap((zine) => zine.tags))).sort((a, b) =>
-    a.localeCompare(b, "pt-BR"),
-  );
-  const activeTag =
-    typeof params.tag === "string" && tags.includes(params.tag) ? params.tag : "all";
-  const activeMode =
-    params.mode === "campaign" || params.mode === "continuous" ? params.mode : "all";
+
+  const tags = sortedUnique(zines.flatMap((zine) => zine.tags));
+  const languages = sortedUnique(zines.map((zine) => zine.language));
+  const cities = sortedUnique(zines.map((zine) => zine.city));
+  const formats = sortedUnique(zines.map((zine) => zine.format));
+  const themes = sortedUnique(zines.flatMap((zine) => zine.themes_controlled));
+
+  const filters: FilterState = {
+    tag: resolveFilter(params.tag, tags),
+    mode: params.mode === "campaign" || params.mode === "continuous" ? params.mode : "all",
+    language: resolveFilter(params.language, languages),
+    city: resolveFilter(params.city, cities),
+    format: resolveFilter(params.format, formats),
+    theme: resolveFilter(params.theme, themes),
+  };
 
   const filteredZines = zines.filter((zine) => {
-    const matchesTag = activeTag === "all" || zine.tags.includes(activeTag);
-    const matchesMode = activeMode === "all" || zine.funding_mode === activeMode;
-    return matchesTag && matchesMode;
+    const matchesTag = filters.tag === "all" || zine.tags.includes(filters.tag);
+    const matchesMode = filters.mode === "all" || zine.funding_mode === filters.mode;
+    const matchesLanguage = filters.language === "all" || zine.language === filters.language;
+    const matchesCity = filters.city === "all" || zine.city === filters.city;
+    const matchesFormat = filters.format === "all" || zine.format === filters.format;
+    const matchesTheme =
+      filters.theme === "all" || zine.themes_controlled.includes(filters.theme as typeof zine.themes_controlled[number]);
+
+    return matchesTag && matchesMode && matchesLanguage && matchesCity && matchesFormat && matchesTheme;
   });
 
-  const heroGallery = (filteredZines.length > 0 ? filteredZines : zines).slice(0, 3);
-  const editorialSeries = (filteredZines.length > 0 ? filteredZines : zines).slice(0, 4);
-  const hasActiveFilters = activeTag !== "all" || activeMode !== "all";
+  const source = filteredZines.length > 0 ? filteredZines : zines;
+  const heroGallery = source.slice(0, 3);
+  const editorialSeries = source.slice(0, 4);
+  const hasActiveFilters = Object.values(filters).some((value) => value !== "all");
 
   return (
     <div className="space-y-2.5 font-sans sm:space-y-3.5">
@@ -47,8 +77,14 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         <TopZineGallery zines={heroGallery} />
       </section>
 
+      <EstarContextStrip />
+
       <section className="stagger-in border-b border-base-300 pb-3.5" style={{ animationDelay: "90ms" }}>
         <EditorialSeries zines={editorialSeries} />
+      </section>
+
+      <section className="stagger-in border-b border-base-300 pb-3.5" style={{ animationDelay: "120ms" }}>
+        <ExhibitionSpaceBlock zines={source} />
       </section>
 
       <section className="border-y border-base-300 py-2.5 sm:py-3">
@@ -58,17 +94,13 @@ export default async function HomePage({ searchParams }: HomePageProps) {
               Filtro por tag
             </p>
             <div className="flex flex-wrap gap-1">
-              <FilterPill
-                href={buildIndexHref("all", activeMode)}
-                label="Todas"
-                active={activeTag === "all"}
-              />
+              <FilterPill href={buildIndexHref({ ...filters, tag: "all" })} label="Todas" active={filters.tag === "all"} />
               {tags.map((tag) => (
                 <FilterPill
                   key={tag}
-                  href={buildIndexHref(tag, activeMode)}
+                  href={buildIndexHref({ ...filters, tag })}
                   label={tag}
-                  active={activeTag === tag}
+                  active={filters.tag === tag}
                 />
               ))}
             </div>
@@ -82,13 +114,44 @@ export default async function HomePage({ searchParams }: HomePageProps) {
               {modeOptions.map((mode) => (
                 <FilterPill
                   key={mode.value}
-                  href={buildIndexHref(activeTag, mode.value)}
+                  href={buildIndexHref({ ...filters, mode: mode.value })}
                   label={mode.label}
-                  active={activeMode === mode.value}
+                  active={filters.mode === mode.value}
                 />
               ))}
             </div>
           </div>
+        </div>
+
+        <div className="mt-2 grid gap-2 border-t border-base-300 pt-2 md:grid-cols-2 xl:grid-cols-4">
+          <FilterGroup
+            label="Idioma"
+            allLabel="Todos"
+            active={filters.language}
+            options={languages}
+            buildHref={(value) => buildIndexHref({ ...filters, language: value })}
+          />
+          <FilterGroup
+            label="Cidade"
+            allLabel="Todas"
+            active={filters.city}
+            options={cities}
+            buildHref={(value) => buildIndexHref({ ...filters, city: value })}
+          />
+          <FilterGroup
+            label="Formato"
+            allLabel="Todos"
+            active={filters.format}
+            options={formats}
+            buildHref={(value) => buildIndexHref({ ...filters, format: value })}
+          />
+          <FilterGroup
+            label="Tema controlado"
+            allLabel="Todos"
+            active={filters.theme}
+            options={themes}
+            buildHref={(value) => buildIndexHref({ ...filters, theme: value })}
+          />
         </div>
 
         <div className="mt-2 border-t border-base-300 pt-2">
@@ -106,7 +169,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
             Indice Curatorial
           </h2>
           <p className="max-w-[35ch] text-right font-mono text-[0.53rem] uppercase tracking-[0.14em] text-base-600">
-            Grade editorial compacta para leitura rapida de capa, autoria e contexto.
+            Grade editorial compacta com metadata de cidade, idioma, formato e tema.
           </p>
         </div>
 
@@ -144,10 +207,48 @@ function FilterPill({
   );
 }
 
-function buildIndexHref(tag: "all" | string, mode: "all" | FundingMode): string {
+function FilterGroup({
+  label,
+  allLabel,
+  active,
+  options,
+  buildHref,
+}: {
+  label: string;
+  allLabel: string;
+  active: string;
+  options: string[];
+  buildHref: (value: string) => string;
+}) {
+  return (
+    <div className="space-y-1">
+      <p className="font-mono text-[0.52rem] uppercase tracking-[0.13em] text-base-600">{label}</p>
+      <div className="flex flex-wrap gap-1">
+        <FilterPill href={buildHref("all")} label={allLabel} active={active === "all"} />
+        {options.map((option) => (
+          <FilterPill key={option} href={buildHref(option)} label={option} active={active === option} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function buildIndexHref(filters: FilterState): string {
   const query = new URLSearchParams();
-  if (tag !== "all") query.set("tag", tag);
-  if (mode !== "all") query.set("mode", mode);
+  if (filters.tag !== "all") query.set("tag", filters.tag);
+  if (filters.mode !== "all") query.set("mode", filters.mode);
+  if (filters.language !== "all") query.set("language", filters.language);
+  if (filters.city !== "all") query.set("city", filters.city);
+  if (filters.format !== "all") query.set("format", filters.format);
+  if (filters.theme !== "all") query.set("theme", filters.theme);
   const encoded = query.toString();
   return encoded ? `/?${encoded}` : "/";
+}
+
+function resolveFilter(input: string | undefined, values: string[]): string {
+  return typeof input === "string" && values.includes(input) ? input : "all";
+}
+
+function sortedUnique(values: string[]): string[] {
+  return Array.from(new Set(values)).sort((a, b) => a.localeCompare(b, "pt-BR"));
 }

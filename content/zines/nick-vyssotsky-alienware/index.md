@@ -9,12 +9,19 @@ tags:
   - "antmag"
   - "zine"
   - "arquivo"
+language: "en"
+city: "Antwerp"
+year: 2024
+format: "A5"
+themes_controlled:
+  - "antmag"
+  - "zine"
+  - "arquivo"
 revnet_project_id: 585
 funding_mode: "continuous"
 status: "published"
 sort_order: 90
 ---
-
 ## Contexto editorial
 - Nick Vyssotsky Alienware
 - Nick Vyssotsky

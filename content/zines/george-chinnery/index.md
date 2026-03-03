@@ -9,12 +9,19 @@ tags:
   - "antmag"
   - "zine"
   - "arquivo"
+language: "en"
+city: "Antwerp"
+year: 2024
+format: "A5"
+themes_controlled:
+  - "antmag"
+  - "zine"
+  - "arquivo"
 revnet_project_id: 570
 funding_mode: "continuous"
 status: "published"
 sort_order: 75
 ---
-
 ## Contexto editorial
 - George Chinnery
 - Growing a fan base online has never been this easy

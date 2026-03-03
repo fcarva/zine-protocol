@@ -9,12 +9,19 @@ tags:
   - "poesia"
   - "colagem"
   - "territorio"
+language: "pt-BR"
+city: "Sao Paulo"
+year: 2024
+format: "A5"
+themes_controlled:
+  - "poesia"
+  - "colagem"
+  - "territorio"
 revnet_project_id: 202
 funding_mode: "continuous"
 status: "published"
 sort_order: 2
 ---
-
 ## Caderno aberto
 
 Uma colecao de poemas, tipografia manual e relatos de comunidades que transformam ruinas em espacos culturais.

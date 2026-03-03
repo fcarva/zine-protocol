@@ -9,12 +9,19 @@ tags:
   - "antmag"
   - "zine"
   - "arquivo"
+language: "en"
+city: "Antwerp"
+year: 2025
+format: "Digital"
+themes_controlled:
+  - "antmag"
+  - "zine"
+  - "arquivo"
 revnet_project_id: 592
 funding_mode: "continuous"
 status: "published"
 sort_order: 97
 ---
-
 ## Contexto editorial
 - SMD Cap
 - SMD Rapper Cap

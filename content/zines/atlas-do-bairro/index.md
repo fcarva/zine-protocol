@@ -9,6 +9,14 @@ tags:
   - "mapa"
   - "memoria"
   - "bairro"
+language: "pt-BR"
+city: "Sao Paulo"
+year: 2026
+format: "A5"
+themes_controlled:
+  - "mapa"
+  - "memoria"
+  - "bairro"
 revnet_project_id: 303
 funding_mode: "campaign"
 target_usdc: 350
@@ -16,7 +24,6 @@ deadline_iso: "2026-05-31T23:59:59Z"
 status: "published"
 sort_order: 3
 ---
-
 ## Territorio vivo
 
 Atlas do Bairro registra pracas, comedores populares, hortas urbanas e historias de quem sustenta a cidade.

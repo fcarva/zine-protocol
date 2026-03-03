@@ -64,6 +64,13 @@ export default async function ZinePage({ params }: { params: Promise<{ slug: str
                 ))}
               </div>
 
+              <div className="flex flex-wrap gap-1 border-t border-base-300 pt-2">
+                <span className="ui-pill">Idioma: {zine.language}</span>
+                <span className="ui-pill">Cidade: {zine.city}</span>
+                <span className="ui-pill">Ano: {zine.year}</span>
+                <span className="ui-pill">Formato: {zine.format}</span>
+              </div>
+
               <div className="flex flex-wrap items-center gap-2 border-t border-base-300 pt-2">
                 <Link href="/" className="ui-link">
                   Voltar ao indice
@@ -79,6 +86,8 @@ export default async function ZinePage({ params }: { params: Promise<{ slug: str
                   <MetaLine label="Progresso campanha" value={`${campaignProgress.toFixed(2)}%`} />
                 )}
                 <MetaLine label="Modo" value={zine.funding_mode === "campaign" ? "Campanha" : "Continuo"} />
+                <MetaLine label="Idioma" value={zine.language} />
+                <MetaLine label="Cidade" value={zine.city} />
                 <MetaLine label="Projeto" value={`#${zine.revnet_project_id}`} />
               </div>
 
@@ -103,8 +112,13 @@ export default async function ZinePage({ params }: { params: Promise<{ slug: str
             </p>
             <TechLine label="Titulo" value={zine.title} />
             <TechLine label="Artista" value={zine.artist_name} />
+            <TechLine label="Idioma" value={zine.language} />
+            <TechLine label="Cidade" value={zine.city} />
+            <TechLine label="Ano" value={String(zine.year)} />
+            <TechLine label="Formato" value={zine.format} />
             <TechLine label="Modo" value={zine.funding_mode === "campaign" ? "Campanha" : "Continuo"} />
             <TechLine label="Projeto Revnet" value={`#${zine.revnet_project_id}`} />
+            <TechLine label="Temas" value={zine.themes_controlled.join(", ")} />
             <TechLine label="Wallet artista" value={shortenWallet(zine.artist_wallet)} />
             {zine.funding_mode === "campaign" && zine.target_usdc && (
               <TechLine label="Meta" value={`${zine.target_usdc.toLocaleString("pt-BR")} USDC`} />

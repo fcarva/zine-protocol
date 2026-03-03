@@ -9,12 +9,19 @@ tags:
   - "antmag"
   - "zine"
   - "arquivo"
+language: "en"
+city: "Antwerp"
+year: 2024
+format: "A5"
+themes_controlled:
+  - "antmag"
+  - "zine"
+  - "arquivo"
 revnet_project_id: 603
 funding_mode: "continuous"
 status: "published"
 sort_order: 108
 ---
-
 ## Contexto editorial
 - XL Zine box
 - 12 zines by Banks Violette, Johannes Boom, Abe Dubin, Lars Duchateau, Paul Barsch & Matti Gajek, Bieke Criel, Leo Horton, Coopman CVL, Nick...

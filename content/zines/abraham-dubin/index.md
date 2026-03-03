@@ -9,12 +9,19 @@ tags:
   - "antmag"
   - "zine"
   - "arquivo"
+language: "en"
+city: "Antwerp"
+year: 2024
+format: "A5"
+themes_controlled:
+  - "antmag"
+  - "zine"
+  - "arquivo"
 revnet_project_id: 555
 funding_mode: "continuous"
 status: "published"
 sort_order: 60
 ---
-
 ## Contexto editorial
 - Abraham Dubin
 - Abe Dubin

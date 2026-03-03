@@ -9,12 +9,19 @@ tags:
   - "antmag"
   - "zine"
   - "arquivo"
+language: "en"
+city: "Antwerp"
+year: 2024
+format: "Digital"
+themes_controlled:
+  - "antmag"
+  - "zine"
+  - "arquivo"
 revnet_project_id: 561
 funding_mode: "continuous"
 status: "published"
 sort_order: 66
 ---
-
 ## Contexto editorial
 - AntMagu knife
 - Box cutter

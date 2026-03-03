@@ -2,7 +2,13 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import matter from "gray-matter";
 import { z } from "zod";
-import { type Zine, type ZineFrontmatter } from "@/types/zine";
+import {
+  ZINE_FORMAT_VALUES,
+  ZINE_LANGUAGE_VALUES,
+  ZINE_THEME_VALUES,
+  type Zine,
+  type ZineFrontmatter,
+} from "@/types/zine";
 
 const contentRoot = path.join(process.cwd(), "content", "zines");
 
@@ -15,6 +21,11 @@ const zineFrontmatterSchema = z
     cover_image: z.string().min(2),
     excerpt: z.string().min(10),
     tags: z.array(z.string().min(1)).min(1),
+    language: z.enum(ZINE_LANGUAGE_VALUES),
+    city: z.string().min(2),
+    year: z.number().int().min(1900).max(2100),
+    format: z.enum(ZINE_FORMAT_VALUES),
+    themes_controlled: z.array(z.enum(ZINE_THEME_VALUES)).min(1).max(5),
     revnet_project_id: z.number().int().positive(),
     funding_mode: z.enum(["campaign", "continuous"]),
     target_usdc: z.number().positive().optional(),
@@ -22,6 +33,7 @@ const zineFrontmatterSchema = z
     status: z.enum(["draft", "published"]),
     sort_order: z.number().int(),
   })
+  .strict()
   .superRefine((data, ctx) => {
     if (data.funding_mode === "campaign") {
       if (!data.target_usdc) {

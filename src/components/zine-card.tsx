@@ -37,13 +37,25 @@ export function ZineCard({ zine, index }: { zine: Zine; index: number }) {
               {zine.artist_name}
             </span>
             <span className="font-mono text-[0.52rem] uppercase tracking-[0.14em] text-base-500">
-              {zine.funding_mode === "campaign" ? "Campanha" : "Continuo"}
+              {zine.city} / {zine.year}
             </span>
           </div>
 
           <h3 className="line-clamp-2 text-[1.18rem] font-semibold leading-[0.95] tracking-[-0.02em] text-ink transition duration-300 group-hover:text-base-950">
             {zine.title}
           </h3>
+
+          <div className="flex flex-wrap items-center justify-between gap-1 border-t border-base-300 pt-1">
+            <span className="font-mono text-[0.5rem] uppercase tracking-[0.13em] text-base-500">
+              {zine.language}
+            </span>
+            <span className="font-mono text-[0.5rem] uppercase tracking-[0.13em] text-base-500">
+              {zine.format}
+            </span>
+            <span className="font-mono text-[0.5rem] uppercase tracking-[0.13em] text-base-500">
+              {zine.funding_mode === "campaign" ? "Campanha" : "Continuo"}
+            </span>
+          </div>
         </div>
       </article>
     </Link>

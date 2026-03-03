@@ -9,12 +9,19 @@ tags:
   - "antmag"
   - "zine"
   - "arquivo"
+language: "en"
+city: "Antwerp"
+year: 2024
+format: "Digital"
+themes_controlled:
+  - "antmag"
+  - "zine"
+  - "arquivo"
 revnet_project_id: 557
 funding_mode: "continuous"
 status: "published"
 sort_order: 62
 ---
-
 ## Contexto editorial
 - Ant Deck
 - Sticker Deck

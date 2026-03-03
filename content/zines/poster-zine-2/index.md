@@ -9,12 +9,19 @@ tags:
   - "antmag"
   - "zine"
   - "arquivo"
+language: "en"
+city: "Antwerp"
+year: 2024
+format: "Poster"
+themes_controlled:
+  - "antmag"
+  - "zine"
+  - "arquivo"
 revnet_project_id: 588
 funding_mode: "continuous"
 status: "published"
 sort_order: 93
 ---
-
 ## Contexto editorial
 - Poster Zine 2
 - 42 x 59,4cm

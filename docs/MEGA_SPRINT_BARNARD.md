@@ -2,6 +2,7 @@
 
 Data base: 2026-03-02
 Referencia: `research/barnard/BARNARD_CONTEXT.md`
+Referencia complementar: `docs/ESTAR_MAG_CONTEXT.md`
 
 ## 1. Product thesis
 
@@ -67,6 +68,15 @@ DoD:
 1. Rejeicao de conteudo invalido coberta em teste.
 2. Pelo menos 12 zines migrados com campos novos.
 3. Sem regressao em checkout.
+
+Status de execucao (2026-03-02):
+
+1. Concluido: schema expandido com `language`, `city`, `year`, `format`, `themes_controlled`.
+2. Concluido: parser com validacao estrita e vocabulos controlados.
+3. Concluido: home com filtros editoriais novos (idioma, cidade, formato, tema controlado).
+4. Concluido: exibicao de metadata em `zine-card` e na pagina `/zines/[slug]`.
+5. Concluido: 52 zines migrados com os novos campos (acima do minimo de 12).
+6. Concluido: testes de rejeicao de metadata invalida adicionados e verdes.
 
 ## Sprint 3 (2 semanas) - Ecosystem Layer
 

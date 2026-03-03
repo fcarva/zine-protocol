@@ -9,12 +9,19 @@ tags:
   - "antmag"
   - "zine"
   - "arquivo"
+language: "en"
+city: "Antwerp"
+year: 2025
+format: "A5"
+themes_controlled:
+  - "antmag"
+  - "zine"
+  - "arquivo"
 revnet_project_id: 594
 funding_mode: "continuous"
 status: "published"
 sort_order: 99
 ---
-
 ## Contexto editorial
 - SMD2
 - SUCKMYDICK MAGAZINE

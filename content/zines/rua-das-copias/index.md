@@ -9,6 +9,14 @@ tags:
   - "zine"
   - "fotocopia"
   - "cidade"
+language: "pt-BR"
+city: "Sao Paulo"
+year: 2026
+format: "A5"
+themes_controlled:
+  - "zine"
+  - "fotocopia"
+  - "cidade"
 revnet_project_id: 101
 funding_mode: "campaign"
 target_usdc: 500
@@ -16,7 +24,6 @@ deadline_iso: "2026-06-30T23:59:59Z"
 status: "published"
 sort_order: 1
 ---
-
 ## Sobre
 
 Este zine nasceu de caminhadas entre bancas, graficas de bairro e papelarias de rua. Cada pagina mistura fotografia, texto curto e recortes de cartazes.

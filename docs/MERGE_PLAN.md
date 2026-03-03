@@ -119,6 +119,7 @@ Consolidar o MVP do Zine Protocol para demo Artizen com foco em:
 ## Mega Sprint Barnard -> Zine Protocol
 
 Referência de contexto: `research/barnard/BARNARD_CONTEXT.md`
+Referência complementar: `docs/ESTAR_MAG_CONTEXT.md`
 
 ### Objetivo
 
@@ -171,6 +172,14 @@ Definicao de pronto:
 1. Parser rejeita markdown com campos invalidos.
 2. Filtros funcionam sem regressao dos filtros atuais.
 3. Pelo menos 12 zines com metadados novos preenchidos.
+
+Status atual (2026-03-02):
+
+1. Entregue: frontmatter expandido e estrito (`language`, `city`, `year`, `format`, `themes_controlled`).
+2. Entregue: filtros editoriais novos na home (idioma, cidade, formato, tema controlado).
+3. Entregue: metadata exibida em cards e em `/zines/[slug]`.
+4. Entregue: migracao de 52 zines com campos novos preenchidos.
+5. Entregue: testes de parser atualizados para cobertura de metadata invalida.
 
 ### Bloco C - Ecossistema (Semanas 5-6)
 

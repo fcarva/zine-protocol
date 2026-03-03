@@ -9,12 +9,19 @@ tags:
   - "antmag"
   - "zine"
   - "arquivo"
+language: "en"
+city: "Antwerp"
+year: 2024
+format: "Digital"
+themes_controlled:
+  - "antmag"
+  - "zine"
+  - "arquivo"
 revnet_project_id: 558
 funding_mode: "continuous"
 status: "published"
 sort_order: 63
 ---
-
 ## Contexto editorial
 - Ant Freak Beanie
 - Skull beanie with custom tag
