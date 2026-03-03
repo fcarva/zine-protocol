@@ -135,6 +135,36 @@ Status de execucao (2026-03-03):
 3. Concluido: 4 propostas publicadas em `content/governance/*/index.md`.
 4. Concluido: teste `src/test/governance.test.ts` cobrindo validacao e carregamento.
 
+## Sprint 5 (1 semana) - DAO Context and Product Framing
+
+Escopo:
+
+1. Home com bloco claro do ciclo DAO (propor, votar, executar).
+2. Pagina `/zine-dao/modelo` com:
+   - tese do token utilitario $ZINE;
+   - papeis da rede (leitores, editoras, impressoras, tesouro);
+   - fluxo operacional de governanca.
+3. Reforcar manifesto com framing DAO e links de acao.
+4. Padronizar navegacao para "Zine DAO".
+
+Entrega:
+
+1. O produto comunica a DAO como parte central da experiencia editorial.
+2. Participacao fica orientada por CTAs concretos (`propor`, `votar`, `apoiar`).
+
+DoD:
+
+1. `npm run check:all` verde.
+2. `npm run build` verde.
+3. Smoke manual em `/`, `/manifesto`, `/zine-dao`, `/zine-dao/modelo`, `/zine-dao/propor`.
+
+Status de execucao (2026-03-03):
+
+1. Concluido: bloco `Zine DAO em operacao` na home.
+2. Concluido: pagina `/zine-dao/modelo` publicada.
+3. Concluido: manifesto atualizado com contexto DAO.
+4. Concluido: navegacao renomeada para `Zine DAO`.
+
 ## 3. Cross-cutting requirements
 
 1. Copy sem jargao "mint"; manter CTA "Apoiar este zine".

@@ -218,6 +218,27 @@ Status atual (2026-03-03):
 4. Entregue: `/zine-dao` renderizando dados vindos do conteudo Git-first.
 5. Entregue: `src/test/governance.test.ts` com cobertura de validacao e loading.
 
+### Bloco E - DAO Context Layer (Semana 8)
+
+1. Fortalecer narrativa de DAO na home, manifesto e area de governanca.
+2. Publicar pagina `/zine-dao/modelo` com:
+   - fluxo de governanca;
+   - papeis e responsabilidades;
+   - contexto de token utilitario;
+   - split editorial e Tesouro Comunidade.
+3. Conectar CTAs diretos:
+   - `/zine-dao`
+   - `/zine-dao/propor`
+   - `/zine-dao/modelo`
+4. Ajustar framing de navegacao para "Zine DAO" como camada de produto (nao apenas secao tecnica).
+
+Status atual (2026-03-03):
+
+1. Entregue: bloco `Zine DAO em operacao` na home com funil em 3 passos.
+2. Entregue: pagina `/zine-dao/modelo` com narrativa completa de funcionamento.
+3. Entregue: reforco de contexto DAO no `/manifesto`.
+4. Entregue: navegacao lateral/mobile com label `Zine DAO`.
+
 ### Metricas do mega sprint
 
 1. Tempo medio catalogo -> apoio < 2 minutos.

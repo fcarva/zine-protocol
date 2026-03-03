@@ -36,8 +36,46 @@ const contributorGroups = [
   },
 ];
 
+const treasurySplit = [
+  {
+    share: "70%",
+    target: "Artista / coletivo",
+    note: "Execucao da edicao, cache de criacao e continuidade da pesquisa.",
+  },
+  {
+    share: "10%",
+    target: "Curadoria editorial",
+    note: "Selecao, revisao e qualidade de contexto publico.",
+  },
+  {
+    share: "10%",
+    target: "Impressao e distribuicao",
+    note: "Tiragem local, logistica e chegada do zine ao territorio.",
+  },
+  {
+    share: "10%",
+    target: "Tesouro Comunidade",
+    note: "Reserva de longo prazo para novos ciclos e infraestrutura comum.",
+  },
+];
+
 export default async function ZineDaoPage() {
   const governance = await queryGovernanceProposals({ includeDrafts: true, limit: 80, page: 1 });
+  const proposals = governance.proposals;
+  const stageStats = proposals.reduce(
+    (acc, proposal) => {
+      acc[proposal.stage] += 1;
+      return acc;
+    },
+    {
+      discussion: 0,
+      temperature_check: 0,
+      vote: 0,
+      queued: 0,
+      executed: 0,
+    },
+  );
+  const appCreatedCount = proposals.filter((proposal) => proposal.source === "app").length;
 
   return (
     <article className="space-y-5 font-sans">
@@ -53,6 +91,25 @@ export default async function ZineDaoPage() {
           combina referencias de ciclo do Nance com dinamica de consentimento inspirada no Murmur para
           tornar a decisao coletiva mais clara, rastreavel e acionavel.
         </p>
+
+        <div className="mt-3 grid gap-2 md:grid-cols-2 xl:grid-cols-4">
+          <MetricBlock label="Propostas no board" value={String(proposals.length)} />
+          <MetricBlock label="Em votacao" value={String(stageStats.vote)} />
+          <MetricBlock label="Em discussao" value={String(stageStats.discussion)} />
+          <MetricBlock label="Criadas no app" value={String(appCreatedCount)} />
+        </div>
+
+        <div className="mt-2 flex flex-wrap gap-2">
+          <Link href="/zine-dao/propor" className="ui-btn ui-btn-primary">
+            Escrever proposta
+          </Link>
+          <Link href="/zine-dao/modelo" className="ui-btn">
+            Ver modelo DAO
+          </Link>
+          <Link href="/checkout" className="ui-btn">
+            Apoiar o ciclo
+          </Link>
+        </div>
       </header>
 
       <section className="stagger-in border-b border-base-300 pb-4" style={{ animationDelay: "90ms" }}>
@@ -63,6 +120,23 @@ export default async function ZineDaoPage() {
                 {group.title}
               </p>
               <p className="mt-1 text-[0.78rem] leading-snug text-base-700">{group.role}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="stagger-in border-b border-base-300 pb-4" style={{ animationDelay: "120ms" }}>
+        <div className="grid gap-2 lg:grid-cols-2 xl:grid-cols-4">
+          {treasurySplit.map((item) => (
+            <article key={item.target} className="rounded-lg border border-base-300 bg-base-50/70 p-2.5">
+              <p className="font-mono text-[0.52rem] uppercase tracking-[0.14em] text-base-600">
+                Split
+              </p>
+              <p className="mt-0.5 text-[1.1rem] font-semibold uppercase tracking-[-0.03em] text-ink">
+                {item.share}
+              </p>
+              <p className="mt-0.5 text-[0.8rem] font-medium text-base-800">{item.target}</p>
+              <p className="mt-1 text-[0.74rem] leading-snug text-base-700">{item.note}</p>
             </article>
           ))}
         </div>
@@ -115,6 +189,15 @@ export default async function ZineDaoPage() {
           </Link>
         </div>
       </section>
+    </article>
+  );
+}
+
+function MetricBlock({ label, value }: { label: string; value: string }) {
+  return (
+    <article className="rounded-lg border border-base-300 bg-paper/70 p-2.5">
+      <p className="font-mono text-[0.52rem] uppercase tracking-[0.14em] text-base-600">{label}</p>
+      <p className="mt-0.5 text-[1.05rem] font-semibold uppercase tracking-[-0.03em] text-ink">{value}</p>
     </article>
   );
 }

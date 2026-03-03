@@ -93,6 +93,63 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         <EcosystemCalendar events={editorialEvents} />
       </section>
 
+      <section className="stagger-in border-b border-base-300 pb-3.5" style={{ animationDelay: "170ms" }}>
+        <div className="space-y-2">
+          <div className="flex items-end justify-between gap-3">
+            <h2 className="text-[1.32rem] font-semibold uppercase leading-[0.92] tracking-[-0.03em] text-ink sm:text-[1.56rem]">
+              Zine DAO em operacao
+            </h2>
+            <p className="max-w-[38ch] text-right font-mono text-[0.53rem] uppercase tracking-[0.14em] text-base-600">
+              Propor, votar e executar decisoes editoriais de forma publica.
+            </p>
+          </div>
+
+          <div className="grid gap-2 md:grid-cols-3">
+            <article className="rounded-lg border border-base-300 bg-paper/70 p-2.5">
+              <p className="font-mono text-[0.52rem] uppercase tracking-[0.13em] text-base-600">Passo 01</p>
+              <p className="mt-0.5 text-[0.92rem] font-semibold uppercase tracking-[-0.02em] text-ink">
+                Escrever proposta
+              </p>
+              <p className="mt-1 text-[0.78rem] leading-snug text-base-700">
+                Defina problema, impacto e escopo com template editorial.
+              </p>
+            </article>
+
+            <article className="rounded-lg border border-base-300 bg-paper/70 p-2.5">
+              <p className="font-mono text-[0.52rem] uppercase tracking-[0.13em] text-base-600">Passo 02</p>
+              <p className="mt-0.5 text-[0.92rem] font-semibold uppercase tracking-[-0.02em] text-ink">
+                Votar em ciclo
+              </p>
+              <p className="mt-1 text-[0.78rem] leading-snug text-base-700">
+                Debate publico, temperature check e votacao com quorum.
+              </p>
+            </article>
+
+            <article className="rounded-lg border border-base-300 bg-paper/70 p-2.5">
+              <p className="font-mono text-[0.52rem] uppercase tracking-[0.13em] text-base-600">Passo 03</p>
+              <p className="mt-0.5 text-[0.92rem] font-semibold uppercase tracking-[-0.02em] text-ink">
+                Executar e publicar
+              </p>
+              <p className="mt-1 text-[0.78rem] leading-snug text-base-700">
+                Decisao aprovada vira acao editorial e registro no protocolo.
+              </p>
+            </article>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            <Link href="/zine-dao" className="ui-btn ui-btn-primary">
+              Abrir Zine DAO
+            </Link>
+            <Link href="/zine-dao/modelo" className="ui-btn">
+              Ver modelo
+            </Link>
+            <Link href="/zine-dao/propor" className="ui-btn">
+              Propor agora
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="border-y border-base-300 py-2.5 sm:py-3">
         <div className="grid gap-2 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
           <div className="space-y-1.5">

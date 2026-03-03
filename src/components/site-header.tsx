@@ -4,7 +4,7 @@ import { CartLink } from "@/components/cart-link";
 const navLinks = [
   { href: "/", label: "Zines", index: "01" },
   { href: "/manifesto", label: "Manifesto", index: "02" },
-  { href: "/zine-dao", label: "Governanca", index: "03" },
+  { href: "/zine-dao", label: "Zine DAO", index: "03" },
   { href: "/curadoria", label: "Curadoria", index: "04" },
   { href: "/como-apoiar", label: "Como apoiar", index: "05" },
 ];

@@ -65,11 +65,22 @@ export default function ManifestoPage() {
               Proxima fase
             </h2>
             <p>
-              Evoluir o arquivo para plataforma editorial completa, com ensino, recursos e agenda de
-              comunidade.
+              Evoluir o arquivo para uma DAO editorial com board de propostas, tesouro de comunidade e
+              participacao continua no ciclo de decisao.
             </p>
           </section>
         </div>
+      </section>
+
+      <section className="stagger-in border-b border-base-300 pb-4" style={{ animationDelay: "150ms" }}>
+        <h2 className="text-[1.16rem] font-semibold uppercase tracking-[-0.02em] text-ink sm:text-[1.3rem]">
+          Contexto DAO no produto
+        </h2>
+        <p className="mt-1 max-w-[88ch] text-[0.84rem] leading-snug text-base-700">
+          O Zine Protocol adota governanca Git-first e board publico para transformar apoio em decisao
+          editorial rastreavel. O token $ZINE e tratado como camada de coordenacao comunitaria, com foco
+          em circulacao cultural e nao em promessa de retorno financeiro.
+        </p>
       </section>
 
       <section className="stagger-in border-b border-base-300 pb-4" style={{ animationDelay: "180ms" }}>
@@ -82,6 +93,9 @@ export default function ManifestoPage() {
           </Link>
           <Link href="/" className="ui-btn">
             Voltar ao indice
+          </Link>
+          <Link href="/zine-dao/modelo" className="ui-btn">
+            Ver modelo DAO
           </Link>
         </div>
       </section>
