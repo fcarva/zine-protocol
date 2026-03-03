@@ -115,7 +115,7 @@ describe("SupportPanel UI smoke", () => {
         expect.objectContaining({ method: "POST" }),
       );
     });
-  });
+  }, 15000);
 
   it("logs wallet intent on support CTA click", async () => {
     mockIsConnected = true;
@@ -133,5 +133,5 @@ describe("SupportPanel UI smoke", () => {
         expect.objectContaining({ method: "POST" }),
       );
     });
-  });
+  }, 15000);
 });

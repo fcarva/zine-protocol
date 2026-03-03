@@ -1,27 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
 import { CheckCircle2, MessageSquare, ShieldCheck, Timer, Vote, type LucideIcon } from "lucide-react";
-
-export type DaoProposalStage = "discussion" | "temperature_check" | "vote" | "queued" | "executed";
-
-export interface DaoProposal {
-  id: string;
-  title: string;
-  summary: string;
-  stage: DaoProposalStage;
-  cycle: string;
-  author: string;
-  quorumRequired: number;
-  votes: {
-    for: number;
-    against: number;
-    abstain: number;
-  };
-}
+import { type GovernanceBoardProposal, type GovernanceProposalStage } from "@/types/governance";
 
 type VoteChoice = "for" | "against" | "abstain";
-type ProposalFilter = "all" | DaoProposalStage;
+type ProposalFilter = "all" | GovernanceProposalStage;
 
 interface LocalVoteDelta {
   for: number;
@@ -35,7 +20,7 @@ const defaultVoteDelta: LocalVoteDelta = {
   abstain: 0,
 };
 
-const stageMeta: Record<DaoProposalStage, { label: string; icon: LucideIcon }> = {
+const stageMeta: Record<GovernanceProposalStage, { label: string; icon: LucideIcon }> = {
   discussion: { label: "Discussao", icon: MessageSquare },
   temperature_check: { label: "Temperature check", icon: Timer },
   vote: { label: "Votacao ativa", icon: Vote },
@@ -60,32 +45,66 @@ function voteButtonClass(active: boolean): string {
   return active ? "ui-btn ui-btn-primary !rounded-lg !px-2.5 !py-1.5" : "ui-btn !rounded-lg !px-2.5 !py-1.5";
 }
 
-function computeTotalVotes(votes: DaoProposal["votes"]): number {
+function computeTotalVotes(votes: GovernanceBoardProposal["votes"]): number {
   return votes.for + votes.against + votes.abstain;
 }
 
-export function DaoGovernanceBoard({ proposals }: { proposals: DaoProposal[] }) {
+export function DaoGovernanceBoard({ proposals }: { proposals: GovernanceBoardProposal[] }) {
   const [filter, setFilter] = useState<ProposalFilter>("all");
+  const [items, setItems] = useState<GovernanceBoardProposal[]>(proposals);
   const [lastVoteChoiceByProposal, setLastVoteChoiceByProposal] = useState<Record<string, VoteChoice>>({});
   const [voteDeltaByProposal, setVoteDeltaByProposal] = useState<Record<string, LocalVoteDelta>>({});
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    setItems(proposals);
+  }, [proposals]);
 
   const filteredProposals = useMemo(() => {
-    if (filter === "all") return proposals;
-    return proposals.filter((proposal) => proposal.stage === filter);
-  }, [filter, proposals]);
+    if (filter === "all") return items;
+    return items.filter((proposal) => proposal.stage === filter);
+  }, [filter, items]);
 
-  function registerVote(proposalId: string, choice: VoteChoice): void {
-    setLastVoteChoiceByProposal((current) => ({ ...current, [proposalId]: choice }));
-    setVoteDeltaByProposal((current) => {
-      const baseline = current[proposalId] ?? defaultVoteDelta;
-      return {
-        ...current,
-        [proposalId]: {
-          ...baseline,
-          [choice]: baseline[choice] + 1,
-        },
+  async function registerVote(proposal: GovernanceBoardProposal, choice: VoteChoice): Promise<void> {
+    setError("");
+    setLastVoteChoiceByProposal((current) => ({ ...current, [proposal.id]: choice }));
+
+    if (proposal.source === "content") {
+      setVoteDeltaByProposal((current) => {
+        const baseline = current[proposal.id] ?? defaultVoteDelta;
+        return {
+          ...current,
+          [proposal.id]: {
+            ...baseline,
+            [choice]: baseline[choice] + 1,
+          },
+        };
+      });
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/governance/proposal/${proposal.id}/vote`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ choice }),
+      });
+      const payload = (await response.json()) as {
+        ok: boolean;
+        data?: GovernanceBoardProposal;
+        error?: string;
       };
-    });
+
+      if (!response.ok || !payload.ok || !payload.data) {
+        throw new Error(payload.error || "Falha ao registrar voto.");
+      }
+
+      setItems((current) =>
+        current.map((entry) => (entry.id === payload.data!.id ? payload.data! : entry)),
+      );
+    } catch (submitError) {
+      setError(submitError instanceof Error ? submitError.message : "Falha ao registrar voto.");
+    }
   }
 
   return (
@@ -95,13 +114,18 @@ export function DaoGovernanceBoard({ proposals }: { proposals: DaoProposal[] }) 
           <h2 className="text-[1.2rem] font-semibold uppercase tracking-[-0.02em] text-ink sm:text-[1.38rem]">
             Governanca de propostas
           </h2>
-          <p className="font-mono text-[0.52rem] uppercase tracking-[0.14em] text-base-600">
-            Inspiracao: Nance + Murmur
-          </p>
+          <div className="flex items-center gap-2">
+            <p className="font-mono text-[0.52rem] uppercase tracking-[0.14em] text-base-600">
+              Inspiracao: Nance + Murmur
+            </p>
+            <Link href="/zine-dao/propor" className="ui-btn ui-btn-primary">
+              Escrever proposta
+            </Link>
+          </div>
         </div>
         <p className="max-w-[88ch] text-[0.82rem] leading-snug text-base-700">
-          Fluxo editorial em ciclo: discutir, testar consenso, votar e executar. Os votos abaixo sao
-          de simulacao para UX do MVP e preparam a camada de governanca onchain do $ZINE.
+          Fluxo editorial em ciclo: discutir, testar consenso, votar e executar. Agora o board aceita
+          criacao de propostas via API no estilo do sistema do Nance.
         </p>
       </header>
 
@@ -117,6 +141,12 @@ export function DaoGovernanceBoard({ proposals }: { proposals: DaoProposal[] }) 
           </button>
         ))}
       </div>
+
+      {error && (
+        <p className="rounded-lg border border-red-300 bg-red-50 px-2.5 py-2 text-[0.78rem] text-red-700">
+          {error}
+        </p>
+      )}
 
       <div className="space-y-2">
         {filteredProposals.length > 0 ? (
@@ -134,7 +164,7 @@ export function DaoGovernanceBoard({ proposals }: { proposals: DaoProposal[] }) 
             const StageIcon = stageMeta[proposal.stage].icon;
 
             return (
-              <article key={proposal.id} className="editorial-panel rounded-xl p-3">
+              <article key={proposal.uid} className="editorial-panel rounded-xl p-3">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <p className="font-mono text-[0.54rem] uppercase tracking-[0.15em] text-base-600">
                     Proposta {proposal.id}
@@ -183,25 +213,36 @@ export function DaoGovernanceBoard({ proposals }: { proposals: DaoProposal[] }) 
                 <div className="mt-2.5 flex flex-wrap gap-1.5">
                   <button
                     type="button"
-                    onClick={() => registerVote(proposal.id, "for")}
+                    onClick={() => void registerVote(proposal, "for")}
                     className={voteButtonClass(leadingVote === "for")}
                   >
                     Votar a favor
                   </button>
                   <button
                     type="button"
-                    onClick={() => registerVote(proposal.id, "against")}
+                    onClick={() => void registerVote(proposal, "against")}
                     className={voteButtonClass(leadingVote === "against")}
                   >
                     Votar contra
                   </button>
                   <button
                     type="button"
-                    onClick={() => registerVote(proposal.id, "abstain")}
+                    onClick={() => void registerVote(proposal, "abstain")}
                     className={voteButtonClass(leadingVote === "abstain")}
                   >
                     Abster-se
                   </button>
+                  <Link href={`/zine-dao/${proposal.id}`} className="ui-btn !rounded-lg !px-2.5 !py-1.5">
+                    Ler proposta
+                  </Link>
+                  {proposal.editable && (
+                    <Link
+                      href={`/zine-dao/propor?id=${proposal.id}`}
+                      className="ui-btn !rounded-lg !px-2.5 !py-1.5"
+                    >
+                      Editar
+                    </Link>
+                  )}
                 </div>
               </article>
             );

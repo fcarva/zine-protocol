@@ -5,13 +5,15 @@ Data: 2026-03-03
 ## Fontes pesquisadas
 
 1. Nance (Juicebox space): https://nance.app/s/juicebox
-2. Nance Docs - Governance cycle: https://docs.nance.app/docs/basics/governance-cycle
-3. Nance Docs - Propose: https://docs.nance.app/docs/basics/propose
-4. Nance Docs - Discuss: https://docs.nance.app/docs/basics/discuss
-5. Nance Docs - Temperature check: https://docs.nance.app/docs/basics/temperature-check
-6. Nance Docs - Vote: https://docs.nance.app/docs/basics/vote
-7. Nance Docs - Execute: https://docs.nance.app/docs/basics/execute
-8. Murmur (contexto de processo participativo): https://thegarage.group/participatory-governance/
+2. Nance Interface (repo): https://github.com/nance-eth/nance-interface
+3. Nance API/Scheduler (repo): https://github.com/nance-eth/nance-ts
+4. Nance Docs - Governance cycle: https://docs.nance.app/docs/basics/governance-cycle
+5. Nance Docs - Propose: https://docs.nance.app/docs/basics/propose
+6. Nance Docs - Discuss: https://docs.nance.app/docs/basics/discuss
+7. Nance Docs - Temperature check: https://docs.nance.app/docs/basics/temperature-check
+8. Nance Docs - Vote: https://docs.nance.app/docs/basics/vote
+9. Nance Docs - Execute: https://docs.nance.app/docs/basics/execute
+10. Murmur (contexto de processo participativo): https://thegarage.group/participatory-governance/
 
 ## Principios aplicados no front
 

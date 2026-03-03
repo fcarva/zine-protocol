@@ -108,6 +108,33 @@ Status de execucao (2026-03-03):
 5. Concluido: navegacao ecossistema adicionada no `context strip`.
 6. Concluido: gate tecnico (`check:all` e `build`) validado.
 
+## Sprint 4 (1 semana) - DAO Governance Foundation
+
+Escopo:
+
+1. Criar pagina de governanca em `/zine-dao` com votacao de propostas.
+2. Mover propostas de mock local para conteudo Git-first em `content/governance`.
+3. Adicionar parser e schema estrito para frontmatter de propostas.
+4. Cobrir parser/carregamento com testes automatizados.
+
+Entrega:
+
+1. Governanca publicavel por PR, no mesmo modelo operacional dos zines.
+2. Base pronta para evolucao de voto onchain em sprint seguinte.
+
+DoD:
+
+1. `npm run check:all` verde.
+2. `npm run build` verde.
+3. Pelo menos 3 propostas publicadas em `content/governance`.
+
+Status de execucao (2026-03-03):
+
+1. Concluido: `/zine-dao` com board de propostas, status e botoes de voto para MVP.
+2. Concluido: parser `src/lib/governance.ts` + tipos em `src/types/governance.ts`.
+3. Concluido: 4 propostas publicadas em `content/governance/*/index.md`.
+4. Concluido: teste `src/test/governance.test.ts` cobrindo validacao e carregamento.
+
 ## 3. Cross-cutting requirements
 
 1. Copy sem jargao "mint"; manter CTA "Apoiar este zine".

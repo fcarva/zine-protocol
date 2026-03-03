@@ -1,52 +1,6 @@
 import Link from "next/link";
-import { DaoGovernanceBoard, type DaoProposal } from "@/components/dao-governance-board";
-
-const governanceProposals: DaoProposal[] = [
-  {
-    id: "ZP-021",
-    title: "Orcamento de impressao local para rodada piloto em Sao Paulo",
-    summary:
-      "Liberar verba do Tesouro Comunidade para tiragem inicial de 300 copias com distribuicao em pontos independentes.",
-    stage: "vote",
-    cycle: "Ciclo 2026.03 / Janela de voto ate 12 Mar",
-    author: "Conselho editorial Faisca Lab",
-    quorumRequired: 120,
-    votes: { for: 76, against: 18, abstain: 7 },
-  },
-  {
-    id: "ZP-022",
-    title: "Programa de afiliados de bairro para distribuicao de zines",
-    summary:
-      "Criar micro-repasses por lote entregue para agentes locais, com regras publicas e checkpoint mensal de impacto.",
-    stage: "temperature_check",
-    cycle: "Ciclo 2026.03 / Sondagem de consenso",
-    author: "Rede de distribuicao",
-    quorumRequired: 90,
-    votes: { for: 44, against: 9, abstain: 15 },
-  },
-  {
-    id: "ZP-023",
-    title: "Politica de curadoria para edicoes com coautoria comunitaria",
-    summary:
-      "Definir criterios de entrada para propostas colaborativas, incluindo transparencia de fonte, credito e direitos de reproducao.",
-    stage: "discussion",
-    cycle: "Ciclo 2026.03 / Discussao aberta",
-    author: "Nucleo de curadoria",
-    quorumRequired: 80,
-    votes: { for: 22, against: 4, abstain: 11 },
-  },
-  {
-    id: "ZP-019",
-    title: "Atualizacao de split para reforcar Tesouro Comunidade",
-    summary:
-      "Aprovada no ciclo anterior. Mantem 70/10/10/10 e formaliza o bucket de 10% para manutencao da operacao editorial.",
-    stage: "executed",
-    cycle: "Ciclo 2026.02 / Executada em 26 Fev",
-    author: "Comite financeiro",
-    quorumRequired: 100,
-    votes: { for: 88, against: 12, abstain: 5 },
-  },
-];
+import { DaoGovernanceBoard } from "@/components/dao-governance-board";
+import { queryGovernanceProposals } from "@/lib/dao-governance";
 
 const nanceCycle = [
   "Propose: proposta estruturada com impacto e escopo.",
@@ -82,7 +36,9 @@ const contributorGroups = [
   },
 ];
 
-export default function ZineDaoPage() {
+export default async function ZineDaoPage() {
+  const governance = await queryGovernanceProposals({ includeDrafts: true, limit: 80, page: 1 });
+
   return (
     <article className="space-y-5 font-sans">
       <header className="stagger-in border-b border-base-300 pb-4">
@@ -139,7 +95,7 @@ export default function ZineDaoPage() {
       </section>
 
       <section className="stagger-in border-b border-base-300 pb-4" style={{ animationDelay: "180ms" }}>
-        <DaoGovernanceBoard proposals={governanceProposals} />
+        <DaoGovernanceBoard proposals={governance.proposals} />
       </section>
 
       <section className="stagger-in border-b border-base-300 pb-4" style={{ animationDelay: "220ms" }}>

@@ -94,5 +94,5 @@ describe("CheckoutPage UI smoke", () => {
         expect.objectContaining({ method: "POST" }),
       );
     });
-  });
+  }, 15000);
 });

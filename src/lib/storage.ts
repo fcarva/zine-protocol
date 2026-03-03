@@ -1,4 +1,5 @@
 import {
+  DaoProposalStatus,
   Prisma,
   PrismaClient,
   PixChargeStatus,
@@ -47,6 +48,66 @@ export interface SupportIntentFunnelMetrics {
   starts_by_surface: Array<{ surface: string; count: number }>;
 }
 
+export type DaoProposalStatusValue =
+  | "draft"
+  | "discussion"
+  | "temperature_check"
+  | "voting"
+  | "approved"
+  | "cancelled"
+  | "queued"
+  | "executed"
+  | "archived";
+
+export type DaoVoteChoice = "for" | "against" | "abstain";
+
+export interface DaoProposalCreateInput {
+  proposalCode: string;
+  slug: string;
+  title: string;
+  summary: string;
+  body: string;
+  status: DaoProposalStatusValue;
+  cycleLabel: string;
+  governanceCycle?: number;
+  authorName: string;
+  authorWallet?: string;
+  quorumRequired: number;
+  source?: string;
+}
+
+export interface DaoProposalUpdateInput {
+  title?: string;
+  summary?: string;
+  body?: string;
+  cycleLabel?: string;
+  governanceCycle?: number;
+  authorName?: string;
+  authorWallet?: string;
+  quorumRequired?: number;
+}
+
+export interface DaoProposalRecord {
+  id: string;
+  proposalCode: string;
+  slug: string;
+  title: string;
+  summary: string;
+  body: string;
+  status: DaoProposalStatusValue;
+  cycleLabel: string;
+  governanceCycle?: number;
+  authorName: string;
+  authorWallet?: string;
+  quorumRequired: number;
+  votesFor: number;
+  votesAgainst: number;
+  votesAbstain: number;
+  source: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 const prisma =
   shouldUsePrisma(databaseEnv.url)
     ? globalThis.__zinePrisma ||
@@ -68,6 +129,7 @@ const memoryCharges = new Map<string, PixChargeRecord>();
 const memorySupportEvents: Array<SupportEventInput & { createdAt: Date }> = [];
 const memorySupportIntentEvents: Array<SupportIntentEventInput & { createdAt: Date }> = [];
 const memorySupportIntentIds = new Set<string>();
+const memoryDaoProposals = new Map<string, DaoProposalRecord>();
 let didWarnStorageFallback = false;
 
 function shouldUsePrisma(databaseUrl: string | undefined): boolean {
@@ -389,6 +451,352 @@ function getSupportIntentFunnelMetricsFromMemory(
   };
 }
 
+export async function listDaoProposals(): Promise<DaoProposalRecord[]> {
+  if (!prisma) {
+    return listDaoProposalsFromMemory();
+  }
+
+  try {
+    const rows = await prisma.daoProposal.findMany({
+      orderBy: [{ createdAt: "desc" }],
+    });
+    return rows.map(mapDaoProposalRow);
+  } catch (error) {
+    warnStorageFallback(error);
+    return listDaoProposalsFromMemory();
+  }
+}
+
+export async function getDaoProposalByAnyId(identifier: string): Promise<DaoProposalRecord | null> {
+  if (!prisma) {
+    return getDaoProposalByAnyIdFromMemory(identifier);
+  }
+
+  try {
+    const row = await prisma.daoProposal.findFirst({
+      where: {
+        OR: [
+          { id: identifier },
+          { proposalCode: identifier.toUpperCase() },
+          { slug: identifier },
+        ],
+      },
+    });
+    return row ? mapDaoProposalRow(row) : null;
+  } catch (error) {
+    warnStorageFallback(error);
+    return getDaoProposalByAnyIdFromMemory(identifier);
+  }
+}
+
+export async function createDaoProposal(input: DaoProposalCreateInput): Promise<DaoProposalRecord> {
+  if (!prisma) {
+    return createDaoProposalInMemory(input);
+  }
+
+  try {
+    const row = await prisma.daoProposal.create({
+      data: {
+        proposalCode: input.proposalCode.toUpperCase(),
+        slug: input.slug,
+        title: input.title,
+        summary: input.summary,
+        body: input.body,
+        status: mapDaoProposalStatus(input.status),
+        cycleLabel: input.cycleLabel,
+        governanceCycle: input.governanceCycle,
+        authorName: input.authorName,
+        authorWallet: input.authorWallet,
+        quorumRequired: input.quorumRequired,
+        source: input.source ?? "app",
+      },
+    });
+    return mapDaoProposalRow(row);
+  } catch (error) {
+    warnStorageFallback(error);
+    return createDaoProposalInMemory(input);
+  }
+}
+
+export async function updateDaoProposal(
+  identifier: string,
+  input: DaoProposalUpdateInput,
+): Promise<DaoProposalRecord | null> {
+  if (!prisma) {
+    return updateDaoProposalInMemory(identifier, input);
+  }
+
+  try {
+    const found = await prisma.daoProposal.findFirst({
+      where: {
+        OR: [{ id: identifier }, { proposalCode: identifier.toUpperCase() }, { slug: identifier }],
+      },
+    });
+    if (!found) return null;
+
+    const row = await prisma.daoProposal.update({
+      where: { id: found.id },
+      data: {
+        title: input.title,
+        summary: input.summary,
+        body: input.body,
+        cycleLabel: input.cycleLabel,
+        governanceCycle: input.governanceCycle,
+        authorName: input.authorName,
+        authorWallet: input.authorWallet,
+        quorumRequired: input.quorumRequired,
+      },
+    });
+    return mapDaoProposalRow(row);
+  } catch (error) {
+    warnStorageFallback(error);
+    return updateDaoProposalInMemory(identifier, input);
+  }
+}
+
+export async function patchDaoProposalStatus(
+  identifier: string,
+  status: DaoProposalStatusValue,
+): Promise<DaoProposalRecord | null> {
+  if (!prisma) {
+    return patchDaoProposalStatusInMemory(identifier, status);
+  }
+
+  try {
+    const found = await prisma.daoProposal.findFirst({
+      where: {
+        OR: [{ id: identifier }, { proposalCode: identifier.toUpperCase() }, { slug: identifier }],
+      },
+    });
+    if (!found) return null;
+
+    const row = await prisma.daoProposal.update({
+      where: { id: found.id },
+      data: { status: mapDaoProposalStatus(status) },
+    });
+    return mapDaoProposalRow(row);
+  } catch (error) {
+    warnStorageFallback(error);
+    return patchDaoProposalStatusInMemory(identifier, status);
+  }
+}
+
+export async function addDaoProposalVote(
+  identifier: string,
+  choice: DaoVoteChoice,
+): Promise<DaoProposalRecord | null> {
+  if (!prisma) {
+    return addDaoProposalVoteInMemory(identifier, choice);
+  }
+
+  try {
+    const found = await prisma.daoProposal.findFirst({
+      where: {
+        OR: [{ id: identifier }, { proposalCode: identifier.toUpperCase() }, { slug: identifier }],
+      },
+    });
+    if (!found) return null;
+
+    const row = await prisma.daoProposal.update({
+      where: { id: found.id },
+      data:
+        choice === "for"
+          ? { votesFor: { increment: 1 } }
+          : choice === "against"
+            ? { votesAgainst: { increment: 1 } }
+            : { votesAbstain: { increment: 1 } },
+    });
+    return mapDaoProposalRow(row);
+  } catch (error) {
+    warnStorageFallback(error);
+    return addDaoProposalVoteInMemory(identifier, choice);
+  }
+}
+
+export async function deleteDaoProposal(identifier: string): Promise<boolean> {
+  if (!prisma) {
+    return deleteDaoProposalInMemory(identifier);
+  }
+
+  try {
+    const found = await prisma.daoProposal.findFirst({
+      where: {
+        OR: [{ id: identifier }, { proposalCode: identifier.toUpperCase() }, { slug: identifier }],
+      },
+    });
+    if (!found) return false;
+
+    await prisma.daoProposal.delete({ where: { id: found.id } });
+    return true;
+  } catch (error) {
+    warnStorageFallback(error);
+    return deleteDaoProposalInMemory(identifier);
+  }
+}
+
+function listDaoProposalsFromMemory(): DaoProposalRecord[] {
+  return Array.from(memoryDaoProposals.values()).sort(
+    (a, b) => b.createdAt.getTime() - a.createdAt.getTime(),
+  );
+}
+
+function getDaoProposalByAnyIdFromMemory(identifier: string): DaoProposalRecord | null {
+  const normalized = identifier.toLowerCase();
+  const upper = identifier.toUpperCase();
+  for (const proposal of memoryDaoProposals.values()) {
+    if (
+      proposal.id.toLowerCase() === normalized ||
+      proposal.slug.toLowerCase() === normalized ||
+      proposal.proposalCode.toUpperCase() === upper
+    ) {
+      return proposal;
+    }
+  }
+  return null;
+}
+
+function createDaoProposalInMemory(input: DaoProposalCreateInput): DaoProposalRecord {
+  const now = new Date();
+  const id = createMemoryId();
+  const proposal: DaoProposalRecord = {
+    id,
+    proposalCode: input.proposalCode.toUpperCase(),
+    slug: input.slug,
+    title: input.title,
+    summary: input.summary,
+    body: input.body,
+    status: input.status,
+    cycleLabel: input.cycleLabel,
+    governanceCycle: input.governanceCycle,
+    authorName: input.authorName,
+    authorWallet: input.authorWallet,
+    quorumRequired: input.quorumRequired,
+    votesFor: 0,
+    votesAgainst: 0,
+    votesAbstain: 0,
+    source: input.source ?? "app",
+    createdAt: now,
+    updatedAt: now,
+  };
+  memoryDaoProposals.set(id, proposal);
+  return proposal;
+}
+
+function updateDaoProposalInMemory(
+  identifier: string,
+  input: DaoProposalUpdateInput,
+): DaoProposalRecord | null {
+  const found = getDaoProposalByAnyIdFromMemory(identifier);
+  if (!found) return null;
+
+  const updated: DaoProposalRecord = {
+    ...found,
+    title: input.title ?? found.title,
+    summary: input.summary ?? found.summary,
+    body: input.body ?? found.body,
+    cycleLabel: input.cycleLabel ?? found.cycleLabel,
+    governanceCycle: input.governanceCycle ?? found.governanceCycle,
+    authorName: input.authorName ?? found.authorName,
+    authorWallet: input.authorWallet ?? found.authorWallet,
+    quorumRequired: input.quorumRequired ?? found.quorumRequired,
+    updatedAt: new Date(),
+  };
+
+  memoryDaoProposals.set(found.id, updated);
+  return updated;
+}
+
+function patchDaoProposalStatusInMemory(
+  identifier: string,
+  status: DaoProposalStatusValue,
+): DaoProposalRecord | null {
+  const found = getDaoProposalByAnyIdFromMemory(identifier);
+  if (!found) return null;
+
+  const updated: DaoProposalRecord = {
+    ...found,
+    status,
+    updatedAt: new Date(),
+  };
+
+  memoryDaoProposals.set(found.id, updated);
+  return updated;
+}
+
+function addDaoProposalVoteInMemory(
+  identifier: string,
+  choice: DaoVoteChoice,
+): DaoProposalRecord | null {
+  const found = getDaoProposalByAnyIdFromMemory(identifier);
+  if (!found) return null;
+
+  const updated: DaoProposalRecord = {
+    ...found,
+    votesFor: choice === "for" ? found.votesFor + 1 : found.votesFor,
+    votesAgainst: choice === "against" ? found.votesAgainst + 1 : found.votesAgainst,
+    votesAbstain: choice === "abstain" ? found.votesAbstain + 1 : found.votesAbstain,
+    updatedAt: new Date(),
+  };
+
+  memoryDaoProposals.set(found.id, updated);
+  return updated;
+}
+
+function deleteDaoProposalInMemory(identifier: string): boolean {
+  const found = getDaoProposalByAnyIdFromMemory(identifier);
+  if (!found) return false;
+  return memoryDaoProposals.delete(found.id);
+}
+
+function createMemoryId(): string {
+  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
+    return crypto.randomUUID();
+  }
+  return `dao_${Date.now()}_${Math.random().toString(16).slice(2, 10)}`;
+}
+
+function mapDaoProposalRow(row: {
+  id: string;
+  proposalCode: string;
+  slug: string;
+  title: string;
+  summary: string;
+  body: string;
+  status: DaoProposalStatus;
+  cycleLabel: string;
+  governanceCycle: number | null;
+  authorName: string;
+  authorWallet: string | null;
+  quorumRequired: number;
+  votesFor: number;
+  votesAgainst: number;
+  votesAbstain: number;
+  source: string;
+  createdAt: Date;
+  updatedAt: Date;
+}): DaoProposalRecord {
+  return {
+    id: row.id,
+    proposalCode: row.proposalCode,
+    slug: row.slug,
+    title: row.title,
+    summary: row.summary,
+    body: row.body,
+    status: fromDaoProposalStatus(row.status),
+    cycleLabel: row.cycleLabel,
+    governanceCycle: row.governanceCycle ?? undefined,
+    authorName: row.authorName,
+    authorWallet: row.authorWallet ?? undefined,
+    quorumRequired: row.quorumRequired,
+    votesFor: row.votesFor,
+    votesAgainst: row.votesAgainst,
+    votesAbstain: row.votesAbstain,
+    source: row.source,
+    createdAt: row.createdAt,
+    updatedAt: row.updatedAt,
+  };
+}
+
 function isUniqueConstraintError(error: unknown): boolean {
   if (!(error instanceof Prisma.PrismaClientKnownRequestError)) {
     return false;
@@ -427,6 +835,56 @@ function mapSupportMethod(method: SupportIntentMethod): SupportMethod {
   if (method === "wallet") return SupportMethod.wallet;
   if (method === "email") return SupportMethod.email;
   return SupportMethod.pix;
+}
+
+function mapDaoProposalStatus(status: DaoProposalStatusValue): DaoProposalStatus {
+  switch (status) {
+    case "draft":
+      return DaoProposalStatus.draft;
+    case "discussion":
+      return DaoProposalStatus.discussion;
+    case "temperature_check":
+      return DaoProposalStatus.temperature_check;
+    case "voting":
+      return DaoProposalStatus.voting;
+    case "approved":
+      return DaoProposalStatus.approved;
+    case "cancelled":
+      return DaoProposalStatus.cancelled;
+    case "queued":
+      return DaoProposalStatus.queued;
+    case "executed":
+      return DaoProposalStatus.executed;
+    case "archived":
+      return DaoProposalStatus.archived;
+    default:
+      return DaoProposalStatus.discussion;
+  }
+}
+
+function fromDaoProposalStatus(status: DaoProposalStatus): DaoProposalStatusValue {
+  switch (status) {
+    case DaoProposalStatus.draft:
+      return "draft";
+    case DaoProposalStatus.discussion:
+      return "discussion";
+    case DaoProposalStatus.temperature_check:
+      return "temperature_check";
+    case DaoProposalStatus.voting:
+      return "voting";
+    case DaoProposalStatus.approved:
+      return "approved";
+    case DaoProposalStatus.cancelled:
+      return "cancelled";
+    case DaoProposalStatus.queued:
+      return "queued";
+    case DaoProposalStatus.executed:
+      return "executed";
+    case DaoProposalStatus.archived:
+      return "archived";
+    default:
+      return "discussion";
+  }
 }
 
 declare global {

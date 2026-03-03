@@ -203,6 +203,21 @@ Status atual (2026-03-03):
 4. Entregue: bloco `Calendario editorial` na home com CTA para trilhas do ecossistema.
 5. Entregue: contexto ESTAR + Barnard consolidado em narrativa de ecossistema.
 
+### Bloco D - Governanca DAO Git-first (Semana 7)
+
+1. Criar parser e schema estrito para propostas DAO em markdown.
+2. Criar pasta `content/governance` com propostas publicadas.
+3. Remover mock hardcoded da pagina `/zine-dao`.
+4. Adicionar teste dedicado para validacao de frontmatter de governanca.
+
+Status atual (2026-03-03):
+
+1. Entregue: `src/lib/governance.ts` com parser `zod` e carregamento de propostas.
+2. Entregue: `src/types/governance.ts` com tipos e enums da camada DAO.
+3. Entregue: 4 propostas publicadas em `content/governance`.
+4. Entregue: `/zine-dao` renderizando dados vindos do conteudo Git-first.
+5. Entregue: `src/test/governance.test.ts` com cobertura de validacao e loading.
+
 ### Metricas do mega sprint
 
 1. Tempo medio catalogo -> apoio < 2 minutos.

@@ -25,6 +25,18 @@ enum SupportMethod {
   email
 }
 
+enum DaoProposalStatus {
+  draft
+  discussion
+  temperature_check
+  voting
+  approved
+  cancelled
+  queued
+  executed
+  archived
+}
+
 model PixCharge {
   id                String          @id @default(cuid())
   chargeId          String          @unique
@@ -81,5 +93,31 @@ model SupportIntentEvent {
   @@index([method])
   @@index([createdAt])
   @@index([surface])
+}
+
+model DaoProposal {
+  id              String            @id @default(cuid())
+  proposalCode    String            @unique
+  slug            String            @unique
+  title           String
+  summary         String
+  body            String
+  status          DaoProposalStatus @default(discussion)
+  cycleLabel      String
+  governanceCycle Int?
+  authorName      String
+  authorWallet    String?
+  quorumRequired  Int
+  votesFor        Int               @default(0)
+  votesAgainst    Int               @default(0)
+  votesAbstain    Int               @default(0)
+  source          String            @default("app")
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  @@index([status])
+  @@index([governanceCycle])
+  @@index([createdAt])
+  @@index([authorName])
 }
 
